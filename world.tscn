@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://wkqeepmuas80"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_kadkh"]
+[ext_resource type="Script" path="res://free_look_camera.gd" id="2_3rxbt"]
+[ext_resource type="Script" path="res://addons/dynamic_day_night_cycles/custom_eot.gd" id="3_tpjd7"]
+
+[sub_resource type="Environment" id="Environment_85560"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_l44ai"]
+
+[sub_resource type="Environment" id="Environment_jd6j0"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qd21m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8adi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vkb6e"]
+radius = 10.0
+
+[node name="Scenario" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_85560")
+camera_attributes = SubResource("CameraAttributesPractical_l44ai")
+
+[node name="Terrain" type="Node3D" parent="."]
+script = ExtResource("1_kadkh")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.832554, -0.280781, 0.47751, 3.13847e-09, 0.862019, 0.506877, -0.553944, 0.422002, -0.717677, 512, 100, 512)
+environment = SubResource("Environment_jd6j0")
+attributes = SubResource("CameraAttributesPractical_qd21m")
+doppler_tracking = 1
+current = true
+far = 65535.0
+script = ExtResource("2_3rxbt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766045, 0.642788, 0, -0.642788, 0.766045, 0, 1805.58, 0)
+light_angular_distance = 0.5
+shadow_enabled = true
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 100, 512)
+mass = 100.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="RigidBody3D"]
+use_collision = true
+radius = 10.0
+material = SubResource("StandardMaterial3D_p8adi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_vkb6e")
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 128.146, 532.378)
+mass = 100.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="RigidBody3D2"]
+use_collision = true
+radius = 10.0
+material = SubResource("StandardMaterial3D_p8adi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+shape = SubResource("SphereShape3D_vkb6e")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 534.539, 119.076, 512)
+mass = 100.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="RigidBody3D3"]
+use_collision = true
+radius = 10.0
+material = SubResource("StandardMaterial3D_p8adi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
+shape = SubResource("SphereShape3D_vkb6e")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 512, 115.407, 556.572)
+mass = 100.0
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="RigidBody3D4"]
+use_collision = true
+radius = 10.0
+material = SubResource("StandardMaterial3D_p8adi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4"]
+shape = SubResource("SphereShape3D_vkb6e")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="CustomEOT" type="Node" parent="."]
+script = ExtResource("3_tpjd7")
+days_per_year = 360.0
+day_duration = 100.0
+latitude = 55.0
