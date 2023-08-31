@@ -141,7 +141,7 @@ pub mod world {
     pub type Vec2 = Vector2<f64>;
 
     pub struct World {
-        pub seed: real,
+        pub seed: i16,
         pub map: Map,
 
         pub lrate: f64,
@@ -153,7 +153,7 @@ pub mod world {
     }
 
     impl World {
-        pub fn new(heightmap: Vec<u16>, width: usize, height: usize, seed: real) -> Self {
+        pub fn new(heightmap: Vec<u16>, width: usize, height: usize, seed: i16) -> Self {
             Self {
                 seed,
                 map: Map::new(width, height, heightmap),
@@ -337,3 +337,4 @@ pub mod water {
         }
     }
 }
+

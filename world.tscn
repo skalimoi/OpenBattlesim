@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://wkqeepmuas80"]
+[gd_scene load_steps=14 format=3 uid="uid://wkqeepmuas80"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_kadkh"]
 [ext_resource type="Script" path="res://free_look_camera.gd" id="2_3rxbt"]
+[ext_resource type="Shader" uid="uid://cxcq8wq1mysia" path="res://addons/dynamic_day_night_cycles/daytime_shader.tres" id="3_b232p"]
 [ext_resource type="Script" path="res://addons/dynamic_day_night_cycles/custom_eot.gd" id="3_tpjd7"]
+[ext_resource type="Texture2D" uid="uid://cyjgfgqtkbf5e" path="res://addons/dynamic_day_night_cycles/sun_colors.png" id="4_xqsix"]
+[ext_resource type="Script" path="res://day_shader_tracker.gd" id="5_4064q"]
 
 [sub_resource type="Environment" id="Environment_85560"]
 
@@ -16,6 +19,16 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vkb6e"]
 radius = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x7bn1"]
+shader = ExtResource("3_b232p")
+shader_parameter/twilight_duration_factor = 1.0
+shader_parameter/current_time = 0.0
+shader_parameter/sunrise_time = 0.1
+shader_parameter/sunset_time = 0.9
+shader_parameter/twilight_duration = 0.2
+shader_parameter/shader_opacity = 1.0
+shader_parameter/day_time_colors = ExtResource("4_xqsix")
 
 [node name="Scenario" type="Node3D"]
 
@@ -90,8 +103,16 @@ shape = SubResource("SphereShape3D_vkb6e")
 
 [node name="Node" type="Node" parent="."]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_x7bn1")
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_4064q")
+
 [node name="CustomEOT" type="Node" parent="."]
 script = ExtResource("3_tpjd7")
-days_per_year = 360.0
-day_duration = 100.0
-latitude = 55.0
+day_duration = 1000.0
+
+[node name="ErosionActor" type="ErosionActor" parent="."]
