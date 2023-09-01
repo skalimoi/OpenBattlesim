@@ -5,12 +5,48 @@ shader_type spatial;
 
 #include "include/heightmap.gdshaderinc"
 
+
+
+uniform float height_scale = 0.5;
+uniform sampler2D noise;
+uniform sampler2D normalmap;
+
+varying vec2 tex_position;
+
+// Pre-calculate constants for use in height function
+const float wave_scale = 0.4;
+const float wave_scale2 = 0.3;
+const float wave_scale3 = 0.5;
+const float wave_scale4 = 0.6;
+const float wave_pow = 0.65;
+const float wave_pow2 = 4.0;
+
+
+float wave(vec2 position){
+  position += texture(noise, position / 64.0).x * 2.0 - 1.0;
+  vec2 wv = 1.0 - abs(sin(position));
+  return pow(1.0 - pow(wv.x * wv.y, wave_pow), wave_pow2);
+}
+
+float height(vec2 position, float time) {
+  float d = wave((position + time) * wave_scale) * 0.3;
+  d += wave((position - time) * wave_scale2) * 0.3;
+  d += wave((position + time) * wave_scale3) * 0.2;
+  d += wave((position - time) * wave_scale4) * 0.2;
+  return d;
+}
+
+
+
 uniform sampler2D u_terrain_heightmap;
 uniform sampler2D u_terrain_normalmap;
 // I had to remove `hint_albedo` from colormap in Godot 3 because it makes sRGB conversion kick in,
 // which snowballs to black when doing GPU painting on that texture...
 uniform sampler2D u_terrain_colormap;// : hint_albedo;
 uniform sampler2D u_terrain_splatmap;
+
+uniform sampler2D u_water_mask;
+
 uniform mat4 u_terrain_inverse_transform;
 uniform mat3 u_terrain_normal_basis;
 
@@ -129,6 +165,32 @@ void vertex() {
 	
 	// Need to use u_terrain_normal_basis to handle scaling.
 	NORMAL = u_terrain_normal_basis * unpack_normal(texture(u_terrain_normalmap, UV));
+	
+	vec2 ground_uv = v_ground_uv.xz;
+	
+	vec4 river_mask = texture(u_water_mask, UV);
+	
+	if (river_mask.r > 0.5) {
+	        // Get the current vertex position
+  		vec3 pos = VERTEX;
+
+  // Get the height of the terrain at this position
+		float h = sample_heightmap(u_terrain_heightmap, UV);
+ 		float k = height(pos.xz, TIME);
+
+  // Set the Y position of the vertex to the terrain height
+  		VERTEX.y = sample_heightmap(u_terrain_heightmap, UV);
+
+  // Calculate the normal vector using nearby terrain heights
+  		NORMAL = normalize(vec3(
+    		k - height(pos.xz + vec2(0.1, 0.0), TIME),
+    		0.1,
+    		k - height(pos.xz + vec2(0.0, 0.1), TIME)
+  		));
+
+  		// Apply the normal map to the normal vector
+  		NORMAL = normalize(texture(normalmap, tex_position).rgb * 2.0 - 1.0 + NORMAL);
+    }
 }
 
 void fragment() {
@@ -137,13 +199,28 @@ void fragment() {
 		discard;
 	}
 	
+	vec2 ground_uv = v_ground_uv.xz;
+	
+	vec4 river_mask = texture(u_water_mask, UV);
+	
+	if (river_mask.r > 0.5) {
+        // Calculate the fresnel factor
+ 		float fresnel = sqrt(1.0 - dot(NORMAL, VIEW));
+
+  		// Set material properties
+  		RIM = 0.2;
+  		METALLIC = 0.0;
+  		ROUGHNESS = 0.01 * (1.0 - fresnel);
+  		ALBEDO = vec3(0.1, 0.3, 0.5) + (0.1 * fresnel);
+    }
+	
 	vec3 terrain_normal_world = 
 		u_terrain_normal_basis * unpack_normal(texture(u_terrain_normalmap, UV));
 	terrain_normal_world = normalize(terrain_normal_world);
 
 	// TODO Detail should only be rasterized on nearby chunks (needs proximity management to switch shaders)
 	
-	vec2 ground_uv = v_ground_uv.xz;
+	
 	
 	vec4 ab0, ab1, ab2, ab3;
 	if (u_triplanar) {

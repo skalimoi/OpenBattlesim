@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wkqeepmuas80"]
+[gd_scene load_steps=15 format=3 uid="uid://wkqeepmuas80"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_kadkh"]
 [ext_resource type="Script" path="res://free_look_camera.gd" id="2_3rxbt"]
@@ -15,10 +15,12 @@
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qd21m"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8adi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rc6ah"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_vkb6e"]
 radius = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8adi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x7bn1"]
 shader = ExtResource("3_b232p")
@@ -60,7 +62,7 @@ mass = 100.0
 [node name="CSGSphere3D" type="CSGSphere3D" parent="RigidBody3D"]
 use_collision = true
 radius = 10.0
-material = SubResource("StandardMaterial3D_p8adi")
+material = SubResource("StandardMaterial3D_rc6ah")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_vkb6e")

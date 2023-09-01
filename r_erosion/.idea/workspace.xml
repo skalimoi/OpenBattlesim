@@ -4,28 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cd066be-5b88-42db-9cdf-11d4e9af535f" name="Changes" comment="" />
+    <list default="true" id="9cd066be-5b88-42db-9cdf-11d4e9af535f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../addons/zylann.hterrain/shaders/multisplat16.gdshader" beforeDir="false" afterPath="$PROJECT_DIR$/../addons/zylann.hterrain/shaders/multisplat16.gdshader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../addons/zylann.hterrain/shaders/simple4_lite.gdshader" beforeDir="false" afterPath="$PROJECT_DIR$/../addons/zylann.hterrain/shaders/simple4_lite.gdshader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entry_point.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/entry_point.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../r_tex/Cargo.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../r_tex/Cargo.toml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../r_tex/src/lib.rs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tile_tex/lvl1/discharge_1_1.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/../tile_tex/lvl1/discharge_1_1.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tile_tex/lvl1/discharge_1_11.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/../tile_tex/lvl1/discharge_1_11.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tile_tex/lvl1/discharge_3_12.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/../tile_tex/lvl1/discharge_3_12.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../world.gd" beforeDir="false" afterPath="$PROJECT_DIR$/../world.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../world.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/../world.tscn" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2Ui2vmM0rd7zgsTms1pBn7gYlwf" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
 </project>

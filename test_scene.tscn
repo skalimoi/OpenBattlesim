@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://bf1bb070btukk"]
+
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="1_u6hjc"]
+[ext_resource type="Resource" path="res://tile_tex/lvl1/data.hterrain" id="2_rfjdm"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="3_o65ns"]
+[ext_resource type="Script" path="res://addons/waterways/water_system_manager.gd" id="4_602vf"]
+[ext_resource type="Script" path="res://addons/waterways/river_manager.gd" id="5_4ea6h"]
+
+[sub_resource type="Resource" id="Resource_ixfog"]
+script = ExtResource("3_o65ns")
+mode = 0
+textures = [[], []]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="HTerrain" type="Node3D" parent="."]
+script = ExtResource("1_u6hjc")
+ambient_wind = 0.103
+_terrain_data = ExtResource("2_rfjdm")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_ixfog")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = true
+shader_params/u_tile_reduction = null
+
+[node name="WaterSystem" type="Node3D" parent="."]
+script = ExtResource("4_602vf")
+system_map = null
+system_bake_resolution = 2
+system_group_name = "waterways_system"
+minimum_water_level = 0.0
+wet_group_name = "waterways_wet"
+surface_index = -1
+material_override = false
+_system_aabb = AABB(0, 0, 0, 0, 0, 0)
+
+[node name="River" type="Node3D" parent="WaterSystem"]
+script = ExtResource("5_4ea6h")

@@ -252,6 +252,22 @@ void fragment() {
 		// TODO Add option to use vertex discarding instead, using NaNs
 		discard;
 	}
+	
+	// UV CALCULATION AS BEFORE
+	
+	vec4 wpos = MODEL_MATRIX * vec4(VERTEX, 1);
+	vec2 cell_coords = (u_terrain_inverse_transform * wpos).xz;
+	// Must add a half-offset so that we sample the center of pixels,
+	// otherwise bilinear filtering of the textures will give us mixed results (#183)
+	cell_coords += vec2(0.5);
+	
+	float h = sample_heightmap(u_terrain_heightmap, UV);
+	
+	vec3 base_ground_uv = vec3(cell_coords.x, h * MODEL_MATRIX[1][1], cell_coords.y);
+	
+	
+	
+	
 
 	vec3 terrain_normal_world = 
 		u_terrain_normal_basis * (unpack_normal(texture(u_terrain_normalmap, UV)));

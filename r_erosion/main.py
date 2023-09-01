@@ -7,7 +7,7 @@ import scipy
 def gen_clut():
     print('Generating CLUT...')
 
-    clut_res = 32
+    clut_res = 128
 
     dir_list = glob.glob('data/*')
     cmap_list = [os.path.basename(d) for d in dir_list if os.path.isdir(d)]
@@ -180,8 +180,16 @@ def apply_clut_png():
         # plt.axis('off')
 
         plt.imsave('texture.png', img3.astype(np.uint8))
+
+        f = open("TEXTURING_FINISHED", "x")
         
     # plt.show()
 
 
+def main():
+    gen_clut()
+    apply_clut_png()
+
+if __name__ == "__main__":
+    main()
 
