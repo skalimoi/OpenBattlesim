@@ -23,10 +23,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var day_duration = 1000
+	var day_duration = 60
 	
 	if accumulated_elapsed_time < day_duration:
-		accumulated_elapsed_time += (delta * 10)
+		accumulated_elapsed_time += (delta)
 		if accumulated_elapsed_time > day_duration:
 			accumulated_elapsed_time = 0
 			day += 1
@@ -41,6 +41,7 @@ func _process(delta):
 		daytime_shader.set_shader_parameter("sunset_time", eot_values["sunset_pct"])
 		daytime_shader.set_shader_parameter("twilight_duration", eot_values["twilight_duration_pct"])
 		daytime_shader.set_shader_parameter("current_time", day_progress)
+		daytime_shader.set_shader_parameter("declination", eot_values["declination"])
 		print(daytime_shader.get_shader_parameter("current_time"))
 	
 	

@@ -9,6 +9,8 @@ uniform float twilight_duration_factor = 1.0f;
 
 uniform float current_time : hint_range(0, 1) = 0.0f;
 
+uniform float declination = 1.0f;
+
 uniform float sunrise_time : hint_range(0, 1) = 0.1f;
 uniform float sunset_time : hint_range(0, 1) = 0.9f;
 

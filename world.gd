@@ -8,14 +8,15 @@ var global_dir_path = ProjectSettings.globalize_path("res://r_erosion/")
 
 func generate_heightmap():
 	print("Starting erosion.")
-	$"../ErosionActor".erode_heightmap(10, 11234)
+	$"../ErosionActor".erode_heightmap(20, 11234)
 	print("Starting normals.")
 	$"../ErosionActor".create_normal()
 	print("Starting biome copying.")
-	$"../ErosionActor".choose_and_copy_biome() # TODO: make biome choosing from string system
-	var output
+	# $"../ErosionActor".choose_and_copy_biome() # TODO: make biome choosing from string system
+	var output: Array
+	OS.execute("cmd.exe", ["/C", "cd C:/_OpenBattlesim/r_erosion/ && python main.py"], output, true, true)
+	waitForFileExistence()
 	print("Generating terrain texture...")
-	OS.execute("res://r_erosion/main.py", [], output)
 	print("Texture generated.")
 	print("Generating tiles...")
 	$"../ErosionActor".generate_tile_data()
@@ -27,18 +28,14 @@ func waitForFileExistence():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var complete_dir = global_dir_path + "main.py"
-	print(complete_dir)
+	# var complete_dir = global_dir_path + "main.py"
+	# print(complete_dir)
 	print("Starting heightmap generation.")
 	if not $"../ErosionActor".is_node_ready():
 		await $"../ErosionActor".is_node_ready() == true
-		var output: Array
-		
-		# OS.execute("cmd.exe", ["/C", "cd C:/_OpenBattlesim/r_erosion/ && python main.py"], output, true, true)
-		print("Texture generated.")
-		print("Generating tiles...")
-		
-		$"../ErosionActor".generate_tile_data()
+#		generate_heightmap()
+#		$"../Timer".start()
+#		await $"../Timer".timeout
 		for x in 16:
 			for y in 16:
 				var data = HTerrainData.new()

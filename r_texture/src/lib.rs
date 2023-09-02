@@ -57,7 +57,6 @@ fn gradient(z: &Array2<u16>) -> (Array2<f64>, Array2<f64>) {
     let (dzx, dzy) = gradient_xy(z);
     (dzx, dzy)
 }
-
 fn gradient_xy(z: &Array2<u16>) -> (Array2<f64>, Array2<f64>) {
     let dx = ndarray::im::filter::spatial_gradient(z, 0.0, 1.0);
     let dy = ndarray::im::filter::spatial_gradient(z, 0.0, 1.0);

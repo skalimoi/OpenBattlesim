@@ -93,7 +93,7 @@ impl ErosionActor {
         godot_print!("Creating normal maps...");
         let image_for_normal =
             image_normal::open(format!("data/raw/eroded.png").as_str()).unwrap();
-        normal_gen::normal_gen::map_normals_with_strength(&image_for_normal, 10.0)
+        normal_gen::normal_gen::map_normals_with_strength(&image_for_normal, 1.0)
             .save_with_format(
                 format!("data/raw/normal.png").as_str(),
                 image_normal::ImageFormat::Png,
@@ -103,7 +103,15 @@ impl ErosionActor {
 
     #[func]
     pub fn generate_tile_data() {
+        let path = "data/raw/texture_blurred.png";
         fs::copy("r_erosion/texture.png", "data/raw/texture.png");
+        match fs::metadata(path) {
+            Ok(_) => (),
+            Err(_) => {
+                let img = image_latest::open("data/raw/texture.png").unwrap();
+                image_latest::imageops::blur(&img, 1.5).save("data/raw/texture_blurred.png").unwrap();
+            }
+        }
 
         let tile_size: usize = 512;
     
@@ -116,7 +124,7 @@ impl ErosionActor {
         let discharge_tile = image_latest::open("data/raw/discharge.png").unwrap();
         
     
-        let tex_tile = image_latest::open("data/raw/texture.png").unwrap();
+        let tex_tile = image_latest::open("data/raw/texture_blurred.png").unwrap();
         
     
         let normal_tile = image_latest::open("data/raw/normal.png")
@@ -130,9 +138,9 @@ impl ErosionActor {
         for tile_x in 0..=15 {
             for tile_y in 0..=15 {
                 let height1 = image_latest::imageops::crop_imm(&total_image, (tile_x * tile_size) as u32, (tile_y * tile_size) as u32, tile_size as u32, tile_size as u32);
-                height1.to_image().save_with_format(format!("data/raw/height_{}_{}.png", tile_x, tile_y), image_latest::ImageFormat::Png);
-                let rgb8_im = image_latest::open(format!("data/tiles/lvl1/height_{}_{}.png", tile_x, tile_y)).unwrap();
-                rgb8_im.to_rgb16().save_with_format(format!("data/raw/height_{}_{}.png", tile_x, tile_y), image_latest::ImageFormat::Png);
+                height1.to_image().save_with_format(format!("data/tiles/height_{}_{}.png", tile_x, tile_y), image_latest::ImageFormat::Png);
+                let rgb8_im = image_latest::open(format!("data/tiles/height_{}_{}.png", tile_x, tile_y)).unwrap();
+                rgb8_im.to_rgb16().save_with_format(format!("data/tiles/height_{}_{}.png", tile_x, tile_y), image_latest::ImageFormat::Png);
                 
                 
     
@@ -159,10 +167,10 @@ impl ErosionActor {
             }
         }
     
-        fs::remove_file("data/raw/eroded.png");
-        fs::remove_file("data/raw/texture.png");
-        fs::remove_file("data/raw/normal.png");
-        fs::remove_file("data/raw/eroded_rgb.png");
+        // fs::remove_file("data/raw/eroded.png");
+        // fs::remove_file("data/raw/texture.png");
+        // fs::remove_file("data/raw/normal.png");
+        // fs::remove_file("data/raw/eroded_rgb.png");
     
     
     }
