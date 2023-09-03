@@ -9,7 +9,7 @@ var play_day_shader : bool
 var playback_value : float
 var playback_duration : float
 var current_time : float
-var day: float
+@export var day: float
 var accumulated_elapsed_time: float
 
 @onready var eot_node = $"../../CustomEOT"
@@ -42,6 +42,7 @@ func _process(delta):
 		daytime_shader.set_shader_parameter("twilight_duration", eot_values["twilight_duration_pct"])
 		daytime_shader.set_shader_parameter("current_time", day_progress)
 		daytime_shader.set_shader_parameter("declination", eot_values["declination"])
+		daytime_shader.set_shader_parameter("latitude", eot_values["latitude"])
 		print(daytime_shader.get_shader_parameter("current_time"))
 	
 	

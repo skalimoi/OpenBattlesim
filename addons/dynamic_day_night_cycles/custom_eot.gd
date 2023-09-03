@@ -97,6 +97,7 @@ func get_full_info_about_day(_day : float) -> Dictionary:
 	var twilight_duration = twilight_duration_pct * day_duration / 60
 	
 	return {
+		"latitude": latitude,
 		"day" : day, # The day of the eot data (actual day including day offset)
 		"year_pct" : year_pct, # The percentage of the day in respect of the year
 		"day_duration" : day_duration, # The duration of a day

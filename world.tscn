@@ -1,12 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://wkqeepmuas80"]
+[gd_scene load_steps=15 format=3 uid="uid://wkqeepmuas80"]
 
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="1_jhmy7"]
+[ext_resource type="Script" path="res://world.gd" id="1_4wjg8"]
 [ext_resource type="Script" path="res://free_look_camera.gd" id="2_3rxbt"]
-[ext_resource type="Resource" path="res://tile_tex/lvl1/data.hterrain" id="2_fh5yo"]
 [ext_resource type="Shader" uid="uid://cxcq8wq1mysia" path="res://addons/dynamic_day_night_cycles/daytime_shader.tres" id="3_b232p"]
 [ext_resource type="Script" path="res://sun_movement.gd" id="3_c5jg4"]
 [ext_resource type="Script" path="res://addons/dynamic_day_night_cycles/custom_eot.gd" id="3_tpjd7"]
-[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="3_xa5fv"]
 [ext_resource type="Texture2D" uid="uid://cyjgfgqtkbf5e" path="res://addons/dynamic_day_night_cycles/sun_colors.png" id="4_xqsix"]
 [ext_resource type="Script" path="res://day_shader_tracker.gd" id="5_4064q"]
 
@@ -14,19 +12,16 @@
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_l44ai"]
 
-[sub_resource type="Resource" id="Resource_oy8jy"]
-script = ExtResource("3_xa5fv")
-mode = 0
-textures = [[], []]
-
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_rrkmy"]
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_sjbh5"]
 
 [sub_resource type="Sky" id="Sky_i4uti"]
-sky_material = SubResource("PhysicalSkyMaterial_rrkmy")
+sky_material = SubResource("PhysicalSkyMaterial_sjbh5")
+process_mode = 2
 
 [sub_resource type="Environment" id="Environment_jd6j0"]
 background_mode = 2
 sky = SubResource("Sky_i4uti")
+ambient_light_source = 3
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
@@ -35,12 +30,13 @@ ssil_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x7bn1"]
 shader = ExtResource("3_b232p")
-shader_parameter/twilight_duration_factor = 2.0
+shader_parameter/twilight_duration_factor = 1.0
 shader_parameter/current_time = 0.0
 shader_parameter/declination = 1.0
+shader_parameter/latitude = 1.0
 shader_parameter/sunrise_time = 0.3
 shader_parameter/sunset_time = 0.8
-shader_parameter/twilight_duration = 0.3
+shader_parameter/twilight_duration = 0.1
 shader_parameter/shader_opacity = 1.0
 shader_parameter/day_time_colors = ExtResource("4_xqsix")
 
@@ -51,28 +47,7 @@ environment = SubResource("Environment_85560")
 camera_attributes = SubResource("CameraAttributesPractical_l44ai")
 
 [node name="Terrain" type="Node3D" parent="."]
-
-[node name="HTerrain" type="Node3D" parent="Terrain"]
-script = ExtResource("1_jhmy7")
-_terrain_data = ExtResource("2_fh5yo")
-chunk_size = 32
-collision_enabled = true
-collision_layer = 1
-collision_mask = 1
-shader_type = "Classic4Lite"
-custom_shader = null
-custom_globalmap_shader = null
-texture_set = SubResource("Resource_oy8jy")
-render_layers = 1
-cast_shadow = 1
-shader_params/height_scale = null
-shader_params/u_ground_uv_scale = 20
-shader_params/u_depth_blending = true
-shader_params/u_triplanar = null
-shader_params/u_tile_reduction = null
-shader_params/noise = null
-shader_params/normalmap = null
-shader_params/u_water_mask = null
+script = ExtResource("1_4wjg8")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.832554, -0.280781, 0.47751, 3.13847e-09, 0.862019, 0.506877, -0.553944, 0.422002, -0.717677, 512, 100, 512)
@@ -110,4 +85,4 @@ one_shot = true
 script = ExtResource("3_tpjd7")
 days_per_year = 360.0
 day_duration = 60.0
-latitude = 80.0
+latitude = 50.0
