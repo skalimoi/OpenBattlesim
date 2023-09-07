@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://wkqeepmuas80"]
+[gd_scene load_steps=13 format=3 uid="uid://wkqeepmuas80"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_4wjg8"]
 [ext_resource type="Script" path="res://free_look_camera.gd" id="2_3rxbt"]
 [ext_resource type="Shader" uid="uid://cxcq8wq1mysia" path="res://addons/dynamic_day_night_cycles/daytime_shader.tres" id="3_b232p"]
-[ext_resource type="Script" path="res://sun_movement.gd" id="3_c5jg4"]
 [ext_resource type="Script" path="res://addons/dynamic_day_night_cycles/custom_eot.gd" id="3_tpjd7"]
+[ext_resource type="Script" path="res://BoidController.gd" id="4_4xd6i"]
 [ext_resource type="Texture2D" uid="uid://cyjgfgqtkbf5e" path="res://addons/dynamic_day_night_cycles/sun_colors.png" id="4_xqsix"]
-[ext_resource type="Script" path="res://day_shader_tracker.gd" id="5_4064q"]
 
 [sub_resource type="Environment" id="Environment_85560"]
 
@@ -47,7 +45,6 @@ environment = SubResource("Environment_85560")
 camera_attributes = SubResource("CameraAttributesPractical_l44ai")
 
 [node name="Terrain" type="Node3D" parent="."]
-script = ExtResource("1_4wjg8")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.832554, -0.280781, 0.47751, 3.13847e-09, 0.862019, 0.506877, -0.553944, 0.422002, -0.717677, 512, 100, 512)
@@ -63,9 +60,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 600, 0)
 rotation_order = 0
 light_angular_distance = 0.5
 shadow_enabled = true
-script = ExtResource("3_c5jg4")
 
-[node name="Node" type="Node" parent="."]
+[node name="BoidController" type="Node" parent="."]
+script = ExtResource("4_4xd6i")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -73,7 +70,6 @@ script = ExtResource("3_c5jg4")
 material = SubResource("ShaderMaterial_x7bn1")
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("5_4064q")
 
 [node name="ErosionActor" type="ErosionActor" parent="."]
 
@@ -86,3 +82,5 @@ script = ExtResource("3_tpjd7")
 days_per_year = 360.0
 day_duration = 60.0
 latitude = 50.0
+
+[node name="BoidBase" type="Node" parent="."]
