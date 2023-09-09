@@ -1,5 +1,12 @@
 ![openbattlesim_logo_dark](https://github.com/skalimoi/OpenBattlesim/assets/53193415/b0c6ce41-7849-4fab-afd6-4d19f683bdf7)
 
+-------------------------
+
+<a href="https://godotengine.org/"><img src="https://img.shields.io/badge/Godot-4.1.1-2ea44f?logo=godotengine&logoColor=%23478CBF" alt="Godot - 4.1.1"></a>
+![contributions - welcome](https://img.shields.io/badge/contributions-welcome-blue)
+[![Made with Rust](https://img.shields.io/badge/Rust-1-blue?logo=rust&logoColor=white)](https://www.rust-lang.org/ "Go to Rust homepage")
+
+
 A military simulator written in Rust, GDScript and made in Godot.
 
 It aims to be a complete 3D environment simulation geared towards military games, including:
