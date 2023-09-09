@@ -3,4 +3,12 @@
 r_tex/target/
 r_erosion/target/
 *.import
-*.png
+data/tiles
+data/raw
+r_erosion/unselected_data
+r_erosion/data
+tile_tex
+
+r_erosion/texture.png
+addons/dynamic_day_night_cycles/sun_colors_new.png
+r_erosion/discharge_3_12.png

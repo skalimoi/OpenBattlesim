@@ -1,8 +1,7 @@
-// empty shader file
 #[compute]
 #version 450
 
-layout(local_size_x = 2, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x = 10, local_size_y = 1, local_size_z = 1) in;
 
 layout(set = 0, binding = 0, std430) restrict buffer velocity_buffer {
     vec3 data[];
@@ -21,17 +20,19 @@ BoidsNumber;
 
 void main() {
 
-	
+    // We calculate the steering factor for every behavior and then add them to the velocity of the boid.
     // align
-    float distance_limit_1 = 500.0;
+
+    float distance_limit = 1000.0;
+    vec3 pos = PositionBuffer.data[gl_GlobalInvocationID.x];
+    
     vec3 steering_1 = vec3(0.0,0.0,0.0);
     int total_1 = 0;
-    vec3 pos_1 = PositionBuffer.data[gl_GlobalInvocationID.x];
 
     for (int b = 0; b < BoidsNumber.current_boids; b++) {
          if (b != gl_GlobalInvocationID.x) {
-        float distance_1 = distance(pos_1, PositionBuffer.data[b]);
-        if (distance_1 < distance_limit_1) {
+        float distance_1 = distance(pos, PositionBuffer.data[b]);
+        if (distance_1 < distance_limit) {
             steering_1 += VelocityBuffer.data[b];
             total_1 +=1;
         }
@@ -41,16 +42,15 @@ void main() {
         }
       }
     }
+
     // separate
-    float distance_limit_2 = 100.0;
     vec3 steering_2 = vec3(0.0,0.0,0.0);
     int total_2 = 0;
-    vec3 pos_2 = PositionBuffer.data[gl_GlobalInvocationID.x];
 
     for (int b = 0; b < BoidsNumber.current_boids; b++) {
          if (b != gl_GlobalInvocationID.x) {
-        float distance_2 = distance(pos_2, PositionBuffer.data[b]);
-        if (distance_2 < distance_limit_2) {
+        float distance_2 = distance(pos, PositionBuffer.data[b]);
+        if (distance_2 < distance_limit) {
             vec3 difference = PositionBuffer.data[gl_GlobalInvocationID.x] - PositionBuffer.data[b];
             difference /= distance_2 * distance_2;
             steering_2 += difference;
@@ -64,15 +64,13 @@ void main() {
       }
     }
     //cohesion
-    float distance_limit_3 = 500.0;
     vec3 steering_3 = vec3(0.0,0.0,0.0);
     int total_3 = 0;
-    vec3 pos_3 = PositionBuffer.data[gl_GlobalInvocationID.x];
 
     for (int b = 0; b < BoidsNumber.current_boids; b++) {
          if (b != gl_GlobalInvocationID.x) {
-        float distance_3 = distance(pos_3, PositionBuffer.data[b]);
-        if (distance_3 < distance_limit_2) {
+        float distance_3 = distance(pos, PositionBuffer.data[b]);
+        if (distance_3 < distance_limit) {
             steering_3 += PositionBuffer.data[b];
             total_3 +=1;
         }
@@ -83,6 +81,8 @@ void main() {
         }
       }
     }
+
     vec3 new = VelocityBuffer.data[gl_GlobalInvocationID.x] + steering_1 + steering_2 + steering_3;
+    
     VelocityBuffer.data[gl_GlobalInvocationID.x] = new;
 }
