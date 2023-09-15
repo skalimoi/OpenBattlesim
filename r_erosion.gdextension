@@ -5,7 +5,7 @@ compatibility_minimum = 4.1
 [libraries]
 linux.debug.x86_64 = "res://r_erosion/target/debug/libr_erosion.so"
 linux.release.x86_64 = "res://r_erosion/target/release/libr_erosion.so"
-windows.debug.x86_64 = "res://r_erosion/target/debug/r_erosion.dll"
+windows.debug.x86_64 = "res://r_erosion/target/release/r_erosion.dll"
 windows.release.x86_64 = "res://r_erosion/target/release/r_erosion.dll"
 macos.debug = "res://r_erosion/target/debug/libr_erosion.dylib"
 macos.release = "res://r_erosion/target/release/libr_erosion.dylib"

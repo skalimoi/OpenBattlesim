@@ -1,10 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://wkqeepmuas80"]
+[gd_scene load_steps=17 format=3 uid="uid://wkqeepmuas80"]
 
 [ext_resource type="Script" path="res://free_look_camera.gd" id="2_3rxbt"]
 [ext_resource type="Shader" uid="uid://cxcq8wq1mysia" path="res://addons/dynamic_day_night_cycles/daytime_shader.tres" id="3_b232p"]
+[ext_resource type="Script" path="res://sun_movement.gd" id="3_c7v18"]
 [ext_resource type="Script" path="res://addons/dynamic_day_night_cycles/custom_eot.gd" id="3_tpjd7"]
-[ext_resource type="Script" path="res://BoidController.gd" id="4_4xd6i"]
 [ext_resource type="Texture2D" uid="uid://cyjgfgqtkbf5e" path="res://addons/dynamic_day_night_cycles/sun_colors.png" id="4_xqsix"]
+[ext_resource type="Script" path="res://day_shader_tracker.gd" id="6_82f6c"]
+[ext_resource type="Shader" path="res://addons/m_terrain/start.gdshader" id="7_g0tmn"]
+[ext_resource type="Script" path="res://terrain_test.gd" id="8_jn12g"]
 
 [sub_resource type="Environment" id="Environment_85560"]
 
@@ -38,13 +41,19 @@ shader_parameter/twilight_duration = 0.1
 shader_parameter/shader_opacity = 1.0
 shader_parameter/day_time_colors = ExtResource("4_xqsix")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21hek"]
+render_priority = 0
+shader = ExtResource("7_g0tmn")
+shader_parameter/region_world_position = null
+shader_parameter/region_size = null
+shader_parameter/region_a = null
+shader_parameter/region_b = null
+
 [node name="Scenario" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_85560")
 camera_attributes = SubResource("CameraAttributesPractical_l44ai")
-
-[node name="Terrain" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.832554, -0.280781, 0.47751, 3.13847e-09, 0.862019, 0.506877, -0.553944, 0.422002, -0.717677, 512, 100, 512)
@@ -60,9 +69,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 600, 0)
 rotation_order = 0
 light_angular_distance = 0.5
 shadow_enabled = true
-
-[node name="BoidController" type="Node" parent="."]
-script = ExtResource("4_4xd6i")
+script = ExtResource("3_c7v18")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -70,6 +77,7 @@ script = ExtResource("4_4xd6i")
 material = SubResource("ShaderMaterial_x7bn1")
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("6_82f6c")
 
 [node name="ErosionActor" type="ErosionActor" parent="."]
 
@@ -83,4 +91,9 @@ days_per_year = 360.0
 day_duration = 60.0
 latitude = 50.0
 
-[node name="BoidBase" type="Node" parent="."]
+[node name="MTerrain" type="MTerrain" parent="."]
+material = SubResource("ShaderMaterial_21hek")
+terrain_size = Vector2i(1024, 1024)
+region_size = 64
+max_range = 16
+script = ExtResource("8_jn12g")

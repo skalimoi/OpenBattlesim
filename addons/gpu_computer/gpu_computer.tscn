@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpponcywqrgmy"]
+
+[ext_resource type="Script" path="res://addons/gpu_computer/gpu_computer.gd" id="1_lg4qa"]
+
+[node name="GPUComputer" type="Node"]
+script = ExtResource("1_lg4qa")
