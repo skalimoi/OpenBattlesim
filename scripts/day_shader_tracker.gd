@@ -43,6 +43,6 @@ func _process(delta):
 		daytime_shader.set_shader_parameter("current_time", day_progress)
 		daytime_shader.set_shader_parameter("declination", eot_values["declination"])
 		daytime_shader.set_shader_parameter("latitude", eot_values["latitude"])
-		print(daytime_shader.get_shader_parameter("current_time"))
+#		print(daytime_shader.get_shader_parameter("current_time"))
 	
 	

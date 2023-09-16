@@ -7,3 +7,4 @@ data/terrain_layer_data/
 modules/r_scenario/unselected_data/
 modules/r_scenario/data/
 modules/r_scenario/target/
+*.res

@@ -1,27 +1,78 @@
-[gd_scene load_steps=5 format=3 uid="uid://c81gch0jp0qpc"]
+[gd_scene load_steps=13 format=3 uid="uid://c81gch0jp0qpc"]
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_eyxj6"]
+[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="1_5bq5u"]
+[ext_resource type="Script" path="res://scripts/sun_movement.gd" id="1_dgqma"]
+[ext_resource type="Environment" uid="uid://dj45mvvktk4u0" path="res://scenes/scenario_env.tres" id="1_tdbwd"]
+[ext_resource type="Script" path="res://addons/dynamic_day_night_cycles/custom_eot.gd" id="2_kvisa"]
+[ext_resource type="Script" path="res://scripts/day_shader_tracker.gd" id="3_0cenb"]
+[ext_resource type="Shader" uid="uid://cxcq8wq1mysia" path="res://addons/dynamic_day_night_cycles/daytime_shader.tres" id="3_ihfrk"]
+[ext_resource type="Texture2D" uid="uid://cyjgfgqtkbf5e" path="res://addons/dynamic_day_night_cycles/sun_colors.png" id="4_m3cvb"]
+[ext_resource type="Shader" path="res://addons/m_terrain/start.gdshader" id="8_pyxjc"]
 
-[sub_resource type="Sky" id="Sky_yv5lk"]
-sky_material = SubResource("PhysicalSkyMaterial_eyxj6")
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_3eupq"]
 
-[sub_resource type="Environment" id="Environment_rueju"]
-background_mode = 2
-sky = SubResource("Sky_yv5lk")
+[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_rk17d"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kprf6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gw8tb"]
+shader = ExtResource("3_ihfrk")
+shader_parameter/twilight_duration_factor = 1.0
+shader_parameter/current_time = 0.0
+shader_parameter/declination = 1.0
+shader_parameter/latitude = 1.0
+shader_parameter/sunrise_time = 0.1
+shader_parameter/sunset_time = 0.9
+shader_parameter/twilight_duration = 0.2
+shader_parameter/shader_opacity = 1.0
+shader_parameter/day_time_colors = ExtResource("4_m3cvb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_glbsd"]
+render_priority = 0
+shader = ExtResource("8_pyxjc")
+shader_parameter/region_world_position = null
+shader_parameter/region_size = 16.0
+shader_parameter/region_a = 0.0
+shader_parameter/region_b = 0.0
 
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_rueju")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 0.611044, 0.791597, 0, -0.791597, 0.611044, 0, 2.28629, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.194006, 0)
-material = SubResource("StandardMaterial3D_kprf6")
+environment = ExtResource("1_tdbwd")
+camera_attributes = SubResource("CameraAttributesPhysical_3eupq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.929081, 0.369876, 0, -0.369876, 0.929081, 0, 1.36435, 2.65311)
+transform = Transform3D(-0.44268, 0, -0.89668, 0, 1, 0, 0.89668, 0, -0.44268, 0, 1.36435, 122.345)
+environment = ExtResource("1_tdbwd")
+attributes = SubResource("CameraAttributesPhysical_rk17d")
+current = true
+script = ExtResource("1_5bq5u")
+
+[node name="CustomEOT" type="Node" parent="."]
+script = ExtResource("2_kvisa")
+days_per_year = 360.0
+day_duration = 60.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_gw8tb")
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_0cenb")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.856654, 0.515891, 0, -0.515891, -0.856654, 0, 600, 0)
+visible = false
+shadow_enabled = true
+directional_shadow_mode = 1
+script = ExtResource("1_dgqma")
+
+[node name="DebugSun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.547738, 0.83665, 0, -0.83665, 0.547738, 0, 2.74211, 0)
+
+[node name="MTerrain" type="MTerrain" parent="."]
+dataDir = "res://data/terrain_imported/"
+save_generated_normals = true
+create_grid = true
+material = SubResource("ShaderMaterial_glbsd")
+terrain_size = Vector2i(128, 128)

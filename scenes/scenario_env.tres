@@ -1,0 +1,19 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://dj45mvvktk4u0"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_eyxj6"]
+
+[sub_resource type="Sky" id="Sky_yv5lk"]
+sky_material = SubResource("PhysicalSkyMaterial_eyxj6")
+
+[resource]
+background_mode = 2
+background_color = Color(0.431373, 0.431373, 0.431373, 1)
+sky = SubResource("Sky_yv5lk")
+ambient_light_source = 2
+ambient_light_color = Color(0.388235, 0.388235, 0.388235, 1)
+reflected_light_source = 2
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
