@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c81gch0jp0qpc"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_eyxj6"]
+
+[sub_resource type="Sky" id="Sky_yv5lk"]
+sky_material = SubResource("PhysicalSkyMaterial_eyxj6")
+
+[sub_resource type="Environment" id="Environment_rueju"]
+background_mode = 2
+sky = SubResource("Sky_yv5lk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kprf6"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rueju")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.611044, 0.791597, 0, -0.791597, 0.611044, 0, 2.28629, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.194006, 0)
+material = SubResource("StandardMaterial3D_kprf6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.929081, 0.369876, 0, -0.369876, 0.929081, 0, 1.36435, 2.65311)

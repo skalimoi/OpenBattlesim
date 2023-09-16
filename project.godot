@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="OpenBattlesim"
-run/main_scene="res://world.tscn"
+run/main_scene="res://scenes/scenario.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-boot_splash/image="res://assets/splash_screen_0.2.1.png"
-config/icon="res://assets/icon_32x32.png"
-boot_splash/minimum_display_time=2000
+boot_splash/image="res://data/icons/splash_screen_0.2.1.png"
+config/icon="res://data/icons/icon_32x32.png"
 
 [autoload]
 
+PlayerPrefs="*res://addons/PlayerPrefs/PlayerPrefs.tscn"
 BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
 BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 VideoManager="*res://addons/nodot/autoload/VideoManager.gd"
@@ -33,28 +33,7 @@ NetworkManager="*res://addons/nodot/autoload/NetworkManager.gd"
 DebugManager="*res://addons/nodot/autoload/DebugManager.gd"
 OrchestratorNodeFactory="*res://addons/orchestrator/orchestrator_node_factory.gd"
 Orchestrator="*res://addons/orchestrator/orchestrator.gd"
-PlayerPrefs="*res://addons/PlayerPrefs/PlayerPrefs.tscn"
-
-[display]
-
-window/size/viewport_width=1280
-window/size/viewport_height=720
-
-[dotnet]
-
-project/assembly_name="OpenBattlesim"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/PlayerPrefs/plugin.cfg", "res://addons/beehave/plugin.cfg", "res://addons/dynamic_day_night_cycles/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/m_terrain/plugin.cfg", "res://addons/nodot/plugin.cfg", "res://addons/orchestrator/plugin.cfg")
-
-[physics]
-
-3d/physics_engine="JoltPhysics3D"
-
-[rendering]
-
-global_illumination/voxel_gi/quality=1
-camera/depth_of_field/depth_of_field_use_jitter=true
-anti_aliasing/quality/use_debanding=true
-occlusion_culling/use_occlusion_culling=true
