@@ -1,0 +1,35 @@
+Appletree:
+    energy_demand: 2000
+    soil_demand: Dirt
+    soil_depth_demand: 80
+    water_demand: 0.7
+Shrub:
+    energy_demand: 1200
+    soil_demand: Dirt
+    soil_depth_demand: 20
+    water_demand: 0.3
+Moss:
+    energy_demand: 1000
+    soil_demand: Stone
+    soil_depth_demand: 1
+    water_demand: 0.3
+Beech:
+    energy_demand: 2200
+    soil_demand: Loam
+    soil_depth_demand: 50
+    water_demand: 0.5
+Fern:
+    energy_demand: 1100
+    soil_demand: Silt
+    soil_depth_demand: 10
+    water_demand: 0.35
+Fir:
+    energy_demand: 2200
+    soil_demand: Clay
+    soil_depth_demand: 45
+    water_demand: 0.6
+Cactus:
+    energy_demand: 4000
+    soil_demand: Dirt
+    soil_depth_demand: 30
+    water_demand: 0.2

@@ -7,4 +7,9 @@ data/terrain_layer_data/
 modules/r_scenario/unselected_data/
 modules/r_scenario/data/
 modules/r_scenario/target/
+modules/r_scenario/.idea/
 *.res
+modules/r_sat/target/
+modules/r_sat/.idea/
+modules/r_vegetation/.idea/
+modules/r_vegetation/target/

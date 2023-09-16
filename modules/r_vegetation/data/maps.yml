@@ -1,0 +1,7 @@
+Tiny:
+  biom: TemperateZone
+  height_conversion: 0.2
+  height_map_path: D:\Projects\Jobs\skalimoi\vegetation\python\resources\maps\16bitHeightmap64x64.png
+  max_soil_depth: 300.0
+  pixel_size: 100.0
+  texture_map_path: D:\Projects\Jobs\skalimoi\vegetation\python\resources\maps\16bitHeightmap64x64_soil_ids.png

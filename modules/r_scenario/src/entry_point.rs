@@ -8,7 +8,7 @@ use crate::climate::{Climate, KOPPEN_CFC};
 
 use crate::erosion::{*, world::World};
 use crate::entry_point::world::Vec2;
-use crate::normal_gen;
+
 
 
 #[derive(GodotClass)]
@@ -58,15 +58,16 @@ impl ErosionActor {
         let heightmap_buffer: image_latest::ImageBuffer<Luma<u16>, Vec<u16>> =
             ImageBuffer::from_raw(width, height, eroded_heightmap).unwrap();
         heightmap_buffer
-            .save(format!("data/raw/eroded.png").as_str())
+        .save(format!("data/raw/eroded.r16").as_str())
             .unwrap();
-        let h = image_latest::io::Reader::open(format!("data/raw/eroded.png").as_str())
-            .unwrap()
-            .decode()
-            .unwrap();
-        h.to_rgb16()
-            .save(format!("data/raw/eroded_rgb.png"))
-            .unwrap();
+        
+        // let h = image_latest::io::Reader::open(format!("data/raw/eroded.png").as_str())
+        //     .unwrap()
+        //     .decode()
+        //     .unwrap();
+        // h.to_rgb16()
+        //     .save(format!("data/raw/eroded_rgb.png"))
+        //     .unwrap();
 
             let discharge_buffer: image_latest::ImageBuffer<Luma<u8>, Vec<u8>> =
             image_latest::ImageBuffer::from_raw(width, height, discharge_map.clone()).unwrap();
@@ -87,6 +88,7 @@ impl ErosionActor {
     
     }
 
+    /*
     #[func]
     pub fn create_normal() {
     
@@ -174,7 +176,8 @@ impl ErosionActor {
     
     
     }
-
+     */
+    /*
     #[func]
     pub fn choose_and_copy_biome() {
         let biome = KOPPEN_CFC;
@@ -227,7 +230,7 @@ impl ErosionActor {
     }
 
     
-    
+    */
     
 }
 

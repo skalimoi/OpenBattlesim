@@ -1,0 +1,14 @@
+[package]
+name = "vegetation"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }
+nalgebra = "0.32.3"
+image = "0.24.7"
+serde = { version = "1.0.183", features = ["derive"] }
+serde_yaml = "0.9.25"
+serde_json = "1.0.105"

@@ -1,0 +1,15 @@
+[package]
+name = "color_lut"
+version = "0.2.1"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }
+image = "0.24.7"
+glob = "0.3.1"
+kd-tree = "0.5.1"
+ordered-float = "3.9.1"
+ndarray = "0.15.6"
+ndarray-ndimage = "0.4.0"
