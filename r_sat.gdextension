@@ -1,0 +1,13 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+compatibility_minimum = 4.1
+
+[libraries]
+linux.debug.x86_64 = "res://modules/r_sat/target/debug/libr_sat.so"
+linux.release.x86_64 = "res://modules/r_sat/target/release/libr_sat.so"
+windows.debug.x86_64 = "res://modules/r_sat/target/release/r_sat.dll"
+windows.release.x86_64 = "res://modules/r_sat/target/release/r_sat.dll"
+macos.debug = "res://modules/r_sat/target/debug/libr_sat.dylib"
+macos.release = "res://modules/r_sat/target/release/libr_sat.dylib"
+macos.debug.arm64 = "res://modules/r_sat/target/debug/libr_sat.dylib"
+macos.release.arm64 = "res://modules/r_sat/target/release/libr_sat.dylib"

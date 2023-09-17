@@ -4,12 +4,12 @@
 data/raw/
 data/terrain/
 data/terrain_layer_data/
-modules/r_scenario/unselected_data/
-modules/r_scenario/data/
-modules/r_scenario/target/
-modules/r_scenario/.idea/
+modules/r_erosion/data/
+modules/r_erosion/target/
+modules/r_erosion/.idea/
 *.res
 modules/r_sat/target/
 modules/r_sat/.idea/
 modules/r_vegetation/.idea/
 modules/r_vegetation/target/
+data/climate_sat_data/

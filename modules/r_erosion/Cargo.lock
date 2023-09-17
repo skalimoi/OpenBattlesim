@@ -738,7 +738,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "r_scenario"
+name = "r_erosion"
 version = "0.2.1"
 dependencies = [
  "errorfunctions",

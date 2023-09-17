@@ -29,7 +29,7 @@ pub struct ErosionActor {
 impl ErosionActor {
     #[func]
     pub fn erode_heightmap(cycles: i16, seed: i16) {
-        let img_lvl1 = image_latest::io::Reader::open("data/raw/heightmap.png")
+        let img_lvl1 = image_latest::io::Reader::open("data/raw/m_terrain_heightmap.png")
             .unwrap()
             .decode()
             .unwrap()
@@ -58,7 +58,7 @@ impl ErosionActor {
         let heightmap_buffer: image_latest::ImageBuffer<Luma<u16>, Vec<u16>> =
             ImageBuffer::from_raw(width, height, eroded_heightmap).unwrap();
         heightmap_buffer
-        .save(format!("data/raw/eroded.r16").as_str())
+        .save(format!("data/raw/m_terrain_heightmap_eroded.png").as_str())
             .unwrap();
         
         // let h = image_latest::io::Reader::open(format!("data/raw/eroded.png").as_str())
@@ -177,60 +177,11 @@ impl ErosionActor {
     
     }
      */
-    /*
-    #[func]
-    pub fn choose_and_copy_biome() {
-        let biome = KOPPEN_CFC;
-        let mut name = String::from("");
-        name.push(biome.general_type);
-        name.push(biome.second_type);
-        name.push(biome.third_type);
     
-        let directory_path = "r_erosion/unselected_data";
-        let name_str = name.as_str();
     
-        let folder_data = fs::read_dir(directory_path).expect("Failure reading climate dir!");
-    
-        let mut rng = thread_rng();
-    
-        let mut vec = vec![];
-    
-        for entry in folder_data {
-            if let Ok(entry) = entry {
-                if entry.file_type().unwrap().is_dir() {
-                    let folder_name = entry.file_name();
-                    let folder_name_str = folder_name.to_string_lossy();
-    
-                    if folder_name_str.contains(name_str) {
-                        vec.push(entry);
-                    }
-                }
-            }
-        }
-    
-        
-        use fs_extra::dir::CopyOptions;
-        let chosen = vec.iter().choose(&mut rng).unwrap();
-        fs_extra::copy_items(
-            &[chosen.path().as_path()],
-            "r_erosion/data",
-            &CopyOptions::new(),
-        )
-        .expect("Error copying climate files!");
-    
-        {
-            fs::copy(
-                format!("data/raw/eroded_rgb.png").as_str(),
-                "r_erosion/data/eroded_rgb.png",
-            )
-                .unwrap();
-    
-        }
-    
-    }
 
     
-    */
+    
     
 }
 
