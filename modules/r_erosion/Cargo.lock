@@ -741,6 +741,7 @@ dependencies = [
 name = "r_erosion"
 version = "0.2.1"
 dependencies = [
+ "byteorder",
  "errorfunctions",
  "fs_extra",
  "godot",

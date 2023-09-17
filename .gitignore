@@ -13,3 +13,4 @@ modules/r_sat/.idea/
 modules/r_vegetation/.idea/
 modules/r_vegetation/target/
 data/climate_sat_data/
+modules/r_climate/target/

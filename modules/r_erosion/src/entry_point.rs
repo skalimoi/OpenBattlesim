@@ -1,10 +1,13 @@
 use std::fs;
 
+use fs_extra::file::write_all;
 use godot::prelude::*;
-use image_latest::{Luma, ImageBuffer};
+use image_latest::{Luma, ImageBuffer, DynamicImage, Rgb, GenericImage, EncodableLayout};
+use imageproc::map::red_channel;
 use rand::seq::IteratorRandom;
 use rand::thread_rng;
 use crate::climate::{Climate, KOPPEN_CFC};
+use byteorder::*;
 
 use crate::erosion::{*, world::World};
 use crate::entry_point::world::Vec2;
@@ -55,11 +58,14 @@ impl ErosionActor {
             .iter()
             .map(|x| (x.height * 255.0) as u16)
             .collect();
-        let heightmap_buffer: image_latest::ImageBuffer<Luma<u16>, Vec<u16>> =
-            ImageBuffer::from_raw(width, height, eroded_heightmap).unwrap();
-        heightmap_buffer
-        .save(format!("data/raw/m_terrain_heightmap_eroded.png").as_str())
-            .unwrap();
+
+        let red_prep = eroded_heightmap.as_slice().as_bytes();
+
+        fs::write("data/raw/m_terrain_heightmap_eroded.r16", red_prep);
+
+        
+        
+        
         
         // let h = image_latest::io::Reader::open(format!("data/raw/eroded.png").as_str())
         //     .unwrap()
