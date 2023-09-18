@@ -1,6 +1,3 @@
-use crate::climate::HotCold::Cold;
-use crate::climate::HotCold::Warm;
-use crate::climate::HotCold::{Hot, Temperate};
 use crate::climate::HumidDry::Dry;
 use crate::climate::HumidDry::Humid;
 use crate::climate::HumidDry::None;
@@ -8,47 +5,43 @@ use std::ops::Range;
 
 // TODO: CAMBIAR ENUMS QUE NO SIGNIFICAN NADA POR RANGES DE TEMPERATURA BASE PARA LA GENERACION
 
-const COLD_SPRING: Range<f64> = 0.0..15.0;
-const COLD_WINTER: Range<f64> = -25.0..0.0;
-const COLD_FALL: Range<f64> = -10.0..5.0;
-const COLD_SUMMER: Range<f64> = 5.0..17.0;
+const COLD_SPRING: Range<f32> = 0.0..15.0;
+const COLD_WINTER: Range<f32> = -25.0..0.0;
+const COLD_FALL: Range<f32> = -10.0..5.0;
+const COLD_SUMMER: Range<f32> = 5.0..17.0;
 
-const TEMPERATE_SPRING: Range<f64> = 15.0..20.0;
-const TEMPERATE_WINTER: Range<f64> = 0.0..11.0;
-const TEMPERATE_FALL: Range<f64> = 7.0..15.0;
-const TEMPERATE_SUMMER: Range<f64> = 20.0..27.0;
+const TEMPERATE_SPRING: Range<f32> = 15.0..20.0;
+const TEMPERATE_WINTER: Range<f32> = 0.0..11.0;
+const TEMPERATE_FALL: Range<f32> = 7.0..15.0;
+const TEMPERATE_SUMMER: Range<f32> = 20.0..27.0;
 
-const WARM_SPRING: Range<f64> = 18.0..25.0;
-const WARM_WINTER: Range<f64> = 5.0..15.0;
-const WARM_FALL: Range<f64> = 10.0..20.0;
-const WARM_SUMMER: Range<f64> = 25.0..33.0;
+const WARM_SPRING: Range<f32> = 18.0..25.0;
+const WARM_WINTER: Range<f32> = 5.0..15.0;
+const WARM_FALL: Range<f32> = 10.0..20.0;
+const WARM_SUMMER: Range<f32> = 25.0..33.0;
 
-const HOT_SPRING: Range<f64> = 25.0..35.0;
-const HOT_WINTER: Range<f64> = 15.0..22.0;
-const HOT_FALL: Range<f64> = 17.0..25.0;
-const HOT_SUMMER: Range<f64> = 30.0..45.0;
+const HOT_SPRING: Range<f32> = 25.0..35.0;
+const HOT_WINTER: Range<f32> = 15.0..22.0;
+const HOT_FALL: Range<f32> = 17.0..25.0;
+const HOT_SUMMER: Range<f32> = 30.0..45.0;
 
-enum HumidDry {
+#[derive(Copy, Clone)]
+pub enum HumidDry {
     Humid,
     Dry,
     None,
 }
 
-enum HotCold {
-    Hot,
-    Cold,
-    Warm,
-    Temperate,
-}
-
+#[derive(Clone)]
 pub struct Climate<'a> {
     pub name: &'a str,
     pub general_type: char,
     pub second_type: char,
     pub third_type: char,
-
-    winter: (HumidDry, HotCold),
-    summer: (HumidDry, HotCold),
+    pub spring: Range<f32>,
+    pub winter: (HumidDry, Range<f32>),
+    pub fall: Range<f32>,
+    pub summer: (HumidDry, Range<f32>),
 }
 
 // TODO: evapotranspiration? Precipitation type?
@@ -58,8 +51,10 @@ pub const KOPPEN_AF_AM: Climate = Climate {
     general_type: 'A',
     second_type: 'F',
     third_type: '_',
-    winter: (None, Hot),
-    summer: (Humid, Hot),
+    spring: HOT_SPRING,
+    winter: (None, HOT_WINTER),
+    fall: HOT_FALL,
+    summer: (Humid, HOT_SUMMER),
 };
 
 pub const KOPPEN_AS: Climate = Climate {
@@ -67,8 +62,10 @@ pub const KOPPEN_AS: Climate = Climate {
     general_type: 'A',
     second_type: 'F',
     third_type: '_',
-    winter: (None, Hot),
-    summer: (None, Hot),
+    spring: HOT_SPRING,
+    winter: (None, HOT_WINTER),
+    fall: HOT_FALL,
+    summer: (None, HOT_SUMMER),
 };
 
 pub const KOPPEN_AW: Climate = Climate {
@@ -76,8 +73,10 @@ pub const KOPPEN_AW: Climate = Climate {
     general_type: 'A',
     second_type: 'F',
     third_type: '_',
-    winter: (Humid, Hot),
-    summer: (None, Hot),
+    spring: HOT_SPRING,
+    winter: (Humid, HOT_WINTER),
+    fall: HOT_FALL,
+    summer: (None, HOT_SUMMER),
 };
 
 pub const KOPPEN_BSH: Climate = Climate {
@@ -85,8 +84,10 @@ pub const KOPPEN_BSH: Climate = Climate {
     general_type: 'B',
     second_type: 'S',
     third_type: 'H',
-    winter: (Dry, Warm),
-    summer: (None, Hot),
+    spring: WARM_SPRING,
+    winter: (Dry, WARM_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (None, HOT_SUMMER),
 };
 
 pub const KOPPEN_BSK: Climate = Climate {
@@ -94,8 +95,10 @@ pub const KOPPEN_BSK: Climate = Climate {
     general_type: 'B',
     second_type: 'S',
     third_type: 'H',
-    winter: (Dry, Cold),
-    summer: (None, Cold),
+    spring: COLD_SPRING,
+    winter: (Dry, COLD_WINTER),
+    fall: COLD_FALL,
+    summer: (None, COLD_SUMMER),
 };
 
 pub const KOPPEN_BWH: Climate = Climate {
@@ -103,8 +106,10 @@ pub const KOPPEN_BWH: Climate = Climate {
     general_type: 'B',
     second_type: 'W',
     third_type: 'H',
-    winter: (Dry, Hot),
-    summer: (Dry, Hot),
+    spring: HOT_SPRING,
+    winter: (Dry, HOT_WINTER),
+    fall: HOT_FALL,
+    summer: (Dry, HOT_SUMMER),
 };
 
 pub const KOPPEN_BWK: Climate = Climate {
@@ -112,8 +117,10 @@ pub const KOPPEN_BWK: Climate = Climate {
     general_type: 'B',
     second_type: 'W',
     third_type: 'K',
-    winter: (Dry, Cold),
-    summer: (Dry, Cold),
+    spring: TEMPERATE_SPRING,
+    winter: (Dry, COLD_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (Dry, COLD_SUMMER),
 };
 
 pub const KOPPEN_CFA: Climate = Climate {
@@ -121,8 +128,10 @@ pub const KOPPEN_CFA: Climate = Climate {
     general_type: 'C',
     second_type: 'F',
     third_type: 'A',
-    winter: (Humid, Temperate),
-    summer: (Humid, Hot),
+    spring: TEMPERATE_SPRING,
+    winter: (Humid, TEMPERATE_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (Humid, HOT_SUMMER),
 };
 
 pub const KOPPEN_CFB: Climate = Climate {
@@ -130,8 +139,10 @@ pub const KOPPEN_CFB: Climate = Climate {
     general_type: 'C',
     second_type: 'F',
     third_type: 'B',
-    winter: (Humid, Temperate),
-    summer: (Humid, Warm),
+    spring: TEMPERATE_SPRING,
+    winter: (Humid, TEMPERATE_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (Humid, WARM_SUMMER),
 };
 
 pub const KOPPEN_CFC: Climate = Climate {
@@ -139,8 +150,10 @@ pub const KOPPEN_CFC: Climate = Climate {
     general_type: 'C',
     second_type: 'F',
     third_type: 'C',
-    winter: (Humid, Cold),
-    summer: (Humid, Temperate),
+    spring: TEMPERATE_SPRING,
+    winter: (Humid, COLD_WINTER),
+    fall: COLD_FALL,
+    summer: (Humid, TEMPERATE_WINTER),
 };
 
 pub const KOPPEN_CSA: Climate = Climate {
@@ -148,8 +161,10 @@ pub const KOPPEN_CSA: Climate = Climate {
     general_type: 'C',
     second_type: 'S',
     third_type: 'A',
-    winter: (None, Temperate),
-    summer: (Dry, Hot),
+    spring: WARM_SPRING,
+    winter: (None, TEMPERATE_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (Dry, HOT_SUMMER),
 };
 
 pub const KOPPEN_CSB: Climate = Climate {
@@ -157,8 +172,10 @@ pub const KOPPEN_CSB: Climate = Climate {
     general_type: 'B',
     second_type: 'W',
     third_type: 'H',
-    winter: (None, Temperate),
-    summer: (Dry, Warm),
+    spring: WARM_SPRING,
+    winter: (None, TEMPERATE_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (Dry, WARM_SUMMER),
 };
 
 // pub const KOPPEN_CSC: Climate = Climate {
@@ -175,8 +192,10 @@ pub const KOPPEN_CWA: Climate = Climate {
     general_type: 'C',
     second_type: 'W',
     third_type: 'A',
-    winter: (Dry, Temperate),
-    summer: (Humid, Hot),
+    spring: WARM_SPRING,
+    winter: (Dry, TEMPERATE_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (Humid, HOT_SUMMER),
 };
 
 pub const KOPPEN_CWB: Climate = Climate {
@@ -184,8 +203,10 @@ pub const KOPPEN_CWB: Climate = Climate {
     general_type: 'C',
     second_type: 'W',
     third_type: 'B',
-    winter: (Dry, Temperate),
-    summer: (Humid, Warm),
+    spring: WARM_SPRING,
+    winter: (Dry, TEMPERATE_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (Humid, WARM_SUMMER),
 };
 
 pub const KOPPEN_CWC: Climate = Climate {
@@ -193,8 +214,10 @@ pub const KOPPEN_CWC: Climate = Climate {
     general_type: 'C',
     second_type: 'W',
     third_type: 'C',
-    winter: (Dry, Temperate),
-    summer: (Humid, Cold),
+    spring: TEMPERATE_SPRING,
+    winter: (Dry, TEMPERATE_WINTER),
+    fall: COLD_FALL,
+    summer: (Humid, COLD_SUMMER),
 };
 
 pub const KOPPEN_DFA: Climate = Climate {
@@ -202,8 +225,10 @@ pub const KOPPEN_DFA: Climate = Climate {
     general_type: 'D',
     second_type: 'F',
     third_type: 'A',
-    winter: (Humid, Cold),
-    summer: (Humid, Hot),
+    spring: TEMPERATE_SPRING,
+    winter: (Humid, COLD_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (Humid, HOT_SUMMER),
 };
 
 pub const KOPPEN_DFB: Climate = Climate {
@@ -211,8 +236,10 @@ pub const KOPPEN_DFB: Climate = Climate {
     general_type: 'D',
     second_type: 'F',
     third_type: 'B',
-    winter: (Humid, Cold),
-    summer: (Humid, Warm),
+    spring: TEMPERATE_SPRING,
+    winter: (Humid, COLD_WINTER),
+    fall: TEMPERATE_FALL,
+    summer: (Humid, WARM_SUMMER),
 };
 
 pub const KOPPEN_DFC: Climate = Climate {
@@ -220,8 +247,10 @@ pub const KOPPEN_DFC: Climate = Climate {
     general_type: 'D',
     second_type: 'F',
     third_type: 'C',
-    winter: (Humid, Cold),
-    summer: (Humid, Cold),
+    spring: TEMPERATE_SPRING,
+    winter: (Humid, COLD_WINTER),
+    fall: COLD_FALL,
+    summer: (Humid, COLD_SUMMER),
 };
 
 pub const KOPPEN_DSA: Climate = Climate {
@@ -229,8 +258,10 @@ pub const KOPPEN_DSA: Climate = Climate {
     general_type: 'D',
     second_type: 'S',
     third_type: 'A',
-    winter: (None, Cold),
-    summer: (Dry, Hot),
+    spring: HOT_SPRING,
+    winter: (None, COLD_WINTER),
+    fall: COLD_FALL,
+    summer: (Dry, HOT_SUMMER),
 };
 
 pub const KOPPEN_DSB: Climate = Climate {
@@ -238,8 +269,10 @@ pub const KOPPEN_DSB: Climate = Climate {
     general_type: 'D',
     second_type: 'S',
     third_type: 'B',
-    winter: (None, Cold),
-    summer: (Dry, Warm),
+    spring: WARM_SPRING,
+    winter: (None, COLD_WINTER),
+    fall: COLD_FALL,
+    summer: (Dry, WARM_SUMMER),
 };
 
 pub const KOPPEN_DSC: Climate = Climate {
@@ -247,8 +280,10 @@ pub const KOPPEN_DSC: Climate = Climate {
     general_type: 'D',
     second_type: 'S',
     third_type: 'C',
-    winter: (None, Cold),
-    summer: (Dry, Cold),
+    spring: COLD_SPRING,
+    winter: (None, COLD_WINTER),
+    fall: COLD_FALL,
+    summer: (Dry, COLD_SUMMER),
 };
 
 pub const KOPPEN_ET: Climate = Climate {
@@ -256,46 +291,9 @@ pub const KOPPEN_ET: Climate = Climate {
     general_type: 'E',
     second_type: 'T',
     third_type: '_',
-    winter: (Dry, Cold),
-    summer: (Dry, Cold),
+    spring: COLD_SPRING,
+    winter: (Dry, COLD_WINTER),
+    fall: COLD_FALL,
+    summer: (Dry, COLD_SUMMER),
 };
 
-pub struct DecodedClimateData {
-    spring: (u8, Range<f64>),
-    winter: (u8, Range<f64>),
-    fall: (u8, Range<f64>),
-    summer: (u8, Range<f64>),
-}
-
-/// Outputs in this order: spring, winter, fall, summer.
-pub fn data_from_climate(climate: Climate) {
-    // none:0, dry: 1, humid: 2
-
-    let c_type = String::from_iter(vec![
-        climate.general_type,
-        climate.second_type,
-        climate.third_type,
-    ]);
-
-    let spring_temp_range: (u8, Range<f64>);
-    let winter_temp_range: (u8, Range<f64>);
-    let fall_temp_range: (u8, Range<f64>);
-    let summer_temp_range: (u8, Range<f64>);
-
-    // Temperature choosing
-    match c_type.as_str() {
-        "ET_" => {
-            winter_temp_range = (1, COLD_WINTER);
-            fall_temp_range = (0, COLD_FALL);
-            summer_temp_range = (1, COLD_SUMMER);
-            spring_temp_range = (0, COLD_SPRING);
-        }
-        "DSc" => {
-            winter_temp_range = (1, COLD_WINTER);
-            fall_temp_range = (0, COLD_FALL);
-            summer_temp_range = (1, COLD_SUMMER);
-            spring_temp_range = (0, COLD_SPRING);
-        }
-        _ => todo!(),
-    }
-}

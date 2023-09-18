@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c81gch0jp0qpc"]
+[gd_scene load_steps=14 format=3 uid="uid://c81gch0jp0qpc"]
 
 [ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="1_5bq5u"]
 [ext_resource type="Script" path="res://scripts/sun_movement.gd" id="1_dgqma"]
@@ -33,9 +33,6 @@ shader_parameter/region_world_position = null
 shader_parameter/region_size = 32.0
 shader_parameter/region_a = 0.0
 shader_parameter/region_b = 0.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_bghlb"]
-size = Vector3(1000, 1000, 1000)
 
 [node name="Node3D" type="Node3D"]
 
@@ -81,13 +78,6 @@ material = SubResource("ShaderMaterial_glbsd")
 terrain_size = Vector2i(256, 256)
 region_size = 32
 script = ExtResource("9_5lcu0")
-
-[node name="Area3D" type="Area3D" parent="MTerrain"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -755.209, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MTerrain/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.6384, 0)
-shape = SubResource("BoxShape3D_bghlb")
 
 [node name="ErosionActor" type="ErosionActor" parent="."]
 

@@ -1,0 +1,13 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+compatibility_minimum = 4.1
+
+[libraries]
+linux.debug.x86_64 = "res://modules/r_climate/target/debug/libr_climate.so"
+linux.release.x86_64 = "res://modules/r_climate/target/release/libr_climate.so"
+windows.debug.x86_64 = "res://modules/r_climate/target/release/r_climate.dll"
+windows.release.x86_64 = "res://modules/r_climate/target/release/r_climate.dll"
+macos.debug = "res://modules/r_climate/target/debug/libr_climate.dylib"
+macos.release = "res://modules/r_climate/target/release/libr_climate.dylib"
+macos.debug.arm64 = "res://modules/r_climate/target/debug/libr_climate.dylib"
+macos.release.arm64 = "res://modules/r_climate/target/release/libr_climate.dylib"
