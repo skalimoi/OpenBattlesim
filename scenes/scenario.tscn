@@ -69,7 +69,7 @@ directional_shadow_mode = 1
 script = ExtResource("1_dgqma")
 
 [node name="DebugSun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.547738, 0.83665, 0, -0.83665, 0.547738, 0, 2.74211, 0)
+transform = Transform3D(1, 0, 0, 0, 0.547738, 0.83665, 0, -0.83665, 0.547738, 0, 600, 0)
 
 [node name="MTerrain" type="MTerrain" parent="."]
 dataDir = "res://data/terrain_imported/"

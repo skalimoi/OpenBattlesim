@@ -1,3 +1,4 @@
+use std::ffi::CString;
 use std::fs;
 
 use fs_extra::file::write_all;
@@ -6,8 +7,10 @@ use image_latest::{Luma, ImageBuffer, DynamicImage, Rgb, GenericImage, Encodable
 use imageproc::map::red_channel;
 use rand::seq::IteratorRandom;
 use rand::thread_rng;
-use crate::climate::{Climate, KOPPEN_CFC};
-use byteorder::*;
+use std::fs::{File};
+use std::io::{BufWriter, Write};
+use std::mem::ManuallyDrop;
+use byteorder::{LittleEndian, WriteBytesExt};
 
 use crate::erosion::{*, world::World};
 use crate::entry_point::world::Vec2;
@@ -59,23 +62,15 @@ impl ErosionActor {
             .map(|x| (x.height * 255.0) as u16)
             .collect();
 
-        let red_prep = eroded_heightmap.as_slice().as_bytes();
 
-        fs::write("data/raw/m_terrain_heightmap_eroded.r16", red_prep);
 
-        
-        
-        
-        
-        // let h = image_latest::io::Reader::open(format!("data/raw/eroded.png").as_str())
-        //     .unwrap()
-        //     .decode()
-        //     .unwrap();
-        // h.to_rgb16()
-        //     .save(format!("data/raw/eroded_rgb.png"))
-        //     .unwrap();
+        let mut file = fs::File::create("data/raw/m_terrain_heightmap_eroded.r16").unwrap();
+        for value in eroded_heightmap {
+            file.write_u16::<LittleEndian>(value).unwrap();
+        }
 
-            let discharge_buffer: image_latest::ImageBuffer<Luma<u8>, Vec<u8>> =
+
+        let discharge_buffer: image_latest::ImageBuffer<Luma<u8>, Vec<u8>> =
             image_latest::ImageBuffer::from_raw(width, height, discharge_map.clone()).unwrap();
         discharge_buffer
             .save(format!("data/raw/discharge.png").as_str())
