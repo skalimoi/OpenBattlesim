@@ -10,6 +10,7 @@ use std::io::Write;
 use std::ptr::write;
 use godot::engine::Curve;
 use godot::engine::utilities::lerpf;
+use ron::ser::PrettyConfig;
 use serde::{Deserialize, Serialize};
 use crate::climate::HumidDry;
 
@@ -246,10 +247,10 @@ impl GenData {
         }
     }
 
-    fn save_data(data: GenData) -> std::io::Result<()> {
+    pub fn save_data(data: GenData) -> std::io::Result<()> {
         let file_name = format!("data/weather_grid_data/{}_{}_{}.ron", data.index.0, data.index.1, data.index.2);
         let mut file = File::create(file_name)?;
-        file.write_all(ron::ser::to_string(&data).unwrap().as_ref())
+        file.write_all(ron::ser::to_string_pretty(&data, PrettyConfig::default()).unwrap().as_ref())
     }
 }
 

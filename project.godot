@@ -13,7 +13,7 @@ config_version=5
 config/name="OpenBattlesim"
 run/main_scene="res://scenes/scenario.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-boot_splash/image="res://data/icons/splash_screen_0.2.1.png"
+boot_splash/image="res://data/icons/splash_screen_0.3.0.png"
 config/icon="res://data/icons/icon_32x32.png"
 
 [autoload]

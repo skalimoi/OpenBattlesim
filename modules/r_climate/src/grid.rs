@@ -44,7 +44,8 @@ impl GridComponent {
         }
         let noise: Fbm<Simplex> = Fbm::new(345435);
         godot_print!("Exporting weather data");
-        GenData::gen_year_data(self, latitude, self.mean_altitude, (self.index.x, self.index.y, self.index.z), noise, fetched);
+        let gen_data = GenData::gen_year_data(self, latitude, self.mean_altitude, (self.index.x, self.index.y, self.index.z), noise, fetched);
+        GenData::save_data(gen_data).expect("Error exporting GenData!");
     }
     // FUNCION PARA PROCESS - ASIGNAR VALORES SEGÚN HORA
 }
