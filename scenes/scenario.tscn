@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c81gch0jp0qpc"]
+[gd_scene load_steps=15 format=3 uid="uid://c81gch0jp0qpc"]
 
 [ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="1_5bq5u"]
 [ext_resource type="Script" path="res://scripts/sun_movement.gd" id="1_dgqma"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cyjgfgqtkbf5e" path="res://addons/dynamic_day_night_cycles/sun_colors.png" id="4_m3cvb"]
 [ext_resource type="Shader" path="res://addons/m_terrain/start.gdshader" id="8_pyxjc"]
 [ext_resource type="Script" path="res://scenes/terrain_loader.gd" id="9_5lcu0"]
+[ext_resource type="Script" path="res://scripts/Grid.gd" id="10_6lf46"]
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_3eupq"]
 
@@ -69,11 +70,13 @@ directional_shadow_mode = 1
 script = ExtResource("1_dgqma")
 
 [node name="DebugSun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.547738, 0.83665, 0, -0.83665, 0.547738, 0, 600, 0)
+transform = Transform3D(1, 0, 0, 0, 0.700909, 0.713251, 0, -0.713251, 0.700909, 0, 200, 0)
+shadow_enabled = true
 
 [node name="MTerrain" type="MTerrain" parent="."]
 dataDir = "res://data/terrain_imported/"
 save_generated_normals = true
+create_grid = true
 material = SubResource("ShaderMaterial_glbsd")
 terrain_size = Vector2i(256, 256)
 region_size = 32
@@ -82,3 +85,6 @@ script = ExtResource("9_5lcu0")
 [node name="ErosionActor" type="ErosionActor" parent="."]
 
 [node name="TerrainTextureActor" type="TerrainTextureActor" parent="."]
+
+[node name="Grid" type="Node" parent="."]
+script = ExtResource("10_6lf46")

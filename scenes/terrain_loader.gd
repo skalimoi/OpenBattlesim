@@ -13,7 +13,7 @@ func _ready():
 			self.set_height_by_pixel(x, y, height)
 	print("Saving height images.")
 	self.save_all_dirty_images()
-	
+	self.restart_grid()
 	
 func _process(delta):
 	pass
