@@ -21,7 +21,7 @@ void vertex(){
 	VERTEX.y = texture(mterrain_heightmap, region_uv).r;
 	world_pos.y = VERTEX.y;
 	vec3 n = texture(mterrain_normals, region_uv).rgb;
-	n = fma(n,vec3(2.0),vec3(-1.0));
+	n = fma(n,vec3(3.0),vec3(-1.0));
 	NORMAL = n;
 	//Scale world uv for terrain texture
 	world_pos /= 10.0;

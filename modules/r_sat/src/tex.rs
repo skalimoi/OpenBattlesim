@@ -1,3 +1,9 @@
+/*
+//// NOTE ////
+Original implementation in Python by OttoLink: https://github.com/otto-link/SatColorLUT
+All credits to him. I just had it translated to Rust and adapted it to my needs.
+*/
+
 use self::sat_lut::TerrainTextureActor;
 
 pub mod sat_lut {
@@ -100,9 +106,10 @@ fn gradient(values: &Vec<f64>, width: usize) -> (Vec<f64>, Vec<f64>) {
     }
 
 #[func]
-pub fn create_texture() {
+pub fn create_texture(climate: GodotString) {
     let directory_path = "data/climate_sat_data";
-    let name_str = "CFC";
+    let name_str = climate.to_string();
+    let name = name_str.as_str();
     let folder_data = fs::read_dir(directory_path).expect("Failure reading climate dir!");
 
     let mut rng = thread_rng();
@@ -115,7 +122,7 @@ pub fn create_texture() {
                 let folder_name = entry.file_name();
                 let folder_name_str = folder_name.to_string_lossy();
 
-                if folder_name_str.contains(name_str) {
+                if folder_name_str.contains(name) {
                     vec.push(entry);
                 }
             }
@@ -203,11 +210,11 @@ pub fn create_texture() {
 
     println!("Applying...");
 
-    let eroded_img: ImageBuffer<image::Luma<u8>, Vec<u8>> = ImageReader::open("data/raw/m_terrain_heightmap_eroded.png")
+    let eroded_img: ImageBuffer<image::Luma<u16>, Vec<u16>> = ImageReader::open("data/raw/texturing_buffer.png")
         .unwrap()
         .decode()
         .unwrap()
-        .into_luma8();
+        .into_luma16();
     let eroded_img_ref = &eroded_img;
     let (width, height) = eroded_img.dimensions();
 

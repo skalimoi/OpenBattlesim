@@ -3,8 +3,6 @@ use crate::climate::HumidDry::Humid;
 use crate::climate::HumidDry::None;
 use std::ops::Range;
 
-// TODO: CAMBIAR ENUMS QUE NO SIGNIFICAN NADA POR RANGES DE TEMPERATURA BASE PARA LA GENERACION
-
 const COLD_SPRING: Range<f32> = 0.0..15.0;
 const COLD_WINTER: Range<f32> = -25.0..0.0;
 const COLD_FALL: Range<f32> = -10.0..5.0;

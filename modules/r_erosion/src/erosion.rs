@@ -1,3 +1,10 @@
+
+/*
+//// NOTE ////
+Algorithms adapted to Rust from weigert's SimpleHidrology: https://github.com/weigert/SimpleHydrology with his permission and support.
+A standalone version of the Rust implementation can be found on my GitHub: https://github.com/skalimoi/SimpleHydrologyRust
+*/
+
 pub mod map {
     use crate::erosion::world::Vec2;
     use errorfunctions::RealErrorFunctions;

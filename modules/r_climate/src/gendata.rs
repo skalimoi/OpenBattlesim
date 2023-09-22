@@ -145,6 +145,7 @@ impl GenData {
         let mut td_vec: Vec<real> = vec![];
         let mut current_season = Season::Winter;
 
+        // TODO CAMBIAR ESTO PARA QUE SEA SOLO CON LOS CLIMATES... O AÑADIRLO DIRECTAMENTE AL CLIMA
         let night_variation_range = match latitude {
             55..=90 => SUB_POLAR_TEMP_RANGE,
             -90..=-55 => SUB_POLAR_TEMP_RANGE,

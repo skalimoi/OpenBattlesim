@@ -1,3 +1,9 @@
+/*
+//// NOTE ////
+Original program by Martin Lesser can be found here: https://github.com/MartinLesser/Procedural-distribution-of-vegetation
+I had it adapted to Rust with his permission and support.
+*/
+
 use edaphology::calculate_soil_depth;
 use hydrology::calculate_hydrology_map;
 use image::io::Reader as ImageReader;

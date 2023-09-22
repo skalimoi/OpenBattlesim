@@ -16,19 +16,15 @@ use crate::erosion::{*, world::World};
 use crate::entry_point::world::Vec2;
 
 
-
 #[derive(GodotClass)]
-#[class(base=Node)]
+#[class(base = Node)]
 pub struct ErosionActor {
     pub path_to_heightmap: String,
     pub cycles: i32,
     pub seed: real,
     #[base]
-    base: Base<Node>
+    base: Base<Node>,
 }
-
-
-
 
 
 #[godot_api]
@@ -63,15 +59,16 @@ impl ErosionActor {
             .collect();
 
 
-
-        let mut file = fs::File::create("data/raw/m_terrain_heightmap_eroded.r16").unwrap();
-        for value in eroded_heightmap {
-            file.write_u16::<LittleEndian>(value).unwrap();
+        let mut file = File::create("data/raw/m_terrain_heightmap_eroded.r16").unwrap();
+        for value in eroded_heightmap.as_slice() {
+            file.write_u16::<LittleEndian>(*value).unwrap();
         }
 
+        let buffer: ImageBuffer<Luma<u16>, Vec<u16>> = ImageBuffer::from_raw(8193, 8193, eroded_heightmap).unwrap();
+        buffer.save("data/raw/texturing_buffer.png").unwrap();
 
-        let discharge_buffer: image_latest::ImageBuffer<Luma<u8>, Vec<u8>> =
-            image_latest::ImageBuffer::from_raw(width, height, discharge_map.clone()).unwrap();
+        let discharge_buffer: ImageBuffer<Luma<u8>, Vec<u8>> =
+            ImageBuffer::from_raw(width, height, discharge_map.clone()).unwrap();
         discharge_buffer
             .save(format!("data/raw/discharge.png").as_str())
             .unwrap();
@@ -85,8 +82,6 @@ impl ErosionActor {
         imageproc::contrast::stretch_contrast_mut(&mut gray, 130, 200);
         gray.save(format!("data/raw/discharge.png").as_str())
             .unwrap();
-    
-    
     }
 
     /*
@@ -178,12 +173,6 @@ impl ErosionActor {
     
     }
      */
-    
-    
-
-    
-    
-    
 }
 
 #[godot_api]
@@ -193,11 +182,9 @@ impl NodeVirtual for ErosionActor {
             path_to_heightmap: "heightmap.png".to_string(),
             cycles: 30,
             seed: 199565.0,
-            base
+            base,
         }
     }
 
-    fn ready(&mut self) {
-        
-    }
+    fn ready(&mut self) {}
 }
