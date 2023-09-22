@@ -8,7 +8,7 @@ use std::fmt::format;
 use std::fs::File;
 use std::io::Write;
 use std::ptr::write;
-use godot::engine::Curve;
+use godot::engine::{Curve, ResourceImporter};
 use godot::engine::utilities::lerpf;
 use ron::ser::PrettyConfig;
 use serde::{Deserialize, Serialize};
@@ -154,6 +154,8 @@ impl GenData {
             _ => 0..1,
         };
 
+        let curve: Gd<Curve> = load("resources/diurnal_temp_curve.tres");
+
         let mut rng = thread_rng();
 
         for day in 1..=360 {
@@ -185,17 +187,10 @@ impl GenData {
                 Vector3::new(0.1, 0.1, 0.1),
             );
 
-            let mut day_night_curve = Curve::new();
-            day_night_curve.add_point(Vector2::new(0.0, 0.3));
-            day_night_curve.add_point(Vector2::new(6.0, 0.0));
-            day_night_curve.add_point(Vector2::new(15.0, 1.0));
-            day_night_curve.add_point(Vector2::new(20.0, 0.250));
-            day_night_curve.add_point(Vector2::new(24.0, 0.150));
-
             let night_temp = day_temp - (night_val as f32);
 
             for hour in 1..=24 {
-                let factor = day_night_curve.sample(hour as f32);
+                let factor = curve.sample(0.042 * hour as f32); // 0.042 -> 1h
                 let temp = (day_temp * factor) + (night_temp * (1.0 - factor));
                 temperature_vec.push(temp);
             }

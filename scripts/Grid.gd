@@ -17,7 +17,7 @@ func _ready():
 				shape.set_shape(box)
 				self.add_child(area)
 				area.add_child(shape)
-				area.global_position = Vector3((512 * x) + 256, 256 * y, (512 * z) + 256)
+				area.global_position = Vector3((512 * x) + 256, (256 * y) + 128, (512 * z) + 256)
 				if y == 0:
 					var pos = area.global_position
 					var point_1 = $"../MTerrain".get_closest_height(area.global_position)
