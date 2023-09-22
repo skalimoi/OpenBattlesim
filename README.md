@@ -5,7 +5,6 @@
 <a href="https://godotengine.org/"><img src="https://img.shields.io/badge/Godot-4.1.1-2ea44f?logo=godotengine&logoColor=%23478CBF" alt="Godot - 4.1.1"></a>
 ![contributions - welcome](https://img.shields.io/badge/contributions-welcome-blue)
 [![Made with Rust](https://img.shields.io/badge/Rust-1-blue?logo=rust&logoColor=white)](https://www.rust-lang.org/ "Go to Rust homepage")
-![Currently working on - Compute shader for cloud movement!](https://img.shields.io/badge/Currently_working_on-Compute_shader_for_cloud_movement!-2ea44f)
 
 
 A military simulator written in Rust, GDScript and made in Godot.
