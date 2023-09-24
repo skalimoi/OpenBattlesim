@@ -70,13 +70,16 @@ directional_shadow_mode = 1
 script = ExtResource("1_dgqma")
 
 [node name="DebugSun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.700909, 0.713251, 0, -0.713251, 0.700909, 0, 200, 0)
+transform = Transform3D(1, 0, 0, 0, -0.633381, 0.77384, 0, -0.77384, -0.633381, 0, 200, 0)
 shadow_enabled = true
+directional_shadow_max_distance = 8192.0
 
 [node name="MTerrain" type="MTerrain" parent="."]
 dataDir = "res://data/terrain_imported/"
 save_generated_normals = true
+create_grid = true
 material = SubResource("ShaderMaterial_glbsd")
+heightmap_layers = PackedStringArray("albedo_tex")
 terrain_size = Vector2i(256, 256)
 region_size = 32
 script = ExtResource("9_5lcu0")

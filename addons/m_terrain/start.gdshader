@@ -4,8 +4,8 @@ shader_type spatial;
 
 uniform sampler2D mterrain_heightmap:filter_nearest;
 uniform sampler2D mterrain_normals:filter_nearest;
-
 uniform sampler2DArray albedo_tex;
+uniform sampler2D mterrain_albedo_tex;
 
 uniform vec3 region_world_position;
 uniform float region_size;
@@ -21,7 +21,7 @@ void vertex(){
 	VERTEX.y = texture(mterrain_heightmap, region_uv).r;
 	world_pos.y = VERTEX.y;
 	vec3 n = texture(mterrain_normals, region_uv).rgb;
-	n = fma(n,vec3(3.0),vec3(-1.0));
+	n = fma(n,vec3(5.0),vec3(-1.0));
 	NORMAL = n;
 	//Scale world uv for terrain texture
 	world_pos /= 10.0;
@@ -29,5 +29,5 @@ void vertex(){
 }
 
 void fragment(){
-	ALBEDO = vec3(0.4);
+	ALBEDO = texture(mterrain_albedo_tex, region_uv).rgb;
 }
