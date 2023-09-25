@@ -5,7 +5,8 @@ shader_type spatial;
 uniform sampler2D mterrain_heightmap:filter_nearest;
 uniform sampler2D mterrain_normals:filter_nearest;
 uniform sampler2DArray albedo_tex;
-uniform sampler2D mterrain_albedo_tex;
+uniform sampler2D mterrain_albedo_tex:source_color;
+uniform sampler2D mterrain_water_mask;
 
 uniform vec3 region_world_position;
 uniform float region_size;
@@ -29,5 +30,9 @@ void vertex(){
 }
 
 void fragment(){
+	vec3 river_mask = texture(mterrain_water_mask, region_uv).rgb;
 	ALBEDO = texture(mterrain_albedo_tex, region_uv).rgb;
+	if (river_mask.r > 0.5) {
+		ALBEDO = vec3(0.1, 0.3, 0.5);
+	}
 }

@@ -23,6 +23,10 @@ const HOT_WINTER: Range<f32> = 15.0..22.0;
 const HOT_FALL: Range<f32> = 17.0..25.0;
 const HOT_SUMMER: Range<f32> = 30.0..45.0;
 
+pub const EQUATOR_TEMP_RANGE: Range<f32> = 0.0..3.0;
+pub const TEMPERATE_TEMP_RANGE: Range<f32> = 7.0..10.0;
+pub const CONTINENTAL_POLAR_TEMP_RANGE: Range<f32> = 12.0..25.0;
+
 #[derive(Copy, Clone)]
 pub enum HumidDry {
     Humid,
@@ -40,6 +44,7 @@ pub struct Climate<'a> {
     pub winter: (HumidDry, Range<f32>),
     pub fall: Range<f32>,
     pub summer: (HumidDry, Range<f32>),
+    pub diurnal_range: Range<f32>
 }
 
 // TODO: evapotranspiration? Precipitation type?
@@ -53,6 +58,7 @@ pub const KOPPEN_AF_AM: Climate = Climate {
     winter: (None, HOT_WINTER),
     fall: HOT_FALL,
     summer: (Humid, HOT_SUMMER),
+    diurnal_range: EQUATOR_TEMP_RANGE
 };
 
 pub const KOPPEN_AS: Climate = Climate {
@@ -64,6 +70,7 @@ pub const KOPPEN_AS: Climate = Climate {
     winter: (None, HOT_WINTER),
     fall: HOT_FALL,
     summer: (None, HOT_SUMMER),
+    diurnal_range: EQUATOR_TEMP_RANGE
 };
 
 pub const KOPPEN_AW: Climate = Climate {
@@ -75,6 +82,7 @@ pub const KOPPEN_AW: Climate = Climate {
     winter: (Humid, HOT_WINTER),
     fall: HOT_FALL,
     summer: (None, HOT_SUMMER),
+    diurnal_range: EQUATOR_TEMP_RANGE
 };
 
 pub const KOPPEN_BSH: Climate = Climate {
@@ -86,6 +94,7 @@ pub const KOPPEN_BSH: Climate = Climate {
     winter: (Dry, WARM_WINTER),
     fall: TEMPERATE_FALL,
     summer: (None, HOT_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 
 pub const KOPPEN_BSK: Climate = Climate {
@@ -97,6 +106,7 @@ pub const KOPPEN_BSK: Climate = Climate {
     winter: (Dry, COLD_WINTER),
     fall: COLD_FALL,
     summer: (None, COLD_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 
 pub const KOPPEN_BWH: Climate = Climate {
@@ -108,6 +118,7 @@ pub const KOPPEN_BWH: Climate = Climate {
     winter: (Dry, HOT_WINTER),
     fall: HOT_FALL,
     summer: (Dry, HOT_SUMMER),
+    diurnal_range: TEMPERATE_TEMP_RANGE
 };
 
 pub const KOPPEN_BWK: Climate = Climate {
@@ -119,6 +130,7 @@ pub const KOPPEN_BWK: Climate = Climate {
     winter: (Dry, COLD_WINTER),
     fall: TEMPERATE_FALL,
     summer: (Dry, COLD_SUMMER),
+    diurnal_range: TEMPERATE_TEMP_RANGE
 };
 
 pub const KOPPEN_CFA: Climate = Climate {
@@ -130,6 +142,7 @@ pub const KOPPEN_CFA: Climate = Climate {
     winter: (Humid, TEMPERATE_WINTER),
     fall: TEMPERATE_FALL,
     summer: (Humid, HOT_SUMMER),
+    diurnal_range: TEMPERATE_TEMP_RANGE
 };
 
 pub const KOPPEN_CFB: Climate = Climate {
@@ -141,6 +154,7 @@ pub const KOPPEN_CFB: Climate = Climate {
     winter: (Humid, TEMPERATE_WINTER),
     fall: TEMPERATE_FALL,
     summer: (Humid, WARM_SUMMER),
+    diurnal_range: TEMPERATE_TEMP_RANGE
 };
 
 pub const KOPPEN_CFC: Climate = Climate {
@@ -152,6 +166,7 @@ pub const KOPPEN_CFC: Climate = Climate {
     winter: (Humid, COLD_WINTER),
     fall: COLD_FALL,
     summer: (Humid, TEMPERATE_WINTER),
+    diurnal_range: TEMPERATE_TEMP_RANGE
 };
 
 pub const KOPPEN_CSA: Climate = Climate {
@@ -163,6 +178,7 @@ pub const KOPPEN_CSA: Climate = Climate {
     winter: (None, TEMPERATE_WINTER),
     fall: TEMPERATE_FALL,
     summer: (Dry, HOT_SUMMER),
+    diurnal_range: TEMPERATE_TEMP_RANGE
 };
 
 pub const KOPPEN_CSB: Climate = Climate {
@@ -174,6 +190,7 @@ pub const KOPPEN_CSB: Climate = Climate {
     winter: (None, TEMPERATE_WINTER),
     fall: TEMPERATE_FALL,
     summer: (Dry, WARM_SUMMER),
+    diurnal_range: TEMPERATE_TEMP_RANGE
 };
 
 // pub const KOPPEN_CSC: Climate = Climate {
@@ -194,6 +211,7 @@ pub const KOPPEN_CWA: Climate = Climate {
     winter: (Dry, TEMPERATE_WINTER),
     fall: TEMPERATE_FALL,
     summer: (Humid, HOT_SUMMER),
+    diurnal_range: TEMPERATE_TEMP_RANGE
 };
 
 pub const KOPPEN_CWB: Climate = Climate {
@@ -205,6 +223,7 @@ pub const KOPPEN_CWB: Climate = Climate {
     winter: (Dry, TEMPERATE_WINTER),
     fall: TEMPERATE_FALL,
     summer: (Humid, WARM_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 
 pub const KOPPEN_CWC: Climate = Climate {
@@ -216,6 +235,7 @@ pub const KOPPEN_CWC: Climate = Climate {
     winter: (Dry, TEMPERATE_WINTER),
     fall: COLD_FALL,
     summer: (Humid, COLD_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 
 pub const KOPPEN_DFA: Climate = Climate {
@@ -227,6 +247,7 @@ pub const KOPPEN_DFA: Climate = Climate {
     winter: (Humid, COLD_WINTER),
     fall: TEMPERATE_FALL,
     summer: (Humid, HOT_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 
 pub const KOPPEN_DFB: Climate = Climate {
@@ -238,6 +259,7 @@ pub const KOPPEN_DFB: Climate = Climate {
     winter: (Humid, COLD_WINTER),
     fall: TEMPERATE_FALL,
     summer: (Humid, WARM_SUMMER),
+    diurnal_range: TEMPERATE_TEMP_RANGE
 };
 
 pub const KOPPEN_DFC: Climate = Climate {
@@ -249,6 +271,7 @@ pub const KOPPEN_DFC: Climate = Climate {
     winter: (Humid, COLD_WINTER),
     fall: COLD_FALL,
     summer: (Humid, COLD_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 
 pub const KOPPEN_DSA: Climate = Climate {
@@ -260,6 +283,7 @@ pub const KOPPEN_DSA: Climate = Climate {
     winter: (None, COLD_WINTER),
     fall: COLD_FALL,
     summer: (Dry, HOT_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 
 pub const KOPPEN_DSB: Climate = Climate {
@@ -271,6 +295,7 @@ pub const KOPPEN_DSB: Climate = Climate {
     winter: (None, COLD_WINTER),
     fall: COLD_FALL,
     summer: (Dry, WARM_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 
 pub const KOPPEN_DSC: Climate = Climate {
@@ -282,6 +307,7 @@ pub const KOPPEN_DSC: Climate = Climate {
     winter: (None, COLD_WINTER),
     fall: COLD_FALL,
     summer: (Dry, COLD_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 
 pub const KOPPEN_ET: Climate = Climate {
@@ -293,5 +319,6 @@ pub const KOPPEN_ET: Climate = Climate {
     winter: (Dry, COLD_WINTER),
     fall: COLD_FALL,
     summer: (Dry, COLD_SUMMER),
+    diurnal_range: CONTINENTAL_POLAR_TEMP_RANGE
 };
 

@@ -14,9 +14,7 @@ use ron::ser::PrettyConfig;
 use serde::{Deserialize, Serialize};
 use crate::climate::HumidDry;
 
-pub const EQUATOR_TEMP_RANGE: Range<i32> = 0..3;
-pub const TEMPERATE_TEMP_RANGE: Range<i32> = 7..10;
-pub const SUB_POLAR_TEMP_RANGE: Range<i32> = 12..25;
+
 
 #[derive(Copy, Clone)]
 pub enum Season {
@@ -85,7 +83,7 @@ impl GenData {
         (hum, td)
     }
 
-    fn seasonal_factor(latitude: i32, season: Season, climate: Climate) -> f32 {
+    fn seasonal_factor(latitude: i32, season: Season, climate: &Climate) -> f32 {
 
         let season_factor: f32 = match (season, latitude) {
             // COGER RANDOM DEL RANGO ENTRE 0 Y EL MODIFICADOR Y ESO ES LO QUE SE RESTA, CUANTO MAS SE RESTA MENOS HUMEDAD
@@ -145,15 +143,7 @@ impl GenData {
         let mut td_vec: Vec<real> = vec![];
         let mut current_season = Season::Winter;
 
-        // TODO CAMBIAR ESTO PARA QUE SEA SOLO CON LOS CLIMATES... O AÑADIRLO DIRECTAMENTE AL CLIMA
-        let night_variation_range = match latitude {
-            55..=90 => SUB_POLAR_TEMP_RANGE,
-            -90..=-55 => SUB_POLAR_TEMP_RANGE,
-            25..=55 => TEMPERATE_TEMP_RANGE,
-            -55..=-25 => TEMPERATE_TEMP_RANGE,
-            -25..=25 => EQUATOR_TEMP_RANGE,
-            _ => 0..1,
-        };
+        let night_variation_range = &climate.diurnal_range;
 
         let curve: Gd<Curve> = load("resources/diurnal_temp_curve.tres");
 
@@ -219,7 +209,7 @@ impl GenData {
                 wind_vec.push(wind);
             }
 
-            let seasonal_factor = Self::seasonal_factor(latitude, current_season, climate.clone());
+            let seasonal_factor = Self::seasonal_factor(latitude, current_season, &climate);
 
             for hour in 1..=24 {
                 // let water = altitude <= -0.6;

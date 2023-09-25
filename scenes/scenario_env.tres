@@ -9,6 +9,7 @@ sky_material = SubResource("PhysicalSkyMaterial_eyxj6")
 background_mode = 2
 background_color = Color(0.431373, 0.431373, 0.431373, 1)
 sky = SubResource("Sky_yv5lk")
+ambient_light_source = 3
 ambient_light_color = Color(0.388235, 0.388235, 0.388235, 1)
 reflected_light_source = 2
 ssr_enabled = true
