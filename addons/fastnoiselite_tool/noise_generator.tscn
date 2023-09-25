@@ -1,0 +1,1035 @@
+[gd_scene load_steps=4 format=3 uid="uid://clis755lpsjin"]
+
+[ext_resource type="Script" path="res://addons/fastnoiselite_tool/noise_generator.gd" id="1_ea8kf"]
+[ext_resource type="Theme" uid="uid://l2h0pvttlllc" path="res://addons/fastnoiselite_tool/noise_generator_theme.tres" id="1_t24wn"]
+[ext_resource type="PackedScene" uid="uid://bvbwtqhean2yf" path="res://addons/fastnoiselite_tool/vector3_input.tscn" id="3_w7vva"]
+
+[node name="NoiseGenerator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_t24wn")
+script = ExtResource("1_ea8kf")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Left" type="VBoxContainer" parent="Margin"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="Title" type="MarginContainer" parent="Margin/Left"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Margin/Left/Title"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Margin/Left/Title"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Margin/Left/Title/Margin"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Noise Generator"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Left/Title/Margin"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="ResetValues" type="Button" parent="Margin/Left/Title/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Reset"
+
+[node name="GenerateButton" type="Button" parent="Margin/Left/Title/Margin/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Generate"
+
+[node name="Label" type="Label" parent="Margin/Left/Title/Margin/HBoxContainer"]
+layout_mode = 2
+text = "Live:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LiveToggle" type="CheckButton" parent="Margin/Left/Title/Margin/HBoxContainer"]
+layout_mode = 2
+
+[node name="Save" type="MarginContainer" parent="Margin/Left"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Margin/Left/Save"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Margin/Left/Save"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Margin/Left/Save/Margin"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "File"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Left/Save/Margin"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="LoadResource" type="Button" parent="Margin/Left/Save/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Load"
+
+[node name="SaveResource" type="Button" parent="Margin/Left/Save/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Save"
+
+[node name="Message" type="MarginContainer" parent="Margin/Left"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Margin/Left/Message"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Margin/Left/Message"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Margin/Left/Message/Margin"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Message"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Left/Message/Margin"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="MessageOutput" type="LineEdit" parent="Margin/Left/Message/Margin/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(195, 0)
+layout_mode = 2
+editable = false
+
+[node name="AllSections" type="MarginContainer" parent="Margin/Left"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Margin/Left/AllSections"]
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Margin/Left/AllSections"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="Margin/Left/AllSections/Margin"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "All Sections"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Left/AllSections/Margin"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="AllReroll" type="Button" parent="Margin/Left/AllSections/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Randomize"
+
+[node name="AllUnlock" type="Button" parent="Margin/Left/AllSections/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Unlock"
+
+[node name="AllLock" type="Button" parent="Margin/Left/AllSections/Margin/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Lock"
+
+[node name="General" type="MarginContainer" parent="Margin/Left"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Margin/Left/General"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Left/General"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/Left/General/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Left/General/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "General
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="GeneralReroll" type="Button" parent="Margin/Left/General/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Randomize"
+
+[node name="GeneralUnlock" type="Button" parent="Margin/Left/General/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Unlock"
+
+[node name="GeneralLock" type="Button" parent="Margin/Left/General/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Lock"
+
+[node name="HSeparator" type="HSeparator" parent="Margin/Left/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="NoiseType" type="MarginContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Label" type="Label" parent="Margin/Left/General/MarginContainer/VBoxContainer/NoiseType"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Noise Type:
+"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer/NoiseType"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="NoiseTypeInput" type="OptionButton" parent="Margin/Left/General/MarginContainer/VBoxContainer/NoiseType/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+fit_to_longest_item = false
+
+[node name="NoiseTypeInputLock" type="CheckButton" parent="Margin/Left/General/MarginContainer/VBoxContainer/NoiseType/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Seed" type="MarginContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Left/General/MarginContainer/VBoxContainer/Seed"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Seed:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer/Seed"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="SeedInput" type="SpinBox" parent="Margin/Left/General/MarginContainer/VBoxContainer/Seed/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 10000.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="SeedInputLock" type="CheckButton" parent="Margin/Left/General/MarginContainer/VBoxContainer/Seed/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Frequency" type="MarginContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Left/General/MarginContainer/VBoxContainer/Frequency"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Frequency:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer/Frequency"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FrequencyInput" type="SpinBox" parent="Margin/Left/General/MarginContainer/VBoxContainer/Frequency/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 1.0
+step = 0.01
+allow_greater = true
+alignment = 2
+
+[node name="FrequencyInputLock" type="CheckButton" parent="Margin/Left/General/MarginContainer/VBoxContainer/Frequency/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Offset" type="MarginContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Left/General/MarginContainer/VBoxContainer/Offset"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Offset:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Left/General/MarginContainer/VBoxContainer/Offset"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="OffsetInput" parent="Margin/Left/General/MarginContainer/VBoxContainer/Offset/HBox" instance=ExtResource("3_w7vva")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="OffsetInputLock" type="CheckButton" parent="Margin/Left/General/MarginContainer/VBoxContainer/Offset/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+button_pressed = true
+
+[node name="Cellular" type="MarginContainer" parent="Margin/Left"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Margin/Left/Cellular"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Left/Cellular"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/Left/Cellular/MarginContainer"]
+layout_mode = 2
+
+[node name="Cellular" type="MarginContainer" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/Cellular"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Cellular"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/Cellular"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="CellularReroll" type="Button" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/Cellular/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Randomize"
+
+[node name="CellularUnlock" type="Button" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/Cellular/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Unlock"
+
+[node name="CellularLock" type="Button" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/Cellular/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Lock"
+
+[node name="HSeparator2" type="HSeparator" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DistanceFunction" type="MarginContainer" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Label" type="Label" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/DistanceFunction"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Distance Function:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/DistanceFunction"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CellularDistanceFunctionInput" type="OptionButton" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/DistanceFunction/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CellularDistanceFunctionInputLock" type="CheckButton" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/DistanceFunction/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="ReturnType" type="MarginContainer" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/ReturnType"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Return Type:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/ReturnType"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CellularReturnTypeInput" type="OptionButton" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/ReturnType/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CellularReturnTypeInputLock" type="CheckButton" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/ReturnType/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Jitter" type="MarginContainer" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/Jitter"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Jitter:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/Jitter"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CellularJitterInput" type="SpinBox" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/Jitter/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 5.0
+step = 0.01
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="CellularJitterInputLock" type="CheckButton" parent="Margin/Left/Cellular/MarginContainer/VBoxContainer/Jitter/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Right" type="VBoxContainer" parent="Margin"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/separation = 5
+
+[node name="DomainWarp" type="MarginContainer" parent="Margin/Right"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Margin/Right/DomainWarp"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Right/DomainWarp"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/Right/DomainWarp/MarginContainer"]
+layout_mode = 2
+
+[node name="DomainWarp" type="MarginContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/DomainWarp"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Domain Warp"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/DomainWarp"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="DomainWarpReroll" type="Button" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/DomainWarp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Randomize"
+
+[node name="DomainWarpUnlock" type="Button" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/DomainWarp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Unlock"
+
+[node name="DomainWarpLock" type="Button" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/DomainWarp/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Lock"
+
+[node name="HSeparator3" type="HSeparator" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Enabled" type="MarginContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Enabled"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Enabled:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Enabled"]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="DomainWarpEnabledInput" type="CheckBox" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Enabled/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="DomainWarpEnabledInputLock" type="CheckButton" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Enabled/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Type" type="MarginContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Type"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Type:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Type"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="DomainWarpTypeInput" type="OptionButton" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Type/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="DomainWarpTypeInputLock" type="CheckButton" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Type/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Amplitude" type="MarginContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Amplitude"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Amplitude:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Amplitude"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="DomainWarpAmplitudeInput" type="SpinBox" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Amplitude/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+step = 0.01
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="DomainWarpAmplitudeInputLock" type="CheckButton" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Amplitude/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Frequency" type="MarginContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Frequency"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Frequency:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Frequency"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="DomainWarpFrequencyInput" type="SpinBox" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Frequency/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 1.0
+step = 0.01
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="DomainWarpFrequencyInputLock" type="CheckButton" parent="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Frequency/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="DomainWarpFractal" type="MarginContainer" parent="Margin/Right"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Margin/Right/DomainWarpFractal"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Right/DomainWarpFractal"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer"]
+layout_mode = 2
+
+[node name="DomainWarpFractal" type="MarginContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/DomainWarpFractal"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Domain Warp Fractal"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/DomainWarpFractal"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="DomainWarpFractalReroll" type="Button" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/DomainWarpFractal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Randomize"
+
+[node name="DomainWarpFractalUnlock" type="Button" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/DomainWarpFractal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Unlock"
+
+[node name="DomainWarpFractalLock" type="Button" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/DomainWarpFractal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Lock"
+
+[node name="HSeparator3" type="HSeparator" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="FractalType" type="MarginContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalType"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Type:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalType"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="DomainWarpFractalTypeInput" type="OptionButton" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalType/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="DomainWarpFractalTypeInputLock" type="CheckButton" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalType/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="FractalGain" type="MarginContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalGain"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Gain:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalGain"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="DomainWarpFractalGainInput" type="SpinBox" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalGain/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 1.0
+step = 0.01
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="DomainWarpFractalGainInputLock" type="CheckButton" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalGain/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="FractalLacunarity" type="MarginContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalLacunarity"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Lacunarity:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalLacunarity"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="DomainWarpFractalLacunarityInput" type="SpinBox" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalLacunarity/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 10.0
+step = 0.01
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="DomainWarpFractalLacunarityInputLock" type="CheckButton" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalLacunarity/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="FractalOctaves" type="MarginContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalOctaves"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Octaves:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalOctaves"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="DomainWarpFractalOctavesInput" type="SpinBox" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalOctaves/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 10.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="DomainWarpFractalOctavesInputLock" type="CheckButton" parent="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalOctaves/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Fractal" type="MarginContainer" parent="Margin/Right"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Margin/Right/Fractal"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Margin/Right/Fractal"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin/Right/Fractal/MarginContainer"]
+layout_mode = 2
+
+[node name="Fractal" type="MarginContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Fractal"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Fractal"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Fractal"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 5
+alignment = 2
+
+[node name="FractalReroll" type="Button" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Fractal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Randomize"
+
+[node name="FractalUnlock" type="Button" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Fractal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Unlock"
+
+[node name="FractalLock" type="Button" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Fractal/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Lock"
+
+[node name="HSeparator4" type="HSeparator" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Type" type="MarginContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Label" type="Label" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Type"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Type:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Type"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FractalTypeInput" type="OptionButton" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Type/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FractalTypeInputLock" type="CheckButton" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Type/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Gain" type="MarginContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Gain"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Gain:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Gain"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FractalGainInput" type="SpinBox" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Gain/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 1.0
+step = 0.01
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="FractalGainInputLock" type="CheckButton" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Gain/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Lacunarity" type="MarginContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Lacunarity"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Lacunarity:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Lacunarity"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FractalLacunarityInput" type="SpinBox" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Lacunarity/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 10.0
+step = 0.01
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="FractalLacunarityInputLock" type="CheckButton" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Lacunarity/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="Octaves" type="MarginContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Octaves"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Octaves:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Octaves"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FractalOctavesInput" type="SpinBox" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Octaves/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 10.0
+rounded = true
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="FractalOctavesInputLock" type="CheckButton" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/Octaves/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="PingPongStrength" type="MarginContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/PingPongStrength"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Ping Pong Strength:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/PingPongStrength"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FractalPingPongStrengthInput" type="SpinBox" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/PingPongStrength/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 10.0
+step = 0.01
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="FractalPingPongStrengthInputLock" type="CheckButton" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/PingPongStrength/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="WeightedStrength" type="MarginContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/WeightedStrength"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Weighted Strength:"
+
+[node name="HBox" type="HBoxContainer" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/WeightedStrength"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FractalWeightedStrengthInput" type="SpinBox" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/WeightedStrength/HBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+max_value = 1.0
+step = 0.01
+allow_greater = true
+allow_lesser = true
+alignment = 2
+
+[node name="FractalWeightedStrengthInputLock" type="CheckButton" parent="Margin/Right/Fractal/MarginContainer/VBoxContainer/WeightedStrength/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+initial_position = 2
+size = Vector2i(500, 400)
+filters = PackedStringArray("*.tres, *.res")
+
+[connection signal="pressed" from="Margin/Left/Title/Margin/HBoxContainer/ResetValues" to="." method="_on_reset_values_pressed"]
+[connection signal="pressed" from="Margin/Left/Title/Margin/HBoxContainer/GenerateButton" to="." method="_on_generate_button_pressed"]
+[connection signal="toggled" from="Margin/Left/Title/Margin/HBoxContainer/LiveToggle" to="." method="_on_live_toggle_toggled"]
+[connection signal="pressed" from="Margin/Left/Save/Margin/HBoxContainer/LoadResource" to="." method="_on_load_resource_pressed"]
+[connection signal="pressed" from="Margin/Left/Save/Margin/HBoxContainer/SaveResource" to="." method="_on_save_resource_pressed"]
+[connection signal="pressed" from="Margin/Left/AllSections/Margin/HBoxContainer/AllReroll" to="." method="_on_all_reroll_pressed"]
+[connection signal="pressed" from="Margin/Left/AllSections/Margin/HBoxContainer/AllUnlock" to="." method="_on_all_unlock_pressed"]
+[connection signal="pressed" from="Margin/Left/AllSections/Margin/HBoxContainer/AllLock" to="." method="_on_all_lock_pressed"]
+[connection signal="pressed" from="Margin/Left/General/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/GeneralReroll" to="." method="_on_general_reroll_pressed"]
+[connection signal="pressed" from="Margin/Left/General/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/GeneralUnlock" to="." method="_on_general_unlock_pressed"]
+[connection signal="pressed" from="Margin/Left/General/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/GeneralLock" to="." method="_on_general_lock_pressed"]
+[connection signal="item_selected" from="Margin/Left/General/MarginContainer/VBoxContainer/NoiseType/HBox/NoiseTypeInput" to="." method="_on_noise_type_input_item_selected"]
+[connection signal="value_changed" from="Margin/Left/General/MarginContainer/VBoxContainer/Seed/HBox/SeedInput" to="." method="_on_seed_input_value_changed"]
+[connection signal="value_changed" from="Margin/Left/General/MarginContainer/VBoxContainer/Frequency/HBox/FrequencyInput" to="." method="_on_frequency_input_value_changed"]
+[connection signal="value_changed" from="Margin/Left/General/MarginContainer/VBoxContainer/Offset/HBox/OffsetInput" to="." method="_on_offset_input_value_changed"]
+[connection signal="pressed" from="Margin/Left/Cellular/MarginContainer/VBoxContainer/Cellular/HBoxContainer/CellularReroll" to="." method="_on_cellular_reroll_pressed"]
+[connection signal="pressed" from="Margin/Left/Cellular/MarginContainer/VBoxContainer/Cellular/HBoxContainer/CellularUnlock" to="." method="_on_cellular_unlock_pressed"]
+[connection signal="pressed" from="Margin/Left/Cellular/MarginContainer/VBoxContainer/Cellular/HBoxContainer/CellularLock" to="." method="_on_cellular_lock_pressed"]
+[connection signal="item_selected" from="Margin/Left/Cellular/MarginContainer/VBoxContainer/DistanceFunction/HBox/CellularDistanceFunctionInput" to="." method="_on_cellular_distance_function_input_item_selected"]
+[connection signal="item_selected" from="Margin/Left/Cellular/MarginContainer/VBoxContainer/ReturnType/HBox/CellularReturnTypeInput" to="." method="_on_cellular_return_type_input_item_selected"]
+[connection signal="value_changed" from="Margin/Left/Cellular/MarginContainer/VBoxContainer/Jitter/HBox/CellularJitterInput" to="." method="_on_cellular_jitter_input_value_changed"]
+[connection signal="pressed" from="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/DomainWarp/HBoxContainer/DomainWarpReroll" to="." method="_on_domain_warp_reroll_pressed"]
+[connection signal="pressed" from="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/DomainWarp/HBoxContainer/DomainWarpUnlock" to="." method="_on_domain_warp_unlock_pressed"]
+[connection signal="pressed" from="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/DomainWarp/HBoxContainer/DomainWarpLock" to="." method="_on_domain_warp_lock_pressed"]
+[connection signal="toggled" from="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Enabled/HBox/DomainWarpEnabledInput" to="." method="_on_domain_warp_enabled_input_toggled"]
+[connection signal="item_selected" from="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Type/HBox/DomainWarpTypeInput" to="." method="_on_domain_warp_type_input_item_selected"]
+[connection signal="value_changed" from="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Amplitude/HBox/DomainWarpAmplitudeInput" to="." method="_on_domain_warp_amplitude_input_value_changed"]
+[connection signal="value_changed" from="Margin/Right/DomainWarp/MarginContainer/VBoxContainer/Frequency/HBox/DomainWarpFrequencyInput" to="." method="_on_domain_warp_frequency_input_value_changed"]
+[connection signal="pressed" from="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/DomainWarpFractal/HBoxContainer/DomainWarpFractalReroll" to="." method="_on_domain_warp_fractal_reroll_pressed"]
+[connection signal="pressed" from="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/DomainWarpFractal/HBoxContainer/DomainWarpFractalUnlock" to="." method="_on_domain_warp_fractal_unlock_pressed"]
+[connection signal="pressed" from="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/DomainWarpFractal/HBoxContainer/DomainWarpFractalLock" to="." method="_on_domain_warp_fractal_lock_pressed"]
+[connection signal="item_selected" from="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalType/HBox/DomainWarpFractalTypeInput" to="." method="_on_domain_warp_fractal_type_input_item_selected"]
+[connection signal="value_changed" from="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalGain/HBox/DomainWarpFractalGainInput" to="." method="_on_domain_warp_fractal_gain_input_value_changed"]
+[connection signal="value_changed" from="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalLacunarity/HBox/DomainWarpFractalLacunarityInput" to="." method="_on_domain_warp_fractal_lacunarity_input_value_changed"]
+[connection signal="value_changed" from="Margin/Right/DomainWarpFractal/MarginContainer/VBoxContainer/FractalOctaves/HBox/DomainWarpFractalOctavesInput" to="." method="_on_domain_warp_fractal_octaves_input_value_changed"]
+[connection signal="pressed" from="Margin/Right/Fractal/MarginContainer/VBoxContainer/Fractal/HBoxContainer/FractalReroll" to="." method="_on_fractal_reroll_pressed"]
+[connection signal="pressed" from="Margin/Right/Fractal/MarginContainer/VBoxContainer/Fractal/HBoxContainer/FractalUnlock" to="." method="_on_fractal_unlock_pressed"]
+[connection signal="pressed" from="Margin/Right/Fractal/MarginContainer/VBoxContainer/Fractal/HBoxContainer/FractalLock" to="." method="_on_fractal_lock_pressed"]
+[connection signal="item_selected" from="Margin/Right/Fractal/MarginContainer/VBoxContainer/Type/HBox/FractalTypeInput" to="." method="_on_fractal_type_input_item_selected"]
+[connection signal="value_changed" from="Margin/Right/Fractal/MarginContainer/VBoxContainer/Gain/HBox/FractalGainInput" to="." method="_on_fractal_gain_input_value_changed"]
+[connection signal="value_changed" from="Margin/Right/Fractal/MarginContainer/VBoxContainer/Lacunarity/HBox/FractalLacunarityInput" to="." method="_on_fractal_lacunarity_input_value_changed"]
+[connection signal="value_changed" from="Margin/Right/Fractal/MarginContainer/VBoxContainer/Octaves/HBox/FractalOctavesInput" to="." method="_on_fractal_octaves_input_value_changed"]
+[connection signal="value_changed" from="Margin/Right/Fractal/MarginContainer/VBoxContainer/PingPongStrength/HBox/FractalPingPongStrengthInput" to="." method="_on_fractal_ping_pong_strength_input_value_changed"]
+[connection signal="value_changed" from="Margin/Right/Fractal/MarginContainer/VBoxContainer/WeightedStrength/HBox/FractalWeightedStrengthInput" to="." method="_on_fractal_weighted_strength_input_value_changed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

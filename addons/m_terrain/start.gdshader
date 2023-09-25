@@ -32,7 +32,7 @@ void vertex(){
 void fragment(){
 	vec3 river_mask = texture(mterrain_water_mask, region_uv).rgb;
 	ALBEDO = texture(mterrain_albedo_tex, region_uv).rgb;
-	if (river_mask.r > 0.5) {
+	if (river_mask.r > 0.05) {
 		ALBEDO = vec3(0.1, 0.3, 0.5);
 	}
 }

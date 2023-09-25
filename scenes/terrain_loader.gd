@@ -14,8 +14,8 @@ func _ready():
 	self.dataDir = "res://data/terrain_imported/"
 	self.layersDataDir = "res://data/terrain_layer_data/"
 	self.save_generated_normals = true
-#	$"../ErosionActor".erode_heightmap(300, 1345)
-#	$"../TerrainTextureActor".create_texture("CFA")
+	$"../ErosionActor".erode_heightmap(350, 1345)
+	$"../TerrainTextureActor".create_texture("BWK")
 	self.create_grid()
 	
 	var heightmap = MRaw16.get_image("res://data/raw/m_terrain_heightmap_eroded.r16", 8193, 8193, 0.0, 2000.0, false)

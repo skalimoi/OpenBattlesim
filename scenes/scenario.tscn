@@ -77,7 +77,6 @@ directional_shadow_max_distance = 8192.0
 [node name="MTerrain" type="MTerrain" parent="."]
 dataDir = "res://data/terrain_imported/"
 save_generated_normals = true
-create_grid = true
 material = SubResource("ShaderMaterial_glbsd")
 terrain_size = Vector2i(256, 256)
 region_size = 32

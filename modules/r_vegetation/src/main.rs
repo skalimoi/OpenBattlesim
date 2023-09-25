@@ -1,4 +1,5 @@
 use std::{collections::HashMap, fs::File, io::Read};
+use r_vegetation::{Biom, Map, SimConfig, Soil, SunConfig, Vegetation};
 use vegetation::{Biom, Map, SimConfig, Soil, SunConfig, Vegetation};
 
 const MAP_NAME: &'static str = "Tiny";

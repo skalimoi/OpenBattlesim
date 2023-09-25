@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfvguar61fqke"]
+
+[ext_resource type="Script" path="res://addons/GameGUI/GGInitialWindowSize.gd" id="1_cxu86"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGComponent.gd" id="2_ymevq"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGOverlay.gd" id="3_2jewt"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGRichTextLabel.gd" id="4_rmogf"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGMarginLayout.gd" id="5_fttea"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGVBox.gd" id="6_na7l0"]
+[ext_resource type="Script" path="res://addons/GameGUI/GGFiller.gd" id="7_u3ri4"]
+
+[node name="create_scenario" type="Container"]
+anchors_preset = -1
+anchor_right = 0.038
+anchor_bottom = 0.028
+offset_right = 1108.22
+offset_bottom = 629.856
+script = ExtResource("1_cxu86")
+initial_window_size = Vector2(1152, 648)
+
+[node name="GGComponent" type="Container" parent="."]
+layout_mode = 2
+script = ExtResource("2_ymevq")
+
+[node name="ColorRect" type="ColorRect" parent="GGComponent"]
+layout_mode = 2
+color = Color(0.156863, 0.180392, 0.215686, 1)
+
+[node name="GGComponent2" type="Container" parent="."]
+layout_mode = 2
+script = ExtResource("2_ymevq")
+
+[node name="GGOverlay" type="Container" parent="GGComponent2"]
+layout_mode = 2
+script = ExtResource("3_2jewt")
+child_y = 0.05
+
+[node name="GGRichTextLabel" type="RichTextLabel" parent="GGComponent2/GGOverlay"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center][font_size=25]New scenario"
+scroll_active = false
+script = ExtResource("4_rmogf")
+vertical_mode = 5
+layout_size = Vector2(163, 35)
+is_configured = true
+
+[node name="GGOverlay" type="Container" parent="."]
+layout_mode = 2
+script = ExtResource("3_2jewt")
+
+[node name="GGMarginLayout" type="Container" parent="GGOverlay"]
+layout_mode = 2
+script = ExtResource("5_fttea")
+left_margin = 0.03
+top_margin = 0.3051
+right_margin = 0.3
+bottom_margin = 0.7
+
+[node name="ColorRect" type="ColorRect" parent="GGOverlay/GGMarginLayout"]
+layout_mode = 2
+color = Color(0.211765, 0.239216, 0.290196, 1)
+
+[node name="GGVBox" type="Container" parent="GGOverlay/GGMarginLayout"]
+layout_mode = 2
+script = ExtResource("6_na7l0")
+
+[node name="GGRichTextLabel" type="RichTextLabel" parent="GGOverlay/GGMarginLayout/GGVBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[left][font_size=20]Type
+"
+fit_content = true
+scroll_active = false
+script = ExtResource("4_rmogf")
+vertical_mode = 5
+layout_size = Vector2(47, 28)
+is_configured = true
+
+[node name="GGFiller" type="Container" parent="GGOverlay/GGMarginLayout/GGVBox"]
+layout_mode = 2
+script = ExtResource("7_u3ri4")
+horizontal_mode = 3
+vertical_mode = 3
+layout_size = Vector2(1, 0.03)
+
+[node name="GGRichTextLabel2" type="RichTextLabel" parent="GGOverlay/GGMarginLayout/GGVBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[left][font_size=20]Erosion cycles"
+scroll_active = false
+script = ExtResource("4_rmogf")
+vertical_mode = 5
+layout_size = Vector2(135, 28)
+is_configured = true
+
+[node name="GGFiller2" type="Container" parent="GGOverlay/GGMarginLayout/GGVBox"]
+layout_mode = 2
+script = ExtResource("7_u3ri4")
+horizontal_mode = 3
+vertical_mode = 3
+layout_size = Vector2(1, 0.03)
+
+[node name="GGRichTextLabel3" type="RichTextLabel" parent="GGOverlay/GGMarginLayout/GGVBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[left][font_size=20]Seed"
+scroll_active = false
+script = ExtResource("4_rmogf")
+vertical_mode = 5
+layout_size = Vector2(47, 28)
+is_configured = true
+
+[node name="GGFiller3" type="Container" parent="GGOverlay/GGMarginLayout/GGVBox"]
+layout_mode = 2
+script = ExtResource("7_u3ri4")
+horizontal_mode = 3
+vertical_mode = 3
+layout_size = Vector2(1, 0.03)
+
+[node name="GGRichTextLabel4" type="RichTextLabel" parent="GGOverlay/GGMarginLayout/GGVBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[left][font_size=20]Biome"
+scroll_active = false
+script = ExtResource("4_rmogf")
+vertical_mode = 5
+layout_size = Vector2(62, 28)
+is_configured = true
+
+[node name="GGFiller4" type="Container" parent="GGOverlay/GGMarginLayout/GGVBox"]
+layout_mode = 2
+script = ExtResource("7_u3ri4")
+horizontal_mode = 3
+vertical_mode = 3
+layout_size = Vector2(1, 0.03)
+
+[node name="GGRichTextLabel5" type="RichTextLabel" parent="GGOverlay/GGMarginLayout/GGVBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[left][font_size=20]Texture"
+scroll_active = false
+script = ExtResource("4_rmogf")
+vertical_mode = 5
+layout_size = Vector2(75, 28)
+is_configured = true
+
+[node name="GGMarginLayout2" type="Container" parent="GGOverlay"]
+layout_mode = 2
+script = ExtResource("5_fttea")
+left_margin = 0.03
