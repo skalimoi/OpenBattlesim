@@ -33,6 +33,13 @@ NetworkManager="*res://addons/nodot/autoload/NetworkManager.gd"
 DebugManager="*res://addons/nodot/autoload/DebugManager.gd"
 OrchestratorNodeFactory="*res://addons/orchestrator/orchestrator_node_factory.gd"
 Orchestrator="*res://addons/orchestrator/orchestrator.gd"
+UiGenData="*res://scripts/ui/ui_gen_data.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
 
 [editor_plugins]
 

@@ -16,7 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cc3vc")
-initial_window_size = Vector2(1152, 648)
+initial_window_size = Vector2(1920, 1080)
 
 [node name="GGComponent" type="Container" parent="."]
 layout_mode = 2
@@ -40,7 +40,7 @@ child_y = 0.699074
 layout_mode = 2
 size_flags_horizontal = 0
 bbcode_enabled = true
-text = "[center][i][b][font=\"res://data/fonts/Helvetica-BoldOblique.ttf\"][font_size=60][color=ff0048]Open[/color][/font_size][/font][/b][/i][i][b][font_size=60][font=\"res://data/fonts/Helvetica-BoldOblique.ttf\"]Battlesim[/font][/font_size][/b][/i][/center]"
+text = "[center][i][b][font=\"res://data/fonts/Helvetica-BoldOblique.ttf\"][font_size=90][color=ff0048]Open[/color][/font_size][/font][/b][/i][i][b][font_size=90][font=\"res://data/fonts/Helvetica-BoldOblique.ttf\"]Battlesim[/font][/font_size][/b][/i][/center]"
 scroll_active = false
 script = ExtResource("2_5exil")
 text_size_mode = 1
@@ -51,36 +51,15 @@ reference_font_sizes = {
 "mono": 16,
 "normal": 16
 }
-layout_size = Vector2(423, 61)
-is_configured = true
-
-[node name="GGOverlay2" type="Container" parent="GGComponent2"]
-layout_mode = 2
-script = ExtResource("3_0palw")
-child_x = 0.9
-child_y = 0.95
-
-[node name="GGRichTextLabel" type="RichTextLabel" parent="GGComponent2/GGOverlay2"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[font_size=20][color=879398][center]v. 0.3.0 (debug build)[/center][/color][/font_size]"
-scroll_active = false
-script = ExtResource("2_5exil")
-text_size_mode = 1
-reference_font_sizes = {
-"bold": 16,
-"bold_italics": 16,
-"italics": 16,
-"mono": 16,
-"normal": 16
-}
-vertical_mode = 5
-layout_size = Vector2(199, 28)
+layout_size = Vector2(635, 91)
 is_configured = true
 
 [node name="GGOverlay3" type="Container" parent="GGComponent2"]
 layout_mode = 2
 script = ExtResource("3_0palw")
+horizontal_mode = 3
+vertical_mode = 3
+layout_size = Vector2(1, 1)
 
 [node name="GGMarginLayout" type="Container" parent="GGComponent2/GGOverlay3"]
 layout_mode = 2
@@ -93,11 +72,13 @@ bottom_margin = 0.7
 [node name="GGVBox" type="Container" parent="GGComponent2/GGOverlay3/GGMarginLayout"]
 layout_mode = 2
 script = ExtResource("6_e12os")
+layout_size = Vector2(0.065, 0)
 
 [node name="GGButton" type="Button" parent="GGComponent2/GGOverlay3/GGMarginLayout/GGVBox"]
 layout_mode = 2
 text = "Create new scenario"
 script = ExtResource("7_8ghl0")
+text_size_mode = 2
 horizontal_mode = 3
 vertical_mode = 5
 layout_size = Vector2(1, 1)
@@ -118,3 +99,8 @@ horizontal_mode = 3
 vertical_mode = 5
 layout_size = Vector2(1, 1)
 is_configured = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=20][color=879398]v. 0.3.0 (debug build)[/color][/font_size]"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c81gch0jp0qpc"]
+[gd_scene load_steps=14 format=3 uid="uid://c81gch0jp0qpc"]
 
 [ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="1_5bq5u"]
 [ext_resource type="Script" path="res://scripts/sun_movement.gd" id="1_dgqma"]
@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://scripts/day_shader_tracker.gd" id="3_0cenb"]
 [ext_resource type="Shader" uid="uid://cxcq8wq1mysia" path="res://addons/dynamic_day_night_cycles/daytime_shader.tres" id="3_ihfrk"]
 [ext_resource type="Texture2D" uid="uid://cyjgfgqtkbf5e" path="res://addons/dynamic_day_night_cycles/sun_colors.png" id="4_m3cvb"]
-[ext_resource type="Shader" path="res://addons/m_terrain/start.gdshader" id="8_pyxjc"]
-[ext_resource type="Script" path="res://scenes/terrain_loader.gd" id="9_5lcu0"]
+[ext_resource type="Material" uid="uid://q08jpl838qcr" path="res://resources/terrain.material" id="8_4yvou"]
+[ext_resource type="Script" path="res://scripts/terrain_loader.gd" id="9_bl3qu"]
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="10_i4aae"]
 
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_3eupq"]
@@ -26,14 +26,6 @@ shader_parameter/sunset_time = 0.9
 shader_parameter/twilight_duration = 0.2
 shader_parameter/shader_opacity = 1.0
 shader_parameter/day_time_colors = ExtResource("4_m3cvb")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_glbsd"]
-render_priority = 0
-shader = ExtResource("8_pyxjc")
-shader_parameter/region_world_position = null
-shader_parameter/region_size = 32.0
-shader_parameter/region_a = 0.0
-shader_parameter/region_b = 0.0
 
 [node name="Node3D" type="Node3D"]
 
@@ -77,14 +69,10 @@ directional_shadow_max_distance = 8192.0
 [node name="MTerrain" type="MTerrain" parent="."]
 dataDir = "res://data/terrain_imported/"
 save_generated_normals = true
-material = SubResource("ShaderMaterial_glbsd")
+material = ExtResource("8_4yvou")
 terrain_size = Vector2i(256, 256)
 region_size = 32
-script = ExtResource("9_5lcu0")
-
-[node name="ErosionActor" type="ErosionActor" parent="."]
-
-[node name="TerrainTextureActor" type="TerrainTextureActor" parent="."]
+script = ExtResource("9_bl3qu")
 
 [node name="Grid" type="Node" parent="."]
 script = ExtResource("10_i4aae")

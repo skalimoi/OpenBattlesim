@@ -1,30 +1,30 @@
-@tool
+#@tool
 extends Window
 
-@onready var fileDialog = $FileDialog
-@onready var fileDialog_save_folder = $FileDialog_save
-@onready var fileDialog_tmp_folder = $FileDialog_tmp
-@onready var tmp_folder_line = $VBoxContainer/tmp/tmp_folder_line
-@onready var tmp_container = $VBoxContainer/tmp
-@onready var region_container = $VBoxContainer/HBoxContainer2
-@onready var save_folder_line = $VBoxContainer/save/save_folder_line
-@onready var select_file_line: = $VBoxContainer/HBoxContainer/filepath_line
-@onready var image_dimension_root: = $VBoxContainer/image_dimension
-@onready var image_width_line: = $VBoxContainer/image_dimension/width
-@onready var image_height_line: = $VBoxContainer/image_dimension/height
-@onready var min_height_root:= $VBoxContainer/min_height
-@onready var max_height_root:= $VBoxContainer/max_height
-@onready var unform_name_line:=$VBoxContainer/uniform_name/uniform_name_line
-@onready var is_heightmap_checkbox:= $VBoxContainer/is_heightmap_checkbox
-@onready var min_height_line := $VBoxContainer/min_height/min_height_line
-@onready var max_height_line := $VBoxContainer/max_height/max_height_line
-@onready var region_size_line:= $VBoxContainer/HBoxContainer2/region_size_line
-@onready var width_line:= $VBoxContainer/image_dimension/width
-@onready var height_line:= $VBoxContainer/image_dimension/height
-@onready var image_format_line:= $VBoxContainer/uniform_name2/image_format_line
-@onready var flips_container := $VBoxContainer/flips
-@onready var flip_x_checkbox := $VBoxContainer/flips/flip_x
-@onready var flip_y_checkbox := $VBoxContainer/flips/flip_y
+#@onready var fileDialog = $FileDialog
+#@onready var fileDialog_save_folder = $FileDialog_save
+#@onready var fileDialog_tmp_folder = $FileDialog_tmp
+#@onready var tmp_folder_line = $VBoxContainer/tmp/tmp_folder_line
+#@onready var tmp_container = $VBoxContainer/tmp
+#@onready var region_container = $VBoxContainer/HBoxContainer2
+#@onready var save_folder_line = $VBoxContainer/save/save_folder_line
+#@onready var select_file_line: = $VBoxContainer/HBoxContainer/filepath_line
+#@onready var image_dimension_root: = $VBoxContainer/image_dimension
+#@onready var image_width_line: = $VBoxContainer/image_dimension/width
+#@onready var image_height_line: = $VBoxContainer/image_dimension/height
+#@onready var min_height_root:= $VBoxContainer/min_height
+#@onready var max_height_root:= $VBoxContainer/max_height
+#@onready var unform_name_line:=$VBoxContainer/uniform_name/uniform_name_line
+#@onready var is_heightmap_checkbox:= $VBoxContainer/is_heightmap_checkbox
+#@onready var min_height_line := $VBoxContainer/min_height/min_height_line
+#@onready var max_height_line := $VBoxContainer/max_height/max_height_line
+#@onready var region_size_line:= $VBoxContainer/HBoxContainer2/region_size_line
+#@onready var width_line:= $VBoxContainer/image_dimension/width
+#@onready var height_line:= $VBoxContainer/image_dimension/height
+#@onready var image_format_line:= $VBoxContainer/uniform_name2/image_format_line
+#@onready var flips_container := $VBoxContainer/flips
+#@onready var flip_x_checkbox := $VBoxContainer/flips/flip_x
+#@onready var flip_y_checkbox := $VBoxContainer/flips/flip_y
 
 var file_path:String
 var ext:String
@@ -42,54 +42,54 @@ var flip_y:bool
 
 var is_heightmap:=false
 
-func _on_close_requested():
-	queue_free()
+#func _on_close_requested():
+#	queue_free()
+#
+#
+#func _on_button_button_down():
+#	fileDialog.visible = true
 
-
-func _on_button_button_down():
-	fileDialog.visible = true
-
-func _on_file_dialog_files_selected(paths):
-	var path:String = paths[0]
-	select_file_line.text = path 
-	_on_filepath_line_text_changed(path)
-
-
-func _on_filepath_line_text_changed(new_text:String):
-	var ext = new_text.get_extension()
-	image_dimension_root.visible = ext == "r16"
-	var x = get_integer_inside_string("x",new_text)
-	var y = get_integer_inside_string("y",new_text)
-	var is_tiled = (not x==-1 and not y==-1)
-	flips_container.visible = is_tiled
-	tmp_container.visible = is_tiled
-	region_container.visible = not is_tiled
-
-
-func _on_check_button_toggled(button_pressed):
-	min_height_root.visible = button_pressed
-	max_height_root.visible = button_pressed
-	unform_name_line.editable = not button_pressed
-	image_format_line.editable = not button_pressed
-	is_heightmap = button_pressed
-	if(button_pressed):
-		unform_name_line.text = "heightmap"
-	elif unform_name_line.text == "heightmap":
-		unform_name_line.text = ""
-
-
-func _on_save_folder_button_pressed():
-	fileDialog_save_folder.visible = true
-
-func _on_file_dialog_save_dir_selected(dir):
-	save_folder_line.text = dir
-
-func _on_file_dialog_tmp_dir_selected(dir):
-	tmp_folder_line.text = dir
-
-
-func _on_tmp_folder_button_pressed():
-	fileDialog_tmp_folder.visible = true
+#func _on_file_dialog_files_selected(paths):
+#	var path:String = paths[0]
+#	select_file_line.text = path 
+#	_on_filepath_line_text_changed(path)
+#
+#
+#func _on_filepath_line_text_changed(new_text:String):
+#	var ext = new_text.get_extension()
+#	image_dimension_root.visible = ext == "r16"
+#	var x = get_integer_inside_string("x",new_text)
+#	var y = get_integer_inside_string("y",new_text)
+#	var is_tiled = (not x==-1 and not y==-1)
+#	flips_container.visible = is_tiled
+#	tmp_container.visible = is_tiled
+#	region_container.visible = not is_tiled
+#
+#
+#func _on_check_button_toggled(button_pressed):
+#	min_height_root.visible = button_pressed
+#	max_height_root.visible = button_pressed
+#	unform_name_line.editable = not button_pressed
+#	image_format_line.editable = not button_pressed
+#	is_heightmap = button_pressed
+#	if(button_pressed):
+#		unform_name_line.text = "heightmap"
+#	elif unform_name_line.text == "heightmap":
+#		unform_name_line.text = ""
+#
+#
+#func _on_save_folder_button_pressed():
+#	fileDialog_save_folder.visible = true
+#
+#func _on_file_dialog_save_dir_selected(dir):
+#	save_folder_line.text = dir
+#
+#func _on_file_dialog_tmp_dir_selected(dir):
+#	tmp_folder_line.text = dir
+#
+#
+#func _on_tmp_folder_button_pressed():
+#	fileDialog_tmp_folder.visible = true
 
 func get_integer_inside_string(prefix:String,path:String)->int:
 	path = path.to_lower()
@@ -101,18 +101,6 @@ func get_integer_inside_string(prefix:String,path:String)->int:
 	return result.strings[1].to_int()
 
 func _on_import_pressed():
-	file_path= select_file_line.text
-	ext = select_file_line.text.get_extension()
-	save_path= save_folder_line.text
-	region_size = region_size_line.text.to_int()
-	unifrom_name = unform_name_line.text
-	width = width_line.text.to_int()
-	height = height_line.text.to_int()
-	min_height = min_height_line.text.to_float()
-	max_height = max_height_line.text.to_float()
-	image_format = image_format_line.text.to_int()
-	flip_x = flip_x_checkbox.button_pressed
-	flip_y = flip_y_checkbox.button_pressed
 	if unifrom_name == "":
 		printerr("Uniform name is empty")
 		return
@@ -122,10 +110,6 @@ func _on_import_pressed():
 	if(x==-1 or y==-1):
 		import_no_tile()
 	else: #And in this case there is tiled already and regions size will ignored
-		tmp_path = tmp_folder_line.text
-		if not DirAccess.dir_exists_absolute(tmp_path) or tmp_path.is_empty():
-			printerr("tmp folder does not exist")
-			return
 		import_tile()
 
 func is_valid_2n_plus_one(input:int):

@@ -10,7 +10,10 @@ use rand::thread_rng;
 use std::fs::{File};
 use std::io::{BufWriter, Write};
 use std::mem::ManuallyDrop;
+use std::str::FromStr;
 use byteorder::{LittleEndian, WriteBytesExt};
+use godot::engine::utilities::round;
+use godot::prelude::utilities::roundf;
 
 use crate::erosion::{*, world::World};
 use crate::entry_point::world::Vec2;
@@ -19,9 +22,12 @@ use crate::entry_point::world::Vec2;
 #[derive(GodotClass)]
 #[class(base = Node)]
 pub struct ErosionActor {
-    pub path_to_heightmap: String,
+    #[var]
+    pub path_to_heightmap: GodotString,
     pub cycles: i32,
     pub seed: real,
+    #[var]
+    pub current_cycle: real,
     #[base]
     base: Base<Node>,
 }
@@ -30,8 +36,8 @@ pub struct ErosionActor {
 #[godot_api]
 impl ErosionActor {
     #[func]
-    pub fn erode_heightmap(cycles: i16, seed: i16) {
-        let img_lvl1 = image_latest::io::Reader::open("data/raw/m_terrain_heightmap.png")
+    pub fn erode_heightmap(&mut self, cycles: i16, seed: i16) {
+        let img_lvl1 = image_latest::io::Reader::open(self.path_to_heightmap.to_string())
             .unwrap()
             .decode()
             .unwrap()
@@ -40,13 +46,14 @@ impl ErosionActor {
         let heightmap = img_lvl1.into_raw();
         let mut erosion_world = World::new(heightmap, width as usize, height as usize, seed);
         let mut discharge_map = vec![0; (width * height) as usize];
-        use std::time::Instant;
-        let now = Instant::now();
         let cycle_int = cycles as i32;
+
         for cycle in 0..cycle_int {
             erosion_world.erode(width as usize);
+            self.current_cycle = cycle.clone() as real;
+            godot_print!("Erosion cycle: {cycle}");
+
         }
-        let elapsed = now.elapsed();
         for i in 0..discharge_map.len() {
             let pos = Vec2::new(i as f64 % width as f64, (i / width as usize) as f64);
             discharge_map[i] = ((erosion_world.map.discharge(pos) + 1.0) * 0.5 * 255.0) as u8;
@@ -179,8 +186,9 @@ impl ErosionActor {
 impl NodeVirtual for ErosionActor {
     fn init(base: Base<Node>) -> Self {
         ErosionActor {
-            path_to_heightmap: "heightmap.png".to_string(),
+            path_to_heightmap: "heightmap.png".to_string().parse().unwrap(),
             cycles: 30,
+            current_cycle: 1 as real,
             seed: 199565.0,
             base,
         }
