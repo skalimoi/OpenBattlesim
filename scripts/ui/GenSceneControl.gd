@@ -62,6 +62,9 @@ func erode_and_texture():
 					var pos = area.global_position.y
 					area.mean_altitude = pos
 				area.generate_data(40, UiGenData.biome)
+	prepare_rivers()
+	prepare_tex()
+	
 	is_finished = true
 	
 func _ready():
@@ -73,12 +76,26 @@ func _ready():
 	
 	if is_finished == true:
 		erosion_thread.wait_to_finish()
-		text.set("text", "Tiling texture and water data...")
-		prepare_tex_rivers()
 		text.set("text", "Completed.")
 		enter_button.set("visible", true)
 
-func prepare_tex_rivers():
+func prepare_tex():
+	var import_w: Window = self.get_node("Window")
+	# texture
+	import_w.set("file_path", "res://data/raw/texture.png")
+	import_w.set("ext", "png")
+	import_w.set("save_path", "res://data/terrain_imported/")
+	import_w.set("region_size", 1025)
+	import_w.set("unifrom_name", "albedo_tex")
+	import_w.set("width", 8193)
+	import_w.set("height", 8193)
+	import_w.set("image_format", 4)
+	import_w.set("is_heightmap", false)
+	import_w.set("flip_x", false)
+	import_w.set("flip_y", false)
+	import_w._on_import_pressed()
+
+func prepare_rivers():
 	# this is just a copy-paste of the import window from the MTerrain plugin.
 	var import_w: Window = self.get_node("Window")
 	# water
@@ -89,23 +106,9 @@ func prepare_tex_rivers():
 	import_w.set("unifrom_name", "water_mask")
 	import_w.set("width", 8193)
 	import_w.set("height", 8193)
-	import_w.set("image_format", 1)
+#	import_w.set("image_format", 1)
 	import_w.set("is_heightmap", false)
 	import_w.set("flip_x", false)
 	import_w.set("flip_y", false)
 	import_w.set("temp_path", "res://tmp/")
 	import_w._on_import_pressed()
-	# texture
-	import_w.set("file_path", "res://data/raw/texture.png")
-	import_w.set("ext", "png")
-	import_w.set("save_path", "res://data/terrain_imported/")
-	import_w.set("region_size", 1025)
-	import_w.set("unifrom_name", "albedo_tex")
-	import_w.set("width", 8193)
-	import_w.set("height", 8193)
-	import_w.set("image_format", 1)
-	import_w.set("is_heightmap", false)
-	import_w.set("flip_x", false)
-	import_w.set("flip_y", false)
-	import_w._on_import_pressed()
-

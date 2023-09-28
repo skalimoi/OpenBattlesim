@@ -266,7 +266,7 @@ pub mod water {
                 age: 0,
                 pos,
                 speed: Vec2::new(0.0, 0.0),
-                volume: 1.0,
+                volume: 1.5,
                 sediment: 0.0,
 
                 max_age: 500,

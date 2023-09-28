@@ -34,6 +34,7 @@ DebugManager="*res://addons/nodot/autoload/DebugManager.gd"
 OrchestratorNodeFactory="*res://addons/orchestrator/orchestrator_node_factory.gd"
 Orchestrator="*res://addons/orchestrator/orchestrator.gd"
 UiGenData="*res://scripts/ui/ui_gen_data.gd"
+Simulation="*res://scripts/simulation.gd"
 
 [display]
 

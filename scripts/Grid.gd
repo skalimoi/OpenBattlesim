@@ -8,6 +8,7 @@ func _ready():
 		for y in (grid_size.y):
 			for z in (grid_size.z):
 				var area = GridComponent.new()
+				area.set_script("res://scripts/grid_component.gd")
 				area.name = "grid_{0}_{1}_{2}".format([x, y, z])
 				area.index = Vector3i(x, y, z)
 				var shape = CollisionShape3D.new()
@@ -28,5 +29,4 @@ func _ready():
 					var point_6 = $"../MTerrain".get_closest_height(Vector3(area.global_position.x - 256, area.global_position.y, area.global_position.z - 256))
 					var mean = (point_1 + point_2 + point_3 + point_4 + point_5 + point_6) / 6
 					area.mean_altitude = mean
-				area.generate_data(40, "BWK")
-	
+

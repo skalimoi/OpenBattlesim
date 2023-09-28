@@ -45,4 +45,7 @@ func _process(delta):
 		daytime_shader.set_shader_parameter("latitude", eot_values["latitude"])
 #		print(daytime_shader.get_shader_parameter("current_time"))
 	
+	var total_hour = 0
+	total_hour += current_time * 24
+	Simulation.set("total_hour", total_hour)
 	

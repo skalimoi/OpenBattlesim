@@ -173,7 +173,6 @@ func import_no_tile():
 				region_img.convert(image_format)
 			ResourceSaver.save(region_img, r_save_path)
 			print("saving ", r_save_path)
-	queue_free()
 
 func get_file_path(x:int,y:int,path_pattern:String)->String:
 	var regx = RegEx.new()
@@ -266,7 +265,6 @@ func import_tile():
 			ResourceSaver.save(img, r_save_path)
 	### Now Correcting the edges
 	correct_edges(unifrom_name, tmp_path)
-	queue_free()
 
 
 func get_img_or_black(x:int,y:int,u_name:String,dir:String,size:Vector2i,format:int)->Image:
