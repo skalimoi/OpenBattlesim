@@ -1,8 +1,7 @@
 use std::collections::HashMap;
+use crate::config::{GreyscaleImage, Vegetation};
 
-use crate::{GreyscaleImage, Vegetation};
-
-fn calculate_probability(needed: f64, available: f64) -> f64 {
+pub fn calculate_probability(needed: f64, available: f64) -> f64 {
     if available <= needed {
         available / needed
     } else if available <= needed * 2.0 {
@@ -12,11 +11,11 @@ fn calculate_probability(needed: f64, available: f64) -> f64 {
     }
 }
 
-fn calculate_insolation_probability(vegetation: &Vegetation, insolation: f64) -> f64 {
+pub fn calculate_insolation_probability(vegetation: &Vegetation, insolation: f64) -> f64 {
     calculate_probability(vegetation.energy_demand, insolation)
 }
 
-fn calculate_soil_demand_probability(soil_demand_id: u8, soil_id: u8) -> f64 {
+pub fn calculate_soil_demand_probability(soil_demand_id: u8, soil_id: u8) -> f64 {
     if soil_demand_id == soil_id {
         1.0
     } else {
@@ -24,11 +23,11 @@ fn calculate_soil_demand_probability(soil_demand_id: u8, soil_id: u8) -> f64 {
     }
 }
 
-fn calculate_soil_depth_probability(vegetation: &Vegetation, edaphic: f64) -> f64 {
+pub fn calculate_soil_depth_probability(vegetation: &Vegetation, edaphic: f64) -> f64 {
     (edaphic / vegetation.soil_depth_demand).min(1.0)
 }
 
-fn calculate_water_demand_probability(vegetation: &Vegetation, hydrology: f64) -> f64 {
+pub fn calculate_water_demand_probability(vegetation: &Vegetation, hydrology: f64) -> f64 {
     calculate_probability(vegetation.water_demand, hydrology)
 }
 

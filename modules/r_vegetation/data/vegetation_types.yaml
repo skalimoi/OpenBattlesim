@@ -1,0 +1,140 @@
+# Af-Am specific
+Bananatree:
+    energy_demand: 2200
+    soil_demand: Loam
+    soil_depth_demand: 70
+    water_demand: 0.8
+Palmtree:
+    energy_demand: 2200
+    soil_demand: Loam
+    soil_depth_demand: 90
+    water_demand: 0.8
+Kapok:
+    energy_demand: 2400
+    soil_demand: Dirt
+    soil_depth_demand: 80
+    water_demand: 0.8
+
+# As-Aw specific
+Acacia:
+    energy_demand: 2000
+    soil_demand: Loam
+    soil_depth_demand: 80
+    water_demand: 0.4
+
+Bahamagrass:
+    energy_demand: 1000
+    soil_demand: Clay
+    soil_depth_demand: 80
+    water_demand: 0.3
+
+Eucalyptus:
+    energy_demand: 1100
+    soil_demand: Dirt
+    soil_depth_demand: 25
+    water_demand: 0.5
+
+Baobab:
+    energy_demand: 1500
+    soil_demand: Loam
+    soil_depth_demand: 40
+    water_demand: 0.5
+
+Candelabra:
+    energy_demand: 1300
+    soil_demand: Silt
+    soil_depth_demand: 20
+    water_demand: 0.2
+
+Jackalberry:
+    energy_demand: 1300
+    soil_demand: Loam
+    soil_depth_demand: 50
+    water_demand: 0.7
+
+# BSh-BSk specific
+# shrub and grass, multiple types of grass
+
+#BWh-BWk specific
+# shrubs and others msut research
+
+#CFA specific
+MusaBasjoo:
+    energy_demand: 1500
+    soil_demand: Clay
+    soil_depth_demand: 30
+    water_demand: 0.6
+
+GiantRhubarb:
+    energy_demand: 1500
+    soil_demand: Clay
+    soil_depth_demand: 40
+    water_demand: 0.8
+
+Appletree:
+    energy_demand: 2000
+    soil_demand: Dirt
+    soil_depth_demand: 80
+    water_demand: 0.7
+Shrub:
+    energy_demand: 1200
+    soil_demand: Dirt
+    soil_depth_demand: 20
+    water_demand: 0.3
+Beech:
+    energy_demand: 2200
+    soil_demand: Loam
+    soil_depth_demand: 50
+    water_demand: 0.5
+Fern:
+    energy_demand: 1100
+    soil_demand: Silt
+    soil_depth_demand: 10
+    water_demand: 0.35
+Fir:
+    energy_demand: 2200
+    soil_demand: Clay
+    soil_depth_demand: 45
+    water_demand: 0.6
+Cactus:
+    energy_demand: 4000
+    soil_demand: Dirt
+    soil_depth_demand: 30
+    water_demand: 0.2
+
+# tundra specific (what's relevant for now)
+DwarfBirch:
+    energy_demand: 1100
+    soil_demand: Stone
+    soil_depth_demand: 30
+    water_demand: 0.4
+Bearberry:
+    energy_demand: 1000
+    soil_demand: Silt
+    soil_depth_demand: 10
+    water_demand: 0.2
+Blackberry:
+    energy_demand: 1000
+    soil_demand: Stone
+    soil_depth_demand: 1
+    water_demand: 0.1
+Lichen:
+    energy_demand: 500
+    soil_demand: Loam
+    soil_depth_demand: 1
+    water_demand: 0.2
+Cottongrass:
+    energy_demand: 1000
+    soil_demand: Loam
+    soil_depth_demand: 15
+    water_demand: 0.4
+Moss:
+    energy_demand: 1000
+    soil_demand: Stone
+    soil_depth_demand: 1
+    water_demand: 0.3
+ArcticGrass:
+    energy_demand: 1100
+    soil_demand: Clay
+    soil_depth_demand: 5
+    water_demand: 0.25

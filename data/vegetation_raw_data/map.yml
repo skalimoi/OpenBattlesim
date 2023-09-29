@@ -1,0 +1,6 @@
+biom: PolarZone
+height_map_path: data/raw/height_map_veg.png
+texture_map_path: data/raw/soil_map.png
+height_conversion: 0.20000000298023224
+max_soil_depth: 300.0
+pixel_size: 8.0

@@ -1,4 +1,4 @@
-use crate::{GreyscaleImage, SimArgs};
+use crate::config::{GreyscaleImage, SimArgs};
 
 const K_CALORIES_NEEDED_TO_EVAPORATE_1_G_WATER: f64 = 0.54;
 

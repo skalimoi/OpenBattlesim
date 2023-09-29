@@ -1,5 +1,6 @@
 extends Control
 
+var vegetation_actor = VegetationGen.new()
 var erosion_actor = ErosionActor.new()
 var texture_actor = TerrainTextureActor.new()
 var terrain_gen = MTerrain.new()
@@ -8,6 +9,10 @@ var erosion_thread: Thread
 @onready var enter_button: Button = self.get_node("Button")
 var is_finished: bool
 
+func debug_generate_veg_maps():
+	vegetation_actor.generate_yaml_map("PolarZone", 0.2, "data/raw/height_map_veg.png", 300.0, 8, "data/raw/soil_map.png")
+	vegetation_actor.example_function("height_map", "ArcticGrass")
+
 func config_terrain_gen():
 	terrain_gen.terrain_size = Vector2i(256,256)
 	terrain_gen.region_size = 32
@@ -15,8 +20,9 @@ func config_terrain_gen():
 
 func erode_and_texture():
 	is_finished = false
-	erosion_actor.erode_heightmap(UiGenData.erosion_cycles, UiGenData.seed)
-	text.call_deferred("set", "text", "Texturing terrain...")
+#	erosion_actor.erode_heightmap(UiGenData.erosion_cycles, UiGenData.seed)
+#	text.call_deferred("set", "text", "Texturing terrain...")
+	debug_generate_veg_maps()
 	texture_actor.create_texture(UiGenData.biome)
 	text.call_deferred("set", "text", "Generating weather data...")
 		# grid
@@ -26,7 +32,7 @@ func erode_and_texture():
 	terrain_gen.save_generated_normals = true
 	self.call_deferred("add_child", terrain_gen)
 	terrain_gen.create_grid()
-	var heightmap = MRaw16.get_image("res://data/raw/m_terrain_heightmap_eroded.r16", 8193, 8193, 0.0, 2000.0, false)
+	var heightmap = MRaw16.get_image("res://data/raw/m_terrain_heightmap_eroded.r16", 8193, 8193, 0.0, 1000.0, false)
 	for x in 8193:
 		for y in 8193:
 			var height = heightmap.get_pixel(x, y).r
@@ -71,7 +77,7 @@ func _ready():
 	self.add_child(erosion_actor)
 	erosion_thread = Thread.new()
 	erosion_actor.path_to_heightmap = UiGenData.heightmap_path
-	erosion_thread.start(erode_and_texture) # the function we're talking about, in a thread
+	erosion_thread.start(erode_and_texture)
 	
 	
 	if is_finished == true:

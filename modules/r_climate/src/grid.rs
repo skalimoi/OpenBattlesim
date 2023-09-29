@@ -1,6 +1,5 @@
 use std::fs::File;
 use godot::{prelude::*, engine::Area3D};
-use image::io::Reader;
 use noise::{Fbm, Simplex};
 use ron::de::from_reader;
 use crate::climate::{Climate, KOPPEN_AF_AM, KOPPEN_AS, KOPPEN_AW, KOPPEN_BSH, KOPPEN_BSK, KOPPEN_BWH, KOPPEN_BWK, KOPPEN_CFA, KOPPEN_CFB, KOPPEN_CFC, KOPPEN_CSA, KOPPEN_CSB, KOPPEN_CWA, KOPPEN_CWB, KOPPEN_CWC, KOPPEN_DFA, KOPPEN_DFB, KOPPEN_DFC, KOPPEN_DSA, KOPPEN_DSB, KOPPEN_DSC, KOPPEN_ET};
@@ -29,16 +28,46 @@ pub struct GridComponent {
 
 #[godot_api]
 impl GridComponent {
+    /// index number => 0: humidity, 1: td, 2: pressure, 3: temperature
     #[func]
-    pub fn set_data(&mut self, acc_hour: real) {
-        let index = self.index;
-        let gendata_file = File::open(format!("data/weather_grid_data/{}_{}_{}.ron", index.x, index.y, index.z)).unwrap();
+    pub fn load_float_data(&mut self, index: i32) -> PackedFloat32Array {
+        let index_v = self.index;
+        let gendata_file = File::open(format!("data/weather_grid_data/{}_{}_{}.ron", index_v.x, index_v.y, index_v.z)).unwrap();
         let gendata: GenData = from_reader(gendata_file).expect("Error loading weather file.");
-        self.humidity = gendata.humidity[acc_hour as usize];
-        self.wind_p = gendata.wind[acc_hour as usize].to_vector();
-        self.td = gendata.td[acc_hour as usize];
-        self.pressure = gendata.pressure[acc_hour as usize];
-        self.temperature = gendata.temperature[acc_hour as usize];
+        match index {
+            // humidity
+            0 => PackedFloat32Array::from(gendata.humidity.as_slice()),
+            // td
+            1 => PackedFloat32Array::from(gendata.td.as_slice()),
+            // pressure
+            2 => PackedFloat32Array::from(gendata.pressure.as_slice()),
+            // temperature
+            3 => PackedFloat32Array::from(gendata.temperature.as_slice()),
+            _ => {PackedFloat32Array::new()}
+        }
+    }
+    #[func]
+    pub fn load_vector3_data(&mut self) -> PackedVector3Array {
+        let index_v = self.index;
+        let gendata_file = File::open(format!("data/weather_grid_data/{}_{}_{}.ron", index_v.x, index_v.y, index_v.z)).unwrap();
+        let gendata: GenData = from_reader(gendata_file).expect("Error loading weather file.");
+        let mut wind_builtin_vec3: Vec<Vector3> = vec![];
+        for tuple in gendata.wind.clone() {
+            let vector = Vector3::new(tuple.0, tuple.1, tuple.2);
+            wind_builtin_vec3.push(vector);
+        };
+        let packed = PackedVector3Array::from(wind_builtin_vec3.as_slice());
+        packed
+    }
+
+    #[func]
+    pub fn set_data(&mut self, acc_hour: real, humidity: PackedFloat32Array, wind: PackedVector3Array, td: PackedFloat32Array, pressure: PackedFloat32Array, temperature: PackedFloat32Array) {
+
+        self.humidity = humidity.to_vec()[acc_hour as usize];
+        self.wind_p = wind.to_vec()[acc_hour as usize];
+        self.td = td.to_vec()[acc_hour as usize];
+        self.pressure = pressure.to_vec()[acc_hour as usize];
+        self.temperature = temperature.to_vec()[acc_hour as usize];
     }
     #[func]
     pub fn generate_data(&mut self, latitude: i32, climate: GodotString) {

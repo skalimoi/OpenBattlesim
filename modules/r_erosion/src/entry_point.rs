@@ -14,6 +14,9 @@ use std::str::FromStr;
 use byteorder::{LittleEndian, WriteBytesExt};
 use godot::engine::utilities::round;
 use godot::prelude::utilities::roundf;
+use image_latest::imageops::FilterType;
+use nalgebra::Dynamic;
+use posterust::Opt;
 
 use crate::erosion::{*, world::World};
 use crate::entry_point::world::Vec2;
@@ -74,6 +77,11 @@ impl ErosionActor {
         let buffer: ImageBuffer<Luma<u16>, Vec<u16>> = ImageBuffer::from_raw(8193, 8193, eroded_heightmap).unwrap();
         buffer.save("data/raw/texturing_buffer.png").unwrap();
 
+        let to_resample = image_latest::io::Reader::open("data/raw/texturing_buffer.png").unwrap().decode().unwrap();
+        let resized = to_resample.resize(1025, 1025, FilterType::Nearest);
+        resized.save("data/raw/height_map_veg.png").unwrap();
+        posterize(resized);
+
         let discharge_buffer: ImageBuffer<Luma<u8>, Vec<u8>> =
             ImageBuffer::from_raw(width, height, discharge_map.clone()).unwrap();
         discharge_buffer
@@ -89,6 +97,7 @@ impl ErosionActor {
         imageproc::contrast::stretch_contrast_mut(&mut gray, 130, 200);
         gray.save(format!("data/raw/discharge.png").as_str())
             .unwrap();
+
     }
 
     /*
@@ -180,6 +189,28 @@ impl ErosionActor {
     
     }
      */
+}
+
+fn posterize(image: DynamicImage) {
+    let raw = image.to_luma8().into_raw();
+    let mut new: Vec<u8> = vec![];
+    for mut pixel in raw.clone() {
+        let mut pixel_new: u8;
+        pixel_new = match pixel {
+            0u8..=39u8 => 40u8,
+            40u8..=79u8 => 40u8,
+            80u8..=119u8 => 80u8,
+            120u8..=159u8 => 120u8,
+            160u8..=199u8 => 160u8,
+            200u8..=239u8 => 200u8,
+            240u8..=255u8 => 240u8,
+            _ => 0u8
+        };
+        new.push(pixel_new);
+    }
+    let buffer: ImageBuffer<Luma<u8>, Vec<u8>> = ImageBuffer::from_raw(1025, 1025, new).unwrap();
+    buffer.save("data/raw/soil_map.png").unwrap();
+
 }
 
 #[godot_api]

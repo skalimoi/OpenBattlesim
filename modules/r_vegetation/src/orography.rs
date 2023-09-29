@@ -1,5 +1,6 @@
-use crate::{clamp_idx, GreyscaleImage, SimArgs};
+
 use nalgebra::Vector3;
+use crate::config::{clamp_idx, GreyscaleImage, SimArgs};
 
 /// Calculates all normal vector of a map. It needs the previously calculated vertex list. For calculating the
 /// normal of a vertex all neighbour normal will be calculated, added up and normalized. Each vertex has six

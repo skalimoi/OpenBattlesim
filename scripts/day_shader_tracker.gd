@@ -23,7 +23,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var day_duration = 60
+	var day_duration = 1200
 	
 	if accumulated_elapsed_time < day_duration:
 		accumulated_elapsed_time += (delta)

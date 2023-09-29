@@ -1,5 +1,6 @@
-use crate::{GreyscaleImage, Map};
+
 use nalgebra::Vector3;
+use crate::config::{GreyscaleImage, Map};
 
 const STANDARD_NORMAL: Vector3<f64> = Vector3::new(0.0, 0.0, 1.0);
 

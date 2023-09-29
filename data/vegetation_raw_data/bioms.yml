@@ -1,0 +1,24 @@
+PolarZone:
+    atmospheric_absorption: 45
+    atmospheric_diffusion: 8
+    avg_rainfall_per_day: 1.5
+    cloud_reflection: 40
+    groundwater: 1.0
+TemperateZone:
+    atmospheric_absorption: 35
+    atmospheric_diffusion: 9
+    avg_rainfall_per_day: 2.2
+    cloud_reflection: 33
+    groundwater: 2.0
+TropicalZone:
+    atmospheric_absorption: 30
+    atmospheric_diffusion: 10
+    avg_rainfall_per_day: 3.0
+    cloud_reflection: 28
+    groundwater: 2.5
+SubtropicalZone:
+    atmospheric_absorption: 25
+    atmospheric_diffusion: 11
+    avg_rainfall_per_day: 4.0
+    cloud_reflection: 10
+    groundwater: 2.5

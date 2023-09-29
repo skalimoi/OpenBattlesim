@@ -1,5 +1,5 @@
-use crate::{clamp_idx, round, GreyscaleImage, Map, SimArgs, Sun};
 use nalgebra::Vector3;
+use crate::config::{clamp_idx, GreyscaleImage, Map, round, SimArgs, Sun};
 
 const SOLAR_CONSTANT_K_CALORIES_PER_HOUR: f64 = 1200.0;
 
@@ -11,7 +11,7 @@ const SOLAR_CONSTANT_K_CALORIES_PER_HOUR: f64 = 1200.0;
 /// :param pixel_size: Float. The size a pixel represents of the real terrain.
 /// :param heightmap_max_height: Integer. Maximal height of the terrain.
 /// :param height_conversion: Float. Conversion value of the height of the heightmap to calculate the real height.
-fn calculate_raw_insolation(
+pub fn calculate_raw_insolation(
     insolation_map: &mut GreyscaleImage<f64>,
     height_map: &GreyscaleImage<f64>,
     sun: &Sun,

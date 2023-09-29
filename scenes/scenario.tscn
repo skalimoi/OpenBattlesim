@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c81gch0jp0qpc"]
+[gd_scene load_steps=16 format=3 uid="uid://c81gch0jp0qpc"]
 
 [ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="1_5bq5u"]
 [ext_resource type="Script" path="res://scripts/sun_movement.gd" id="1_dgqma"]
@@ -7,7 +7,8 @@
 [ext_resource type="Script" path="res://scripts/day_shader_tracker.gd" id="3_0cenb"]
 [ext_resource type="Shader" uid="uid://cxcq8wq1mysia" path="res://addons/dynamic_day_night_cycles/daytime_shader.tres" id="3_ihfrk"]
 [ext_resource type="Texture2D" uid="uid://cyjgfgqtkbf5e" path="res://addons/dynamic_day_night_cycles/sun_colors.png" id="4_m3cvb"]
-[ext_resource type="Material" uid="uid://q08jpl838qcr" path="res://resources/terrain.material" id="8_4yvou"]
+[ext_resource type="Script" path="res://scripts/DebugDisplay.gd" id="4_vyfxx"]
+[ext_resource type="Shader" path="res://addons/m_terrain/start.gdshader" id="9_0jn0x"]
 [ext_resource type="Script" path="res://scripts/terrain_loader.gd" id="9_bl3qu"]
 [ext_resource type="Script" path="res://scripts/Grid.gd" id="10_i4aae"]
 
@@ -17,7 +18,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gw8tb"]
 shader = ExtResource("3_ihfrk")
-shader_parameter/twilight_duration_factor = 1.0
+shader_parameter/twilight_duration_factor = 0.52
 shader_parameter/current_time = 0.0
 shader_parameter/declination = 1.0
 shader_parameter/latitude = 1.0
@@ -26,6 +27,14 @@ shader_parameter/sunset_time = 0.9
 shader_parameter/twilight_duration = 0.2
 shader_parameter/shader_opacity = 1.0
 shader_parameter/day_time_colors = ExtResource("4_m3cvb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4miol"]
+render_priority = 0
+shader = ExtResource("9_0jn0x")
+shader_parameter/region_world_position = null
+shader_parameter/region_size = null
+shader_parameter/region_a = null
+shader_parameter/region_b = null
 
 [node name="Node3D" type="Node3D"]
 
@@ -42,20 +51,60 @@ script = ExtResource("1_5bq5u")
 
 [node name="CustomEOT" type="Node" parent="."]
 script = ExtResource("2_kvisa")
-days_per_year = 360.0
-day_duration = 60.0
+days_per_year = 365.0
+day_duration = 1200.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
+script = ExtResource("4_vyfxx")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_gw8tb")
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_0cenb")
 
+[node name="FPS" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 1642.0
+offset_right = 1918.0
+offset_bottom = 23.0
+bbcode_enabled = true
+text = "[right][font=data/fonts/ProggyVector-Regular.ttf]FPS:"
+
+[node name="TimeDisplay" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 1642.0
+offset_top = 25.0
+offset_right = 1918.0
+offset_bottom = 48.0
+bbcode_enabled = true
+text = "[right][font=data/fonts/ProggyVector-Regular.ttf]Simulation time:"
+
+[node name="Day" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 1642.0
+offset_top = 52.0
+offset_right = 1918.0
+offset_bottom = 75.0
+bbcode_enabled = true
+text = "[right][font=data/fonts/ProggyVector-Regular.ttf]Simulation time:"
+
+[node name="SunriseTime" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 1642.0
+offset_top = 78.0
+offset_right = 1918.0
+offset_bottom = 101.0
+bbcode_enabled = true
+text = "[right][font=data/fonts/ProggyVector-Regular.ttf]Simulation time:"
+
+[node name="SunsetTime" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 1642.0
+offset_top = 104.0
+offset_right = 1918.0
+offset_bottom = 127.0
+bbcode_enabled = true
+text = "[right][font=data/fonts/ProggyVector-Regular.ttf]Simulation time:"
+
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.856654, 0.515891, 0, -0.515891, -0.856654, 0, 600, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 600, 0)
 visible = false
 shadow_enabled = true
 directional_shadow_mode = 1
@@ -69,7 +118,7 @@ directional_shadow_max_distance = 8192.0
 [node name="MTerrain" type="MTerrain" parent="."]
 dataDir = "res://data/terrain_imported/"
 save_generated_normals = true
-material = ExtResource("8_4yvou")
+material = SubResource("ShaderMaterial_4miol")
 terrain_size = Vector2i(256, 256)
 region_size = 32
 script = ExtResource("9_bl3qu")

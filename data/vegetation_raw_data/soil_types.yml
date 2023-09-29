@@ -1,0 +1,28 @@
+Dirt:
+    id: 40
+    albedo: 0.25
+    water_absorption: 0.38
+Loam:
+    id: 80
+    albedo: 0.25
+    water_absorption: 0.43
+Silt:
+    id: 120
+    albedo: 0.25
+    water_absorption: 0.4
+Clay:
+    id: 160
+    albedo: 0.3
+    water_absorption: 0.42
+Stone:
+    id: 200
+    albedo: 0.275
+    water_absorption: 0.28
+Snow:
+    id: 240
+    albedo: 0.84
+    water_absorption: 0.01
+NotFound:
+    id: 0
+    albedo: 0.0
+    water_absorption: 0.0
