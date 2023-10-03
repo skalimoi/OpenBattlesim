@@ -1,127 +1,123 @@
-[gd_scene load_steps=16 format=3 uid="uid://c81gch0jp0qpc"]
+[gd_scene load_steps=21 format=3 uid="uid://1msgp8f3wlo6"]
 
-[ext_resource type="Script" path="res://scripts/free_look_camera.gd" id="1_5bq5u"]
-[ext_resource type="Script" path="res://scripts/sun_movement.gd" id="1_dgqma"]
 [ext_resource type="Environment" uid="uid://dj45mvvktk4u0" path="res://scenes/scenario_env.tres" id="1_tdbwd"]
-[ext_resource type="Script" path="res://addons/dynamic_day_night_cycles/custom_eot.gd" id="2_kvisa"]
-[ext_resource type="Script" path="res://scripts/day_shader_tracker.gd" id="3_0cenb"]
-[ext_resource type="Shader" uid="uid://cxcq8wq1mysia" path="res://addons/dynamic_day_night_cycles/daytime_shader.tres" id="3_ihfrk"]
-[ext_resource type="Texture2D" uid="uid://cyjgfgqtkbf5e" path="res://addons/dynamic_day_night_cycles/sun_colors.png" id="4_m3cvb"]
-[ext_resource type="Script" path="res://scripts/DebugDisplay.gd" id="4_vyfxx"]
-[ext_resource type="Shader" path="res://addons/m_terrain/start.gdshader" id="9_0jn0x"]
-[ext_resource type="Script" path="res://scripts/terrain_loader.gd" id="9_bl3qu"]
-[ext_resource type="Script" path="res://scripts/Grid.gd" id="10_i4aae"]
+[ext_resource type="Material" uid="uid://q08jpl838qcr" path="res://resources/terrain.material" id="1_v71be"]
+[ext_resource type="Script" path="res://scripts/Grid.gd" id="3_pqsn1"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="4_pkcgn"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="5_34igr"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="6_d26us"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="7_8ln22"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/relax.gd" id="8_eyamg"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="9_mrc4k"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/clusterize.gd" id="10_i6sut"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="11_py31o"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="12_si1g8"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="13_swmqt"]
 
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_3eupq"]
+[sub_resource type="Resource" id="Resource_qewcx"]
+script = ExtResource("6_d26us")
+amount = 100000
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 1
 
-[sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_rk17d"]
+[sub_resource type="Resource" id="Resource_73kd7"]
+script = ExtResource("7_8ln22")
+position = Vector3(0.15, 0.15, 0.15)
+rotation = Vector3(20, 360, 20)
+scale = Vector3(0.1, 0.1, 0.1)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gw8tb"]
-shader = ExtResource("3_ihfrk")
-shader_parameter/twilight_duration_factor = 0.52
-shader_parameter/current_time = 0.0
-shader_parameter/declination = 1.0
-shader_parameter/latitude = 1.0
-shader_parameter/sunrise_time = 0.1
-shader_parameter/sunset_time = 0.9
-shader_parameter/twilight_duration = 0.2
-shader_parameter/shader_opacity = 1.0
-shader_parameter/day_time_colors = ExtResource("4_m3cvb")
+[sub_resource type="Resource" id="Resource_1t2ht"]
+script = ExtResource("8_eyamg")
+iterations = 3
+offset_step = 0.2
+consecutive_step_multiplier = 0.75
+use_computeshader = true
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = true
+reference_frame = 0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4miol"]
-render_priority = 0
-shader = ExtResource("9_0jn0x")
-shader_parameter/region_world_position = null
-shader_parameter/region_size = null
-shader_parameter/region_a = null
-shader_parameter/region_b = null
+[sub_resource type="Resource" id="Resource_518nb"]
+script = ExtResource("9_mrc4k")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 256.0
+ray_offset = 5.0
+remove_points_on_miss = false
+align_with_collision_normal = true
+max_slope = 90.0
+collision_mask = 1
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="Resource" id="Resource_ckap2"]
+script = ExtResource("10_i6sut")
+mask = "res://data/vegetation_data/height_map/MASK_1_1_512.png"
+mask_rotation = 0.0
+mask_offset = Vector2(256, 256)
+mask_scale = Vector2(1, 1)
+pixel_to_unit_ratio = 1.0
+remove_below = 0.05
+remove_above = 1.0
+scale_transforms = false
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_tdbwd")
-camera_attributes = SubResource("CameraAttributesPhysical_3eupq")
+[sub_resource type="Resource" id="Resource_alye5"]
+script = ExtResource("5_34igr")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_qewcx"), SubResource("Resource_73kd7"), SubResource("Resource_1t2ht"), SubResource("Resource_518nb"), SubResource("Resource_ckap2")])
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.44268, 0, -0.89668, 0, 1, 0, 0.89668, 0, -0.44268, 0, 1.36435, 122.345)
-environment = ExtResource("1_tdbwd")
-attributes = SubResource("CameraAttributesPhysical_rk17d")
-current = true
-script = ExtResource("1_5bq5u")
+[sub_resource type="Resource" id="Resource_tpslk"]
+script = ExtResource("13_swmqt")
+size = Vector3(512, 256, 512)
 
-[node name="CustomEOT" type="Node" parent="."]
-script = ExtResource("2_kvisa")
-days_per_year = 365.0
-day_duration = 1200.0
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("4_vyfxx")
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_gw8tb")
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("3_0cenb")
-
-[node name="FPS" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 1642.0
-offset_right = 1918.0
-offset_bottom = 23.0
-bbcode_enabled = true
-text = "[right][font=data/fonts/ProggyVector-Regular.ttf]FPS:"
-
-[node name="TimeDisplay" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 1642.0
-offset_top = 25.0
-offset_right = 1918.0
-offset_bottom = 48.0
-bbcode_enabled = true
-text = "[right][font=data/fonts/ProggyVector-Regular.ttf]Simulation time:"
-
-[node name="Day" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 1642.0
-offset_top = 52.0
-offset_right = 1918.0
-offset_bottom = 75.0
-bbcode_enabled = true
-text = "[right][font=data/fonts/ProggyVector-Regular.ttf]Simulation time:"
-
-[node name="SunriseTime" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 1642.0
-offset_top = 78.0
-offset_right = 1918.0
-offset_bottom = 101.0
-bbcode_enabled = true
-text = "[right][font=data/fonts/ProggyVector-Regular.ttf]Simulation time:"
-
-[node name="SunsetTime" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 1642.0
-offset_top = 104.0
-offset_right = 1918.0
-offset_bottom = 127.0
-bbcode_enabled = true
-text = "[right][font=data/fonts/ProggyVector-Regular.ttf]Simulation time:"
-
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 600, 0)
-visible = false
-shadow_enabled = true
-directional_shadow_mode = 1
-script = ExtResource("1_dgqma")
-
-[node name="DebugSun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.633381, 0.77384, 0, -0.77384, -0.633381, 0, 200, 0)
-shadow_enabled = true
-directional_shadow_max_distance = 8192.0
+[node name="scenario" type="Node3D"]
 
 [node name="MTerrain" type="MTerrain" parent="."]
 dataDir = "res://data/terrain_imported/"
 save_generated_normals = true
-material = SubResource("ShaderMaterial_4miol")
+create_grid = true
+material = ExtResource("1_v71be")
 terrain_size = Vector2i(256, 256)
 region_size = 32
-script = ExtResource("9_bl3qu")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.4223, 0)
+environment = ExtResource("1_tdbwd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.845262, 0.534352, 0, -0.534352, -0.845262, 0, 0, 0)
 
 [node name="Grid" type="Node" parent="."]
-script = ExtResource("10_i4aae")
+script = ExtResource("3_pqsn1")
+
+[node name="ProtonScatter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 256, 128, 256)
+script = ExtResource("4_pkcgn")
+modifier_stack = SubResource("Resource_alye5")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(15, 15, 15)
+
+[node name="ScatterItem" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("11_py31o")
+path = "res://addons/proton_scatter/demos/assets/brick.tscn"
+
+[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+script = ExtResource("12_si1g8")
+shape = SubResource("Resource_tpslk")
