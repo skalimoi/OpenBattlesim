@@ -1,0 +1,10 @@
+[gd_resource type="PlaneMesh" load_steps=2 format=3 uid="uid://cggjuimouisbm"]
+
+[ext_resource type="Material" uid="uid://codi2pbh4hnli" path="res://resources/material_placeholder.tres" id="1_xbt70"]
+
+[resource]
+material = ExtResource("1_xbt70")
+size = Vector2(1, 1)
+subdivide_width = 1
+subdivide_depth = 1
+orientation = 0

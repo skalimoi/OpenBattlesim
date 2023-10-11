@@ -12,6 +12,14 @@ func _ready():
 	td_arr = self.load_float_data(1)
 	pressure_arr = self.load_float_data(2)
 	temperature_arr = self.load_float_data(3)
+	self.monitoring = true
+	self.get_overlapping_bodies()
+	connect("body_entered", _on_GridComponent_body_entered)
 
 func _process(delta):
 	self.set_data(Simulation.total_hour, humidity_arr, wind_arr, td_arr, pressure_arr, temperature_arr)
+
+func _on_GridComponent_body_entered(body: RigidBody3D):
+	print("Body intercepted!")
+	var wind: Vector3 = (self.wind_p * 100)
+	body.apply_central_force(wind)

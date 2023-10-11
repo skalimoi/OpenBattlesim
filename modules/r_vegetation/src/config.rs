@@ -7,6 +7,7 @@ use image::Luma;
 use nalgebra::Vector3;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+use image::imageops::FilterType;
 use crate::edaphology::calculate_soil_depth;
 use crate::hydrology::calculate_hydrology_map;
 use crate::insolation::calculate_actual_insolation;
@@ -226,13 +227,13 @@ impl SimConfig {
         std::fs::create_dir_all(format!("data/vegetation_data/{map_name}")).unwrap();
 
         insolation_image
-            .save(format!("data/vegetation_data/{map_name}/{map_name}_{}daylight_hours_insolation_image.png", sun_config.daylight_hours))
+            .save(format!("data/vegetation_data/{map_name}/{map_name}_insolation.png"))
             .unwrap();
         edaphic_image
-            .save(format!("data/vegetation_data/{map_name}/{map_name}_edaphic_image.png"))
+            .save(format!("data/vegetation_data/{map_name}/{map_name}_edaphic.png"))
             .unwrap();
         hydrology_image
-            .save(format!("data/vegetation_data/{map_name}/{map_name}_water_image.png"))
+            .save(format!("data/vegetation_data/{map_name}/{map_name}_water.png"))
             .unwrap();
 
         std::fs::write(
@@ -259,8 +260,7 @@ impl SimConfig {
         );
         let insolation_map = GreyscaleImage::new(
             ImageReader::open(format!(
-                "data/vegetation_data/{map_name}/{map_name}_{}daylight_hours_insolation_image.png",
-                daylight_hours
+                "data/vegetation_data/{map_name}/{map_name}_insolation.png",
             ))
                 .unwrap()
                 .decode()
@@ -272,7 +272,7 @@ impl SimConfig {
                 .collect(),
         );
         let edaphic_map = GreyscaleImage::new(
-            ImageReader::open(format!("data/vegetation_data/{map_name}/{map_name}_edaphic_image.png"))
+            ImageReader::open(format!("data/vegetation_data/{map_name}/{map_name}_edaphic.png"))
                 .unwrap()
                 .decode()
                 .unwrap()
@@ -283,7 +283,7 @@ impl SimConfig {
                 .collect(),
         );
         let hydrology_map = GreyscaleImage::new(
-            ImageReader::open(format!("data/vegetation_data/{map_name}/{map_name}_water_image.png"))
+            ImageReader::open(format!("data/vegetation_data/{map_name}/{map_name}_water.png"))
                 .unwrap()
                 .decode()
                 .unwrap()
@@ -311,8 +311,21 @@ impl SimConfig {
             .unwrap();
         probabilities_image
             .save(format!(
-                "data/vegetation_data/{map_name}/{map_name}_{vegetation_name}_{daylight_hours}daylight_hours_probability_image.png"
+                "data/vegetation_data/{map_name}/{vegetation_name}_total.png"
             ))
             .unwrap();
+        let to_tiling = image::io::Reader::open(format!("data/vegetation_data/height_map/{vegetation_name}_total.png")).unwrap().decode().unwrap();
+        let brightened = imageproc::contrast::stretch_contrast(&to_tiling.into_luma8(), 0, 2);
+        brightened.save(format!("data/vegetation_data/height_map/{vegetation_name}_equalized.png")).unwrap();
+        let blur = imageproc::filter::gaussian_blur_f32(&brightened, 2.0);
+        let resampled_blur = image::imageops::resize(&blur, 8193, 8193, FilterType::Gaussian);
+        let tile_size: usize = 513;
+        for tile_x in 0..=15 {
+            for tile_y in 0..=15 {
+                let tile = image::imageops::crop_imm(&resampled_blur, (tile_x * tile_size) as u32, (tile_y * tile_size) as u32, tile_size as u32, tile_size as u32);
+                tile.to_image().save(format!("data/vegetation_data/height_map/{vegetation_name}_{tile_x}_{tile_y}.png")).unwrap();
+            }
+        }
+
     }
 }
