@@ -20,3 +20,7 @@ The actual gameplay is also on the works, and will have its own description soon
 OpenBattlesim is a revamp of my previous project Battlesim. This is being implemented in Godot, with performance-critical systems written in Rust and ported from the previous project.
 
 This is in a very early development stage and isn't meant to be playable yet!
+
+## Notes
+
+This project is not going to be abandoned. If there is prolonged inactivity, that is because I'm working on large, specific features. Ask me about it if you're not sure!
