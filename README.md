@@ -23,6 +23,8 @@ This is in a very early development stage and isn't meant to be playable yet!
 
 ## Notes
 
+See [this issue](https://github.com/skalimoi/OpenBattlesim/issues/1) for more information on the current state of the project.
+
 This project is not going to be abandoned. If there is prolonged inactivity, that is because I'm working on large, specific features. Ask me about it if you're not sure!
 
 ## Related projects
