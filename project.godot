@@ -11,36 +11,12 @@ config_version=5
 [application]
 
 config/name="OpenBattlesim"
-run/main_scene="res://scenes/scenario.tscn"
-config/features=PackedStringArray("4.1", "Forward Plus")
-boot_splash/image="res://data/icons/splash_screen_0.3.0.png"
-config/icon="res://data/icons/icon_32x32.png"
+config/description="3D, open-source warfare simulator with an emphasis on personalization and modularity."
+config/version="0.0.1"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
 
-[autoload]
+[editor]
 
-PlayerPrefs="*res://addons/PlayerPrefs/PlayerPrefs.tscn"
-VideoManager="*res://addons/nodot/autoload/VideoManager.gd"
-AudioManager="*res://addons/nodot/autoload/AudioManager.gd"
-SaveManager="*res://addons/nodot/autoload/SaveManager.gd"
-GlobalSignal="*res://addons/nodot/autoload/GlobalSignal.gd"
-GlobalStorage="*res://addons/nodot/autoload/GlobalStorage.gd"
-PlayerManager="*res://addons/nodot/autoload/PlayerManager.gd"
-CollectableManager="*res://addons/nodot/autoload/CollectableManager.gd"
-InputManager="*res://addons/nodot/autoload/InputManager.gd"
-NetworkManager="*res://addons/nodot/autoload/NetworkManager.gd"
-DebugManager="*res://addons/nodot/autoload/DebugManager.gd"
-OrchestratorNodeFactory="*res://addons/orchestrator/orchestrator_node_factory.gd"
-Orchestrator="*res://addons/orchestrator/orchestrator.gd"
-UiGenData="*res://scripts/ui/ui_gen_data.gd"
-Simulation="*res://scripts/simulation.gd"
-Tracer="*res://addons/tracer/./tracer.gd"
-
-[display]
-
-window/size/viewport_width=1920
-window/size/viewport_height=1080
-window/size/mode=2
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/dynamic_day_night_cycles/plugin.cfg", "res://addons/m_terrain/plugin.cfg", "res://addons/orchestrator/plugin.cfg", "res://addons/tracer/plugin.cfg")
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
