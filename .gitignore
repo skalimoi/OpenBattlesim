@@ -1,3 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
 android/
+*.iml
+/core/obtl/.idea
+/core/obtl/.idea
+/core/obtl/target
+core/obtl/.idea/modules.xml
+core/obtl/.idea/vcs.xml
+core/obtl/.idea/obtl.iml

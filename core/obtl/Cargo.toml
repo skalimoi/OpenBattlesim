@@ -1,0 +1,10 @@
+[package]
+name = "obtl" # Appears in the filename of the compiled dynamic library.
+version = "0.0.1"     # You can leave version and edition as-is for now.
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]  # Compile this crate to a dynamic C library.
+
+[dependencies]
+godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }

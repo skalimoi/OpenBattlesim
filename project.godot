@@ -14,9 +14,20 @@ config/name="OpenBattlesim"
 config/description="3D, open-source warfare simulator with an emphasis on personalization and modularity."
 config/version="0.0.1"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.0196078, 0.0196078, 0.0901961, 1)
+boot_splash/image="res://data/splash/splash_screen.png"
+config/icon="res://data/icon/icon_32x32.png"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=2

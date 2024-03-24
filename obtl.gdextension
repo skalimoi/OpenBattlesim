@@ -1,0 +1,14 @@
+[configuration]
+entry_symbol = "gdext_rust_init"
+compatibility_minimum = 4.1
+reloadable = true
+
+[libraries]
+linux.debug.x86_64 =     "res://core/lib/libobtl.so"
+linux.release.x86_64 =   "res://core/lib/libobtl.so"
+windows.debug.x86_64 =   "res://core/lib/obtl.dll"
+windows.release.x86_64 = "res://core/lib/obtl.dll"
+macos.debug =            "res://core/lib/libobtl.dylib"
+macos.release =          "res://core/lib/libobtl.dylib"
+macos.debug.arm64 =      "res://core/lib/libobtl.dylib"
+macos.release.arm64 =    "res://core/lib/libobtl.dylib"
