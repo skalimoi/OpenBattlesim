@@ -18,3 +18,4 @@ pub enum Group {
     LOGIC,
     OPTIONS
 }
+

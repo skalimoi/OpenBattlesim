@@ -1,20 +1,45 @@
+use std::fmt;
+use std::fmt::{Debug, Formatter};
 use std::ops::Range;
+use strum::IntoEnumIterator; // 0.17.1
+use strum_macros::{Display, EnumIter, EnumString}; // 0.17.1
 
-pub enum CommonToken {
-    Name(String),
+pub struct DisplayDataValue<T>(T);
+
+pub trait Token: Debug {
 }
-pub enum BodyToken {
+
+
+
+#[derive(Debug, EnumIter, EnumString, Display)]
+pub enum TCommon {
+    TEST_ONE,
+    TEST_TWO
+}
+impl Token for TCommon {
+}
+
+#[derive(Debug, EnumIter, EnumString, Display)]
+pub enum TBody {
     StrengthRange(Range<u16>)
 }
-
-pub enum ActionToken {
-    CanSwim
+impl Token for TBody {
 }
-
-pub enum LogicToken {
-    OptionOneLogic
+#[derive(Debug, EnumIter, EnumString, Display)]
+pub enum TAction {
+    ACTION_TOKEN
 }
-
-pub enum OptionsToken {
-    MiscOption
+impl Token for TAction {
+}
+#[derive(Debug, EnumIter, EnumString, Display)]
+pub enum TLogic {
+    LOGIC_TOKEN
+}
+impl Token for TLogic {
+}
+#[derive(Debug, EnumIter, EnumString, Display)]
+pub enum TOption {
+    OPTION_TOKEN
+}
+impl Token for TOption {
 }

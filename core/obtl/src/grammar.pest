@@ -1,0 +1,20 @@
+//
+// Created by intellij-pest on 2024-03-25
+// grammar
+// Author: Angela
+//
+char = { ASCII_ALPHA_UPPER | "_" }
+type_name           = @{ "ACTOR" | "ITEM" | "MATERIAL" }
+token_type          = @{ char+ }
+name                = @{ char+ }
+s_value             = @{ NUMBER+ }
+r_value             = @{ NUMBER+ ~ ":" ~ NUMBER+ }
+object              =  { "DEF " ~ type_name ~ "TO " ~ name ~ (operator_group_copy | operator_group_goto)*? ~ (group*)? ~ (operator_group_copy | operator_group_goto)*? ~ "CONSTRUCT" }
+group_type          =  { "COMMON" | "BODY" | "ACTION" | "LOGIC" | "OPTION" }
+group               =  { ("BEGIN" ~ group_type) ~ token* ~ ("END" ~ group_type) }
+token               =  { "[" ~ token_type ~ "]" ~ ("->" ~ (s_value | r_value))*? }
+operator_group_copy =  { "COPY" ~ group_type ~ "FROM" ~ name }
+goto_position       =  { "BEFORE" | "AFTER" }
+operator_group_goto =  { "GOTO" ~ goto_position ~ group_type }
+act                 = _{ SOI ~ (object*) ~ EOI }
+WHITESPACE          = _{ " " | "\t" | "\n" | "\r" | NEWLINE }

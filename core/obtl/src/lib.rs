@@ -2,6 +2,7 @@ mod parser;
 mod datatype;
 mod syntax;
 mod token;
+mod loader;
 
 use godot::prelude::*;
 
