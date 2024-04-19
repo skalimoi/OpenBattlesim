@@ -100,7 +100,8 @@ pub fn parse_obtl_all(file: &str) -> OBTLObject {
                             object.name = tag.as_span().as_str().to_string()
                         }
                         Rule::s_value => {}
-                        Rule::r_value => {}
+                        Rule::r_f_value => {}
+                        Rule::r_l_value => {}
                         Rule::object => {}
                         Rule::group_type => {}
                         Rule::group => {
@@ -117,6 +118,9 @@ pub fn parse_obtl_all(file: &str) -> OBTLObject {
                                             "OPTION" => GroupType::Options,
                                             &_ => GroupType::Error
                                         },
+                                        Rule::value_token => {
+                                            // todo
+                                        }
                                         Rule::token => for token in pair.clone().into_inner() {
                                             if pair.clone().into_inner().len() != 0 {
                                                 match token.as_rule() {

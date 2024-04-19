@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://b3syuw7kgx5hq"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(600, 350)
+layout_mode = 3
+anchor_right = 0.46875
+anchor_bottom = 0.486111
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Window" type="Window" parent="."]
+transparent_bg = true
+title = "Welcome"
+position = Vector2i(0, 22)
+size = Vector2i(600, 350)
+unresizable = true
+transparent = true
+popup_window = true
+
+[node name="Content" type="VBoxContainer" parent="Window"]
+custom_minimum_size = Vector2(600, 350)
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Window/Content"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Window/Content"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font=res://data/font/Helvetica.ttf][font_size=32][color=000000]   Welcome to [/color][/font_size][/font][font=res://data/font/Helvetica-BoldOblique.ttf][font_size=32][color=ff0048]Open[/color][color=000000]Battlesim[/color][/font_size][/font]"
+fit_content = true
+
+[node name="ColorRect2" type="ColorRect" parent="Window/Content"]
+layout_mode = 2
+
+[node name="Content_No_Title" type="HBoxContainer" parent="Window/Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Padding" type="ColorRect" parent="Window/Content/Content_No_Title"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="Info_User" type="VBoxContainer" parent="Window/Content/Content_No_Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Window/Content/Content_No_Title/Info_User"]
+custom_minimum_size = Vector2(350, 125)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Window/Content/Content_No_Title/Info_User/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Window/Content/Content_No_Title/Info_User/PanelContainer"]
+layout_mode = 2
+text = "Aquí va el changelog de cada versión"
+autowrap_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="Window/Content/Content_No_Title/Info_User"]
+visible = false
+custom_minimum_size = Vector2(350, 150)
+layout_mode = 2
+color = Color(0.603922, 1, 1, 1)
+
+[node name="user_info" type="RichTextLabel" parent="Window/Content/Content_No_Title/Info_User"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[color=000]Logging info[/color]"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/Content/Content_No_Title/Info_User"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="log_off" type="Button" parent="Window/Content/Content_No_Title/Info_User/HBoxContainer"]
+layout_mode = 2
+text = "Log off"
+flat = true
+
+[node name="Button" type="Button" parent="Window/Content/Content_No_Title/Info_User/HBoxContainer"]
+layout_mode = 2
+text = "Manage users"
+flat = true
+
+[node name="ColorRect2" type="ColorRect" parent="Window/Content/Content_No_Title/Info_User"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="on_startup" type="CheckBox" parent="Window/Content/Content_No_Title/Info_User"]
+layout_mode = 2
+text = " Open this windows on startup"
+flat = true
+
+[node name="ColorRect3" type="ColorRect" parent="Window/Content/Content_No_Title/Info_User"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="Padding3" type="ColorRect" parent="Window/Content/Content_No_Title"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="button_panel" type="VBoxContainer" parent="Window/Content/Content_No_Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="new_scenario" type="Button" parent="Window/Content/Content_No_Title/button_panel"]
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+text = "New Scenario"
+
+[node name="ColorRect" type="ColorRect" parent="Window/Content/Content_No_Title/button_panel"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="open_scenario" type="Button" parent="Window/Content/Content_No_Title/button_panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+text = "Open Scenario"
+
+[node name="ColorRect2" type="ColorRect" parent="Window/Content/Content_No_Title/button_panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="open_scenario2" type="Button" parent="Window/Content/Content_No_Title/button_panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+text = "Options"
+
+[node name="ColorRect3" type="ColorRect" parent="Window/Content/Content_No_Title/button_panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="open_scenario3" type="Button" parent="Window/Content/Content_No_Title/button_panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+text = "About"
+
+[node name="ColorRect4" type="ColorRect" parent="Window/Content/Content_No_Title/button_panel"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="HSeparator" type="HSeparator" parent="Window/Content/Content_No_Title/button_panel"]
+layout_mode = 2
+
+[node name="ColorRect5" type="ColorRect" parent="Window/Content/Content_No_Title/button_panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+color = Color(0.752941, 0.780392, 0.784314, 1)
+
+[node name="open_scenario4" type="Button" parent="Window/Content/Content_No_Title/button_panel"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(140, 30)
+layout_mode = 2
+text = "Close"
+
+[node name="Padding2" type="ColorRect" parent="Window/Content/Content_No_Title"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+color = Color(0.752941, 0.780392, 0.784314, 1)

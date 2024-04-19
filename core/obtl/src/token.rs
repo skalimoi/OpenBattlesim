@@ -4,8 +4,6 @@ use std::ops::Range;
 use strum::IntoEnumIterator; // 0.17.1
 use strum_macros::{Display, EnumIter, EnumString}; // 0.17.1
 
-pub struct DisplayDataValue<T>(T);
-
 pub trait Token: Debug {
 }
 
@@ -14,7 +12,7 @@ pub trait Token: Debug {
 #[derive(Debug, EnumIter, EnumString, Display)]
 pub enum TCommon {
     TEST_ONE,
-    TEST_TWO
+    TEST_TWO(u8, u8)
 }
 impl Token for TCommon {
 }
