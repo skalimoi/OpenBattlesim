@@ -8,3 +8,6 @@ android/
 core/obtl/.idea/modules.xml
 core/obtl/.idea/vcs.xml
 core/obtl/.idea/obtl.iml
+/core/maploader/target
+/core/maploader/.idea
+plugins/arrow_3d-2036b6913b553e60197979a623ebfeffc9256790/.gitattributes

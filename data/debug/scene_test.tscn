@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4n37mlir7wbg"]
+
+[sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_dhl22"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_27m1w"]
+
+[sub_resource type="VoxelGeneratorNoise2D" id="VoxelGeneratorNoise2D_42e82"]
+height_start = 0.0
+height_range = 500.0
+noise = SubResource("FastNoiseLite_27m1w")
+
+[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_4et3s"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -64, 0)
+stream = SubResource("VoxelStreamMemory_dhl22")
+generator = SubResource("VoxelGeneratorNoise2D_42e82")
+mesher = SubResource("VoxelMesherTransvoxel_4et3s")
+view_distance = 8192
+voxel_bounds = AABB(0, 0, 0, 1.04858e+06, 1.04858e+06, 1.04858e+06)
+lod_count = 16
+mesh_block_size = 32
+threaded_update_enabled = true
+streaming_system = 1
+
+[node name="VoxelLodTerrain2" type="VoxelLodTerrain" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8192, -64, 8192)
+stream = SubResource("VoxelStreamMemory_dhl22")
+generator = SubResource("VoxelGeneratorNoise2D_42e82")
+mesher = SubResource("VoxelMesherTransvoxel_4et3s")
+voxel_bounds = AABB(0, 0, 0, 8192, 512, 8192)
+lod_count = 16
+threaded_update_enabled = true
+streaming_system = 1
