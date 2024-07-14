@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjetmrco2b8bw"]
+
+[ext_resource type="Script" path="res://addons/onscreen_output/output.gd" id="1_ntmpl"]
+
+[node name="OnscreenOutput" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_ntmpl")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+custom_minimum_size = Vector2(480, 501)
+layout_mode = 1
+anchors_preset = -1
+offset_right = 480.0
+offset_bottom = 501.0
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+scroll_following = true
+autowrap_mode = 2
+shortcut_keys_enabled = false
+threaded = true
+
+[node name="ColorRect" type="ColorRect" parent="Control/RichTextLabel"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0980392, 0.109804, 0.184314, 1)

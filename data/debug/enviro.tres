@@ -1,0 +1,14 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://bfwoegolipy5q"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_g2sxf"]
+
+[sub_resource type="Sky" id="Sky_xm3a7"]
+sky_material = SubResource("PhysicalSkyMaterial_g2sxf")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_xm3a7")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+ssr_enabled = true

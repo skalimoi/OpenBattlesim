@@ -1,36 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4n37mlir7wbg"]
+[gd_scene load_steps=4 format=3 uid="uid://c4n37mlir7wbg"]
 
-[sub_resource type="VoxelStreamMemory" id="VoxelStreamMemory_dhl22"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_27m1w"]
-
-[sub_resource type="VoxelGeneratorNoise2D" id="VoxelGeneratorNoise2D_42e82"]
-height_start = 0.0
-height_range = 500.0
-noise = SubResource("FastNoiseLite_27m1w")
-
-[sub_resource type="VoxelMesherTransvoxel" id="VoxelMesherTransvoxel_4et3s"]
+[ext_resource type="Script" path="res://data/debug/init.gd" id="1_cmrw2"]
+[ext_resource type="Script" path="res://plugins/godot-free-look-camera-132062011edfce9399a489756064cfea880dad4c/free_look_camera.gd" id="1_wy82a"]
+[ext_resource type="Environment" uid="uid://bfwoegolipy5q" path="res://data/debug/enviro.tres" id="3_l8pes"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_cmrw2")
 
-[node name="VoxelLodTerrain" type="VoxelLodTerrain" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -64, 0)
-stream = SubResource("VoxelStreamMemory_dhl22")
-generator = SubResource("VoxelGeneratorNoise2D_42e82")
-mesher = SubResource("VoxelMesherTransvoxel_4et3s")
-view_distance = 8192
-voxel_bounds = AABB(0, 0, 0, 1.04858e+06, 1.04858e+06, 1.04858e+06)
-lod_count = 16
-mesh_block_size = 32
-threaded_update_enabled = true
-streaming_system = 1
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.905584, 0.424168, 0, -0.424168, 0.905584, 0, 2138.56, 0)
+directional_shadow_mode = 1
 
-[node name="VoxelLodTerrain2" type="VoxelLodTerrain" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8192, -64, 8192)
-stream = SubResource("VoxelStreamMemory_dhl22")
-generator = SubResource("VoxelGeneratorNoise2D_42e82")
-mesher = SubResource("VoxelMesherTransvoxel_4et3s")
-voxel_bounds = AABB(0, 0, 0, 8192, 512, 8192)
-lod_count = 16
-threaded_update_enabled = true
-streaming_system = 1
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_l8pes")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 602.312, 0)
+environment = ExtResource("3_l8pes")
+current = true
+far = 65535.0
+script = ExtResource("1_wy82a")
+
+[node name="VoxelViewer" type="VoxelViewer" parent="Camera3D"]
+view_distance = 65535
+
+[node name="ChunkLoader" type="ChunkLoader" parent="."]

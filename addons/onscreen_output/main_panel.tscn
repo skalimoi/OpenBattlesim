@@ -1,0 +1,223 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkw716jprs1ik"]
+
+[ext_resource type="Script" path="res://addons/onscreen_output/main_panel.gd" id="1_trmv1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osyjl"]
+bg_color = Color(0, 0, 0.0941176, 0.168627)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0dncg"]
+font_size = 24
+
+[sub_resource type="Image" id="Image_ypebr"]
+data = {
+"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 184, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 181, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 73, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 181, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 181, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 180, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_h8gmh"]
+image = SubResource("Image_ypebr")
+
+[node name="MainPanel" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_trmv1")
+
+[node name="BasicConfig" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="BasicConfig"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_osyjl")
+text = " Basic Config"
+label_settings = SubResource("LabelSettings_0dncg")
+
+[node name="DebugEnabled" type="HBoxContainer" parent="BasicConfig"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="BasicConfig/DebugEnabled"]
+layout_mode = 2
+text = "Debug Enabled: "
+
+[node name="CheckBox" type="CheckBox" parent="BasicConfig/DebugEnabled"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Timestamp" type="HBoxContainer" parent="BasicConfig"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="BasicConfig/Timestamp"]
+layout_mode = 2
+text = "Show timestamp: "
+
+[node name="CheckBox" type="CheckBox" parent="BasicConfig/Timestamp"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Logfile" type="HBoxContainer" parent="BasicConfig"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="BasicConfig/Logfile"]
+layout_mode = 2
+text = "Save log files: "
+
+[node name="CheckBox" type="CheckBox" parent="BasicConfig/Logfile"]
+layout_mode = 2
+
+[node name="SavePath" type="HBoxContainer" parent="BasicConfig"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="BasicConfig/SavePath"]
+layout_mode = 2
+text = "Save Path: "
+
+[node name="TextEdit" type="TextEdit" parent="BasicConfig/SavePath"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "user://OnscrnOutput_LOGS"
+scroll_fit_content_height = true
+
+[node name="Button" type="TextureButton" parent="BasicConfig/SavePath"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+texture_normal = SubResource("ImageTexture_h8gmh")
+stretch_mode = 3
+
+[node name="FileDialog" type="FileDialog" parent="BasicConfig/SavePath/Button"]
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(1000, 500)
+min_size = Vector2i(1000, 500)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 1
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Layout"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_osyjl")
+text = " Layout
+"
+label_settings = SubResource("LabelSettings_0dncg")
+
+[node name="Anchor" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/Anchor"]
+layout_mode = 2
+text = "Anchor to: "
+
+[node name="OptionButton" type="OptionButton" parent="Layout/Anchor"]
+layout_mode = 2
+item_count = 4
+selected = 0
+popup/item_0/text = "Top-Left"
+popup/item_0/id = 0
+popup/item_1/text = "Top-Right"
+popup/item_1/id = 1
+popup/item_2/text = "Bottom-Left"
+popup/item_2/id = 2
+popup/item_3/text = "Bottom-Right"
+popup/item_3/id = 3
+
+[node name="Appearance" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Appearance"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_osyjl")
+text = " Appearance
+"
+label_settings = SubResource("LabelSettings_0dncg")
+
+[node name="FontColor" type="HBoxContainer" parent="Appearance"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Appearance/FontColor"]
+layout_mode = 2
+text = "Font Color:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Appearance/FontColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.776471, 0.792157, 0.827451, 1)
+
+[node name="BGColor" type="HBoxContainer" parent="Appearance"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Appearance/BGColor"]
+layout_mode = 2
+text = "Background Color:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Appearance/BGColor"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.0980392, 0.109804, 0.184314, 1)
+
+[node name="FontSize" type="HBoxContainer" parent="Appearance"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Appearance/FontSize"]
+layout_mode = 2
+text = "Font Size: "
+
+[node name="LineEdit" type="SpinBox" parent="Appearance/FontSize"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 16.0
+
+[node name="Size" type="HBoxContainer" parent="Appearance"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Appearance/Size"]
+layout_mode = 2
+text = "Size: "
+
+[node name="X" type="HBoxContainer" parent="Appearance/Size"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Appearance/Size/X"]
+layout_mode = 2
+text = "x:"
+
+[node name="LineEdit" type="SpinBox" parent="Appearance/Size/X"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 9999.0
+value = 480.0
+
+[node name="Y" type="HBoxContainer" parent="Appearance/Size"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Appearance/Size/Y"]
+layout_mode = 2
+text = "y:"
+
+[node name="LineEdit" type="SpinBox" parent="Appearance/Size/Y"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 9999.0
+value = 501.0
+
+[node name="SaveButton" type="Button" parent="."]
+layout_mode = 2
+text = "Save!"
+
+[connection signal="pressed" from="BasicConfig/SavePath/Button" to="." method="_on_button_pressed"]
