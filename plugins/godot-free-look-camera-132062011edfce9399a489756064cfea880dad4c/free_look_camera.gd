@@ -5,7 +5,7 @@ extends Camera3D
 @export_range(0, 1000, 0.1) var default_velocity : float = 5
 @export_range(0, 10, 0.01) var speed_scale : float = 1.17
 @export_range(1, 100, 0.1) var boost_speed_multiplier : float = 3.0
-@export var max_speed : float = 1000
+@export var max_speed : float = 5000
 @export var min_speed : float = 0.2
 
 @onready var _velocity = default_velocity

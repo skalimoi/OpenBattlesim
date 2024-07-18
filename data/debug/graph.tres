@@ -1,0 +1,87 @@
+[gd_resource type="VoxelGeneratorGraph" format=3 uid="uid://m8p0lb5hwls"]
+
+[resource]
+graph_data = {
+"connections": [[1, 0, 6, 0], [2, 0, 13, 0], [10, 0, 11, 0], [3, 0, 7, 0], [11, 0, 14, 0], [5, 0, 4, 0], [13, 0, 5, 0], [6, 0, 8, 0], [7, 0, 9, 0], [8, 0, 10, 0], [9, 0, 10, 1], [14, 0, 5, 1]],
+"nodes": {
+"1": {
+"gui_position": Vector2(160, 40),
+"type": "InputX"
+},
+"10": {
+"auto_connect": true,
+"filter": 1,
+"gui_position": Vector2(520, 40),
+"image": null,
+"name": &"DataNode",
+"type": "Image"
+},
+"11": {
+"gui_position": Vector2(680, 40),
+"max0": 65535.0,
+"max1": 8192.0,
+"min0": 0.0,
+"min1": 0.0,
+"name": &"HeightRemap",
+"type": "Remap"
+},
+"13": {
+"gui_position": Vector2(720, 320),
+"max": 8192.0,
+"min": 0.0,
+"type": "Clamp"
+},
+"14": {
+"b": 75000.0,
+"gui_position": Vector2(940, 40),
+"type": "Multiply"
+},
+"2": {
+"gui_position": Vector2(520, 300),
+"type": "InputY"
+},
+"3": {
+"gui_position": Vector2(160, 300),
+"type": "InputZ"
+},
+"4": {
+"auto_connect": true,
+"gui_position": Vector2(880, 160),
+"type": "OutputSDF"
+},
+"5": {
+"auto_connect": true,
+"gui_position": Vector2(760, 160),
+"type": "SdfPlane"
+},
+"6": {
+"gui_position": Vector2(220, 140),
+"max": 65536.0,
+"min": 0.0,
+"type": "Clamp"
+},
+"7": {
+"gui_position": Vector2(240, 300),
+"max": 65536.0,
+"min": 0.0,
+"type": "Clamp"
+},
+"8": {
+"gui_position": Vector2(380, 40),
+"max0": 65536.0,
+"max1": 8192.0,
+"min0": 0.0,
+"min1": 0.0,
+"type": "Remap"
+},
+"9": {
+"gui_position": Vector2(380, 300),
+"max0": 65536.0,
+"max1": 8192.0,
+"min0": 0.0,
+"min1": 0.0,
+"type": "Remap"
+}
+},
+"version": 2
+}
