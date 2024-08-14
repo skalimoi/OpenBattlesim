@@ -1,0 +1,52 @@
+[gd_resource type="VoxelGraphFunction" format=3 uid="uid://brkbgyv2n4vhq"]
+
+[resource]
+graph_data = {
+"connections": [[1, 0, 2, 2], [2, 0, 7, 0], [3, 0, 2, 1], [4, 0, 6, 2], [5, 0, 6, 1], [6, 0, 7, 1], [7, 0, 8, 0]],
+"nodes": {
+"1": {
+"gui_position": Vector2(420, 20),
+"name": &"Value 1",
+"type": "CustomInput"
+},
+"2": {
+"a": 1.0,
+"gui_position": Vector2(660, -40),
+"threshold": 0.9,
+"type": "Select"
+},
+"3": {
+"gui_position": Vector2(480, -140),
+"name": &"Index 1",
+"type": "CustomInput"
+},
+"4": {
+"gui_position": Vector2(480, 240),
+"name": &"Value 2",
+"type": "CustomInput"
+},
+"5": {
+"gui_position": Vector2(480, 140),
+"name": &"Index 2",
+"type": "CustomInput"
+},
+"6": {
+"a": 1.0,
+"gui_position": Vector2(660, 140),
+"threshold": 1.0,
+"type": "Select"
+},
+"7": {
+"gui_position": Vector2(860, 60),
+"type": "Max"
+},
+"8": {
+"gui_position": Vector2(1040, 60),
+"name": &"First Value",
+"type": "CustomOutput"
+}
+},
+"version": 2
+}
+input_definitions = [["Index 1", "CustomInput", 0], ["Index 2", "CustomInput", 0], ["Value 1", "CustomInput", 0], ["Value 2", "CustomInput", 0]]
+output_definitions = [["First Value", "CustomOutput", 0]]

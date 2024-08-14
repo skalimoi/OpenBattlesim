@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dx3bmgfkoitcm"]
+
+[ext_resource type="Shader" path="res://data/debug/voxel_shader/voxel_world_materials.gdshader" id="1_vmmfr"]
+[ext_resource type="CompressedTexture2DArray" uid="uid://dekkhaiokj4jw" path="res://data/debug/texture_array.png" id="2_4cab7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vmmfr")
+shader_parameter/u_transition_mask = null
+shader_parameter/u_voxel_virtual_texture_tile_size = null
+shader_parameter/u_voxel_virtual_texture_fade = null
+shader_parameter/u_voxel_cell_size = null
+shader_parameter/u_voxel_block_size = null
+shader_parameter/u_voxel_virtual_texture_offset_scale = null
+shader_parameter/u_lod_fade = null
+shader_parameter/u_specular = 0.5
+shader_parameter/u_depth_blending_atlas = true
+shader_parameter/u_depth_blending_layer = true
+shader_parameter/u_side_uv_scales = null
+shader_parameter/u_side_albedo_array = ExtResource("2_4cab7")
+shader_parameter/top_normal_affect = 0.0
+shader_parameter/top_depth_affect = 0.0
+shader_parameter/top_noise_affect = 0.0
+shader_parameter/u_top_uv_scales = null

@@ -12,3 +12,5 @@ core/obtl/.idea/obtl.iml
 /core/maploader/.idea
 plugins/arrow_3d-2036b6913b553e60197979a623ebfeffc9256790/.gitattributes
 /data/debug/test_scenes
+*.import
+/data/debug/materials

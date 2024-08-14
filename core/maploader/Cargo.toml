@@ -11,3 +11,4 @@ godot = { git = "https://github.com/godot-rust/gdext", branch = "master" }
 image = "0.25.1"
 map-range = "0.1.2"
 savefile = "0.17.6"
+savefile-derive = "0.17.7"

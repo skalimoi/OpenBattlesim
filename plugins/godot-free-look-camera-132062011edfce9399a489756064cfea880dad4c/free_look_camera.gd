@@ -9,6 +9,8 @@ extends Camera3D
 @export var min_speed : float = 0.2
 
 @onready var _velocity = default_velocity
+var mouse = Vector2()
+
 
 func _input(event):
 	if not current:
@@ -22,6 +24,22 @@ func _input(event):
 	
 	if event is InputEventMouseButton:
 		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				if Input.is_key_pressed(KEY_SHIFT):
+					mouse = event.position
+					var start = project_ray_origin(mouse)
+					var forward = -self.get_transform().basis.z.normalized()
+					var hit : VoxelRaycastResult = Global.node_database[0].get_voxel_tool().raycast(start, forward, 10000)
+					if hit != null:
+						var terrain : VoxelTool = Global.node_database[0].get_voxel_tool()
+						terrain.channel = VoxelBuffer.CHANNEL_INDICES
+						var encoded = terrain.get_voxel(hit.position)
+						var index = terrain.u16_indices_to_vec4i(encoded)
+						Global.voxel_pointed = index
+						#print(voxel)
+						
+					
+				
 			MOUSE_BUTTON_RIGHT:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if event.pressed else Input.MOUSE_MODE_VISIBLE)
 			MOUSE_BUTTON_WHEEL_UP: # increase fly velocity

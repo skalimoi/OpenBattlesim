@@ -25,6 +25,7 @@ ImGuiRoot="*res://addons/imgui-godot/data/ImGuiRoot.tscn"
 ThreadPoolSingleton="*res://addons/thread_pool/thread_pool.gd"
 scrnOutput="*res://addons/onscreen_output/output.tscn"
 TerrainDataSingleton="*res://data/debug/terrain.gd"
+Global="*res://data/debug/global.gd"
 
 [display]
 

@@ -1,23 +1,26 @@
-[gd_resource type="VoxelGeneratorGraph" format=3 uid="uid://m8p0lb5hwls"]
+[gd_resource type="VoxelGeneratorGraph" load_steps=3 format=3 uid="uid://m8p0lb5hwls"]
+
+[ext_resource type="VoxelGraphFunction" uid="uid://brkbgyv2n4vhq" path="res://data/debug/soil_selection_start.tres" id="1_ct751"]
+[ext_resource type="VoxelGraphFunction" uid="uid://bdroukb4x6wy8" path="res://data/debug/soil_selection_mid.tres" id="2_81lel"]
 
 [resource]
 graph_data = {
-"connections": [[1, 0, 6, 0], [2, 0, 13, 0], [10, 0, 11, 0], [3, 0, 7, 0], [11, 0, 14, 0], [5, 0, 4, 0], [13, 0, 5, 0], [6, 0, 8, 0], [7, 0, 9, 0], [8, 0, 10, 0], [9, 0, 10, 1], [14, 0, 5, 1]],
+"connections": [[1, 0, 6, 0], [2, 0, 13, 0], [10, 0, 11, 0], [11, 0, 14, 0], [13, 0, 5, 0], [14, 0, 5, 1], [3, 0, 7, 0], [5, 0, 4, 0], [6, 0, 8, 0], [7, 0, 9, 0], [8, 0, 10, 0], [8, 0, 20, 0], [8, 0, 21, 0], [8, 0, 22, 0], [8, 0, 24, 0], [8, 0, 25, 0], [8, 0, 28, 0], [8, 0, 30, 0], [8, 0, 32, 0], [8, 0, 34, 0], [8, 0, 36, 0], [8, 0, 38, 0], [8, 0, 40, 0], [8, 0, 42, 0], [8, 0, 44, 0], [8, 0, 46, 0], [8, 0, 48, 0], [9, 0, 10, 1], [9, 0, 20, 1], [9, 0, 21, 1], [9, 0, 22, 1], [9, 0, 24, 1], [9, 0, 25, 1], [9, 0, 28, 1], [9, 0, 30, 1], [9, 0, 32, 1], [9, 0, 34, 1], [9, 0, 36, 1], [9, 0, 38, 1], [9, 0, 40, 1], [9, 0, 42, 1], [9, 0, 44, 1], [9, 0, 46, 1], [9, 0, 48, 1], [18, 0, 19, 0], [19, 0, 23, 0], [20, 0, 18, 2], [21, 0, 18, 3], [22, 0, 19, 2], [23, 0, 26, 0], [24, 0, 23, 2], [25, 0, 26, 2], [26, 0, 27, 0], [27, 0, 29, 0], [28, 0, 27, 2], [29, 0, 31, 0], [30, 0, 29, 2], [31, 0, 33, 0], [32, 0, 31, 2], [33, 0, 35, 0], [34, 0, 33, 2], [35, 0, 37, 0], [36, 0, 35, 2], [37, 0, 39, 0], [38, 0, 37, 2], [39, 0, 41, 0], [40, 0, 39, 2], [41, 0, 43, 0], [42, 0, 41, 2], [43, 0, 45, 0], [44, 0, 43, 2], [45, 0, 47, 0], [46, 0, 45, 2], [47, 0, 51, 0], [48, 0, 47, 2]],
 "nodes": {
 "1": {
-"gui_position": Vector2(160, 40),
+"gui_position": Vector2(80, 60),
 "type": "InputX"
 },
 "10": {
 "auto_connect": true,
 "filter": 1,
-"gui_position": Vector2(520, 40),
+"gui_position": Vector2(720, 460),
 "image": null,
 "name": &"DataNode",
 "type": "Image"
 },
 "11": {
-"gui_position": Vector2(680, 40),
+"gui_position": Vector2(960, 460),
 "max0": 65535.0,
 "max1": 8192.0,
 "min0": 0.0,
@@ -26,60 +29,330 @@ graph_data = {
 "type": "Remap"
 },
 "13": {
-"gui_position": Vector2(720, 320),
+"gui_position": Vector2(240, 280),
 "max": 8192.0,
 "min": 0.0,
 "type": "Clamp"
 },
 "14": {
 "b": 75000.0,
-"gui_position": Vector2(940, 40),
+"gui_position": Vector2(1260, 460),
 "type": "Multiply"
 },
+"18": {
+"Index 1": 0.0,
+"Index 2": 1.0,
+"Value 1": 0.0,
+"Value 2": 0.0,
+"_function": ExtResource("1_ct751"),
+"auto_connect": true,
+"gui_position": Vector2(960, 660),
+"type": "Function"
+},
+"19": {
+"Previous Value": 0.0,
+"Soil Index": 2.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(1260, 660),
+"type": "Function"
+},
 "2": {
-"gui_position": Vector2(520, 300),
+"gui_position": Vector2(80, 280),
 "type": "InputY"
 },
+"20": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 720),
+"image": null,
+"name": &"Soil0",
+"type": "Image"
+},
+"21": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 900),
+"image": null,
+"name": &"Soil1",
+"type": "Image"
+},
+"22": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 1100),
+"image": null,
+"name": &"Soil2",
+"type": "Image"
+},
+"23": {
+"Previous Value": 0.0,
+"Soil Index": 3.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(1520, 660),
+"type": "Function"
+},
+"24": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 60),
+"image": null,
+"name": &"Soil3",
+"type": "Image"
+},
+"25": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 1280),
+"image": null,
+"name": &"Soil4",
+"type": "Image"
+},
+"26": {
+"Previous Value": 0.0,
+"Soil Index": 4.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(1800, 660),
+"type": "Function"
+},
+"27": {
+"Previous Value": 0.0,
+"Soil Index": 5.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(2080, 660),
+"type": "Function"
+},
+"28": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 1480),
+"image": null,
+"name": &"Soil5",
+"type": "Image"
+},
+"29": {
+"Previous Value": 0.0,
+"Soil Index": 6.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(2340, 660),
+"type": "Function"
+},
 "3": {
-"gui_position": Vector2(160, 300),
+"gui_position": Vector2(80, 500),
 "type": "InputZ"
+},
+"30": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 1660),
+"image": null,
+"name": &"Soil6",
+"type": "Image"
+},
+"31": {
+"Previous Value": 0.0,
+"Soil Index": 7.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(2620, 660),
+"type": "Function"
+},
+"32": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 1860),
+"image": null,
+"name": &"Soil7",
+"type": "Image"
+},
+"33": {
+"Previous Value": 0.0,
+"Soil Index": 8.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(2880, 660),
+"type": "Function"
+},
+"34": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 2060),
+"image": null,
+"name": &"Soil8",
+"type": "Image"
+},
+"35": {
+"Previous Value": 0.0,
+"Soil Index": 9.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(3160, 660),
+"type": "Function"
+},
+"36": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 2240),
+"image": null,
+"name": &"Soil9",
+"type": "Image"
+},
+"37": {
+"Previous Value": 0.0,
+"Soil Index": 10.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(3440, 660),
+"type": "Function"
+},
+"38": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 2440),
+"image": null,
+"name": &"Soil10",
+"type": "Image"
+},
+"39": {
+"Previous Value": 0.0,
+"Soil Index": 11.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(3700, 660),
+"type": "Function"
 },
 "4": {
 "auto_connect": true,
-"gui_position": Vector2(880, 160),
+"gui_position": Vector2(1800, 440),
 "type": "OutputSDF"
+},
+"40": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 2620),
+"image": null,
+"name": &"Soil11",
+"type": "Image"
+},
+"41": {
+"Previous Value": 0.0,
+"Soil Index": 12.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(3980, 660),
+"type": "Function"
+},
+"42": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 2820),
+"image": null,
+"name": &"Soil12",
+"type": "Image"
+},
+"43": {
+"Previous Value": 0.0,
+"Soil Index": 13.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(4240, 660),
+"type": "Function"
+},
+"44": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 3000),
+"image": null,
+"name": &"Soil13",
+"type": "Image"
+},
+"45": {
+"Previous Value": 0.0,
+"Soil Index": 14.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(4520, 660),
+"type": "Function"
+},
+"46": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 3200),
+"image": null,
+"name": &"Soil14",
+"type": "Image"
+},
+"47": {
+"Previous Value": 0.0,
+"Soil Index": 15.0,
+"Value": 0.0,
+"_function": ExtResource("2_81lel"),
+"auto_connect": true,
+"gui_position": Vector2(4800, 660),
+"type": "Function"
+},
+"48": {
+"auto_connect": true,
+"filter": 0,
+"gui_position": Vector2(720, 3380),
+"image": null,
+"name": &"Soil15",
+"type": "Image"
 },
 "5": {
 "auto_connect": true,
-"gui_position": Vector2(760, 160),
+"gui_position": Vector2(1520, 440),
 "type": "SdfPlane"
 },
+"51": {
+"gui_position": Vector2(5060, 660),
+"type": "OutputSingleTexture"
+},
 "6": {
-"gui_position": Vector2(220, 140),
+"gui_position": Vector2(240, 60),
 "max": 65536.0,
 "min": 0.0,
 "type": "Clamp"
 },
 "7": {
-"gui_position": Vector2(240, 300),
+"gui_position": Vector2(240, 500),
 "max": 65536.0,
 "min": 0.0,
 "type": "Clamp"
 },
 "8": {
-"gui_position": Vector2(380, 40),
+"gui_position": Vector2(480, 60),
 "max0": 65536.0,
 "max1": 8192.0,
 "min0": 0.0,
 "min1": 0.0,
+"name": &"RemapX",
 "type": "Remap"
 },
 "9": {
-"gui_position": Vector2(380, 300),
+"gui_position": Vector2(480, 500),
 "max0": 65536.0,
 "max1": 8192.0,
 "min0": 0.0,
 "min1": 0.0,
+"name": &"RemapY",
 "type": "Remap"
 }
 },

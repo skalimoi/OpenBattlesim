@@ -1,0 +1,40 @@
+[gd_resource type="VoxelGraphFunction" format=3 uid="uid://bdroukb4x6wy8"]
+
+[resource]
+graph_data = {
+"connections": [[1, 0, 3, 1], [2, 0, 3, 2], [3, 0, 5, 1], [4, 0, 5, 0], [5, 0, 6, 0]],
+"nodes": {
+"1": {
+"gui_position": Vector2(340, -20),
+"name": &"Soil Index",
+"type": "CustomInput"
+},
+"2": {
+"gui_position": Vector2(360, 80),
+"name": &"Value",
+"type": "CustomInput"
+},
+"3": {
+"a": 0.0,
+"gui_position": Vector2(680, -20),
+"threshold": 0.95,
+"type": "Select"
+},
+"4": {
+"gui_position": Vector2(340, -120),
+"name": &"Previous Value",
+"type": "CustomInput"
+},
+"5": {
+"gui_position": Vector2(860, -120),
+"type": "Max"
+},
+"6": {
+"gui_position": Vector2(1040, -120),
+"type": "CustomOutput"
+}
+},
+"version": 2
+}
+input_definitions = [["Previous Value", "CustomInput", 0], ["Soil Index", "CustomInput", 0], ["Value", "CustomInput", 0]]
+output_definitions = [["", "CustomOutput", 0]]
